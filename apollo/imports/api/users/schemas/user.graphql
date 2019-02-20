@@ -1,0 +1,7 @@
+# _id
+# email
+
+type User {
+    _id: String
+    email: String
+}

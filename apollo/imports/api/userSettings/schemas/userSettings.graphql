@@ -1,0 +1,13 @@
+# _id
+# email
+
+type UserSettings {
+    _id: String
+    userId: String
+    security_lvl: Int
+}
+
+type Mutation {
+    insertUserSettings(_id: String!, userId: String!, security_lvl: String!): UserSettings
+    updateUserSettings(_id: String!, userId: String!, security_lvl: String!): UserSettings
+}
