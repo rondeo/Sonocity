@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 // import gql from 'graphql-tag';
 import { graphql } from "react-apollo";
 
 import GetUserSettings from "../queries/getUserSettings";
 import UpdateUserSettings from "../queries/updateUserSettings";
 
-import ConfidentialitySelect from "./confidentialitySelect";
+import ConfidentialitySelect from "./ConfidentialitySelect";
 
 
 ({ security_lvl }) => class SettingsMenu extends Component {

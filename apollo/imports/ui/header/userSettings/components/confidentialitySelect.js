@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 
 export default class ConfidentialitySelect extends Component {
     constructor(props) {

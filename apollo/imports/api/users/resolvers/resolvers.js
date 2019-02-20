@@ -1,4 +1,3 @@
-import UserSettings from "../userSettings/userSettings"
 import UserQueries from "./query/userQueries"
 import UserMutations from "./mutation/userMutations"
 import merge from "lodash/merge";

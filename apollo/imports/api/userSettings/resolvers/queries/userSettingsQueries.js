@@ -2,8 +2,8 @@ import UserSettings from "../../userSettings"
 
 export default {
     Query : {
-        userSettings() {
-            return UserSettings.find({}).fetch();
+        userSettings(obj, arg, { userId }) {
+            return UserSettings.find({ userId }).fetchOne();
         }
     }
 };
