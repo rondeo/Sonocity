@@ -38,7 +38,7 @@ import ConfidentialitySelect from "./ConfidentialitySelect";
     }
 }
 
-export default graphql(GetUserSettings, {
+export default graphql([[GetUserSettings, {
     props: ({data}) => ({ ...data })
-}, UpdateUserSettings)(SettingsMenu)
+}] , UpdateUserSettings])(SettingsMenu)
 
