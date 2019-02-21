@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import SettingsMenu from "./userSettings/components/settingsMenu";
+// import SettingsMenu from "./userSettings/components/settingsMenu";
 import RegisterForm from "./userMgmt/RegisterForm";
 import LoginForm from "./userMgmt/LoginForm"
 
@@ -7,7 +7,7 @@ export default class Header extends Component {
     render() {
         return (
             <div>
-                { this.props._id ? (
+                { this.props.id ? (
                     <Fragment>
                     <button 
                         onClick={()=> {
@@ -17,7 +17,7 @@ export default class Header extends Component {
                     >
                         Logout
                     </button>
-                    <SettingsMenu />
+                    {/* <SettingsMenu /> */}
                     </Fragment>
                 ) : (
                 <Fragment>

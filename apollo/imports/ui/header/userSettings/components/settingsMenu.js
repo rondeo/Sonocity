@@ -2,8 +2,8 @@ import React, { Component, Fragment } from "react";
 // import gql from 'graphql-tag';
 import { graphql } from "react-apollo";
 
-import GetUserSettings from "../queries/getUserSettings";
-import UpdateUserSettings from "../queries/updateUserSettings";
+import GET_USER_SETTINGS from "../queries/getUserSettings";
+import UPDATE_USER_SETTINGS from "../queries/updateUserSettings";
 
 import ConfidentialitySelect from "./ConfidentialitySelect";
 
@@ -17,7 +17,7 @@ import ConfidentialitySelect from "./ConfidentialitySelect";
     handleSelectValueChange(selectValue) {
         this.setState({selectValue});
         () => {
-            this.props.UpdateUserSettings({
+            this.props.UPDATE_USER_SETTINGS({
                 variables: {
                     security_lvl: this.state.selectValue
                 }
@@ -38,7 +38,7 @@ import ConfidentialitySelect from "./ConfidentialitySelect";
     }
 }
 
-export default graphql([[GetUserSettings, {
+export default graphql([[GET_USER_SETTINGS, {
     props: ({data}) => ({ ...data })
-}] , UpdateUserSettings])(SettingsMenu)
+}] , UPDATE_USER_SETTINGS])(SettingsMenu)
 

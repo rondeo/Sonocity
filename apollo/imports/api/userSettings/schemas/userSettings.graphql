@@ -1,17 +1,9 @@
-# _id
-# email
-
 type UserSettings {
     _id: String!
     userId: String!
     security_lvl: String!
-} 
+}
 
 type Mutation {
     insertUserSettings(security_lvl: String!): UserSettings
-    updateUserSettings(_id: String!, security_lvl: String!): UserSettings
-}
-
-extend type Query {
-    userSettings: UserSettings
 }

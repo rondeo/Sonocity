@@ -1,20 +1,20 @@
 import React from "react";
-import gql from "graphql-tag";
+// import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import { withApollo } from "react-apollo";
 
 import Header from "./header/Header";
 
-import GetUserId from "./queries/getUserId"
+import GET_USER_ID from "./queries/getUserId"
 
-const App = ({ client, _id }) => {
+const App = ({ client, data }) => {
+    if (data.loading) return null;
     return (
         <div>
-            <Header client={client} _id={_id} />
+            {console.log(data)}
+            <Header client={client} id={ data.user ? data.user._id : null } />
         </div>
     )
 }
 
-export default graphql(GetUserId, {
-    props: ({ data }) => ({ ...data })
-})(withApollo(App));
+export default graphql(GET_USER_ID)(withApollo(App));

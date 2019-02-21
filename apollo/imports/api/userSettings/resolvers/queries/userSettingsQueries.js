@@ -1,5 +1,5 @@
 import UserSettings from "../../userSettings"
-
+/*
 export default {
     Query : {
         userSettings(obj, arg, { userId }) {
@@ -7,3 +7,5 @@ export default {
         }
     }
 };
+
+*/

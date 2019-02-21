@@ -6,6 +6,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloLink, from } from 'apollo-link'
 import { HttpLink } from 'apollo-link-http'
 import { MeteorAccountsLink } from 'meteor/apollo'
+import { ApolloProvider } from "react-apollo";
+
 
 import App from '../../ui/App'
 
@@ -20,9 +22,9 @@ const client = new ApolloClient({
   })
 
 const ApolloApp = () => (
-    <AppoloProvider client={client}>
+    <ApolloProvider client={client}>
         <App />
-    </AppoloProvider>
+    </ApolloProvider>
 )
 
 Meteor.startup(() => {

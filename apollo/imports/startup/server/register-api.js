@@ -2,10 +2,10 @@ import { ApolloServer, gql } from 'apollo-server-express'
 import { WebApp } from 'meteor/webapp'
 import { getUser } from 'meteor/apollo'
 
-import typeDefs from './schema.js'
-import resolvers from './resolvers.js'
+import typeDefs from './schema'
+import resolvers from './resolvers'
 
-// when server modiff
+// when server modifF
 
 const server = new ApolloServer({
   typeDefs,

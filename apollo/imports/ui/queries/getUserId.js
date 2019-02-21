@@ -1,9 +1,11 @@
 import gql from 'graphql-tag';
 
-export const getUserId = gql`
-    query getUserId {
+const GET_USER_ID = gql`
+    query GET_USER_ID {
         user {
             _id
         }
     }
 `;
+
+export default GET_USER_ID;

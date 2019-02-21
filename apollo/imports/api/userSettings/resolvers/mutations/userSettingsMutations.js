@@ -9,10 +9,5 @@ export default {
             });
             return UserSettings.findOne(userSettingsId);
         }
-    ,
-        updateUserSettings(obj, { security_lvl }, context){
-
-        }
     }
-
 }
