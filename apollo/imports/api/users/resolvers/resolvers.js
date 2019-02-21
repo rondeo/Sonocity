@@ -1,7 +1,7 @@
-import UserQueries from "./query/userQueries"
-import UserMutations from "./mutation/userMutations"
+import UserQueries from "./queries/userQueries"
+import UserMutations from "./mutations/userMutations"
 import merge from "lodash/merge";
 
-const resolvers = merge(UserQueries, UserMutations);
+const resolvers = merge(UserQueries);
 
 export default resolvers;

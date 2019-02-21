@@ -2,7 +2,7 @@ import UserSettings from "../../userSettings"
 
 export default {
     Mutation: {
-        insertUserSettings(obj, { userId, security_lvl }, context){
+        insertUserSettings(obj, { security_lvl }, { userId }){
             const userSettingsId = UserSettings.insert({
                 userId,
                 security_lvl
@@ -10,7 +10,7 @@ export default {
             return UserSettings.findOne(userSettingsId);
         }
     ,
-        updateUserSettings(obj, { userId, security_lvl}, context){
+        updateUserSettings(obj, { security_lvl }, context){
 
         }
     }

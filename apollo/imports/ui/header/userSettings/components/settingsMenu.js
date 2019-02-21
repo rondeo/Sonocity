@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 // import gql from 'graphql-tag';
 import { graphql } from "react-apollo";
 
@@ -19,7 +19,6 @@ import ConfidentialitySelect from "./ConfidentialitySelect";
         () => {
             this.props.UpdateUserSettings({
                 variables: {
-                    userId: '123',
                     security_lvl: this.state.selectValue
                 }
             }).catch(error => {
@@ -33,8 +32,7 @@ import ConfidentialitySelect from "./ConfidentialitySelect";
             <div>
                 <ConfidentialitySelect 
                     selectValue={this.state.selectValue}
-                    onSelectValueChange={this.handleSelectValueChange}
-                />
+                    onSelectValueChange={this.handleSelectValueChange}/>
             </div>
         )
     }

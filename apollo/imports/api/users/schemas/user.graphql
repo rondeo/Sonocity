@@ -5,3 +5,7 @@ type User {
     _id: String
     email: String
 }
+
+type Query {
+    user: User
+}

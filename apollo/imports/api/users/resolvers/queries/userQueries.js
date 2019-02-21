@@ -1,9 +1,11 @@
-import UserSettings from "../../userSettings"
 
 export default {
     Query : {
-        user() {
-            return user.find({}).fetch();
+        user(obj, arg, { user } ) {
+            return user || {};
         }
+    },
+    User: {
+        email: user => user.emails[0].address      
     }
 };

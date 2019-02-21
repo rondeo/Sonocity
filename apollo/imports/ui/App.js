@@ -1,14 +1,20 @@
 import React from "react";
-// import gql from "graphql-tag";
-// import { graphql } from "react-apollo";
+import gql from "graphql-tag";
+import { graphql } from "react-apollo";
+import { withApollo } from "react-apollo";
+
 import Header from "./header/Header";
 
-const App = () => {
+import GetUserId from "./queries/getUserId"
+
+const App = ({ client, user }) => {
     return (
         <div>
-            <Header />
+            <Header client={client} user={user} />
         </div>
     )
 }
 
-export default graphql()(App);
+export default graphql(GetUserId, {
+    props: ({ data }) => ({ ...data })
+})(withApollo(App));
