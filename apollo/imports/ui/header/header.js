@@ -7,7 +7,7 @@ export default class Header extends Component {
     render() {
         return (
             <div>
-                { this.props.user._id ? (
+                { this.props._id ? (
                     <Fragment>
                     <button 
                         onClick={()=> {

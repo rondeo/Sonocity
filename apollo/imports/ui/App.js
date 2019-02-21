@@ -7,10 +7,10 @@ import Header from "./header/Header";
 
 import GetUserId from "./queries/getUserId"
 
-const App = ({ client, user }) => {
+const App = ({ client, _id }) => {
     return (
         <div>
-            <Header client={client} user={user} />
+            <Header client={client} _id={_id} />
         </div>
     )
 }

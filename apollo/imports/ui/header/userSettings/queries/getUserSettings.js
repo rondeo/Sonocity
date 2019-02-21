@@ -1,11 +1,9 @@
 import gql from 'graphql-tag';
 
-const getUserSettings = gql`
+export const getUserSettings = gql`
     query getUserSettings {
-        getUserSettings {
+        userSettings {
             security_lvl
         }
     }
 `;
-
-export default getUserSettings;
