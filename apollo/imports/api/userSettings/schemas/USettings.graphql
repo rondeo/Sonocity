@@ -5,5 +5,5 @@ type UserSettings {
 }
 
 type Mutation {
-    insertUserSettings(security_lvl: String!): UserSettings
+    insertUserSettings(input: {security_lvl: String!, userId: String!}): UserSettings
 }

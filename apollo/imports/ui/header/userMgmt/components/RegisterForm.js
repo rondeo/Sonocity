@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Accounts } from "meteor/accounts-base";
+import { graphql } from "react-apollo";
 
-import INSERT_USER_DEFAULT_DATA from "./queries/insertUserDefaultData"
+import INSERT_USER_DEFAULT_DATA from "../queries/insertUserDefaultData"
 
 class RegisterForm extends Component {
     registerUser = (e) => {
@@ -17,9 +18,9 @@ class RegisterForm extends Component {
             console.log(error);
         }
         );
-        this.props.INSERT_USER_DEFAULT_DATA({
+        this.props.insertUserDefaultData({
             variables: {
-                security_lvl: 1
+                security_lvl: "1"
             }
         }).catch(error => {
             console.log(error);
@@ -38,5 +39,5 @@ class RegisterForm extends Component {
 }
 
 export default graphql(INSERT_USER_DEFAULT_DATA, {
-    name: USER_DEFAULT_DATA
+    name: "insertUserDefaultData"
 })(RegisterForm)

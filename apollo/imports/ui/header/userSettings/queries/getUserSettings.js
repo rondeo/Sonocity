@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-/*
+
 const GET_USER_SETTINGS = gql`
     query GET_USER_SETTINGS {
         userSettings {
@@ -9,5 +9,3 @@ const GET_USER_SETTINGS = gql`
 `;
 
 export default GET_USER_SETTINGS;
-
-*/

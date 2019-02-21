@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Accounts } from "meteor/accounts-base";
-import "./style/loginForm.css"
+import "../style/loginForm.css"
 
 export default class LoginForm extends Component {
     login = (e) => {

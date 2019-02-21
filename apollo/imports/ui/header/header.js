@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
+
 // import SettingsMenu from "./userSettings/components/settingsMenu";
-import RegisterForm from "./userMgmt/RegisterForm";
-import LoginForm from "./userMgmt/LoginForm"
+import RegisterForm from "./userMgmt/components/RegisterForm";
+import LoginForm from "./userMgmt/components/LoginForm"
 
 export default class Header extends Component {
     render() {

@@ -1,13 +1,25 @@
 import React, { Component } from "react";
 
-export default class ConfidentialitySelect extends Component {
+import UPDATE_USER_SETTINGS from "../queries/updateUserSettings";
+
+
+class ConfidentialitySelect extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(e) {
-        this.props.onSelectValueChange(e.target.value)
+        //this.props.onSelectValueChange(e.target.value)
+        () => {
+                this.props.updateUserSettings({
+                    variables: {
+                        security_lvl: this.state.selectValue
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
+        };
     }
 
     render() {
@@ -20,3 +32,7 @@ export default class ConfidentialitySelect extends Component {
         )
     }
 }
+
+export default graphql(UPDATE_USER_SETTINGS, {
+    name: "updateUserSettings" // refetch
+})(SettingsMenu)
