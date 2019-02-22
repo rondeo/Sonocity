@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 
-import UPDATE_USER_SETTINGS from "../queries/updateUserConfidentialitySettings";
+import { graphql } from "react-apollo";
+
+import UPDATE_USER_CONFIDENTIALITY_SETTINGS from "../queries/updateUserConfidentialitySettings";
 
 
 class ConfidentialitySelect extends Component {
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
     }
 
     updateConfidentialitySetting = e => {
         //this.props.onSelectValueChange(e.target.value)
         
-        this.props.updateUserSettings({
+        this.props.updateUserConfidentialitySettings({
             variables: {
                 security_lvl: e.value
             }
@@ -33,6 +34,9 @@ class ConfidentialitySelect extends Component {
     }
 }
 
-export default graphql(UPDATE_USER_SETTINGS, {
-    name: "updateUserSettings" // refetch
-})(SettingsMenu)
+export default graphql(UPDATE_USER_CONFIDENTIALITY_SETTINGS, {
+    name: "updateUserConfidentialitySettings",
+    options: {
+      refetchQueries: ["GET_USER_SETTINGS"]
+    }
+})(ConfidentialitySelect)

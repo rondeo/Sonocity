@@ -1,9 +1,0 @@
-type UserSettings {
-    _id: String!
-    userId: String!
-    security_lvl: String!
-}
-
-type Mutation {
-    insertUserSettings(input: {security_lvl: String!, userId: String!}): UserSettings
-}

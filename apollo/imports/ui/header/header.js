@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 
-// import SettingsMenu from "./userSettings/components/settingsMenu";
+import SettingsMenu from "./userSettings/components/SettingsMenu";
 import RegisterForm from "./userMgmt/components/RegisterForm";
 import LoginForm from "./userMgmt/components/LoginForm"
 
@@ -18,7 +18,7 @@ export default class Header extends Component {
                     >
                         Logout
                     </button>
-                    {/* <SettingsMenu /> */}
+                    <SettingsMenu />
                     </Fragment>
                 ) : (
                 <Fragment>

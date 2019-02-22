@@ -28,12 +28,17 @@ class SettingsMenu extends Component {
     
     render() {
         return (
+            <Fragment>
+            {console.log("before")}
+            {console.log(this.props)}
+            {console.log("after")}
             <div>
                 <ConfidentialitySelect 
-                    selectValue={this.props.data.security_lvl}
+                    selectValue={this.props.data}
                     //onSelectValueChange={this.handleSelectValueChange}
                 />
             </div>
+            </Fragment>
         )
     }
 }

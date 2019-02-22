@@ -9,5 +9,11 @@ export default {
             });
             return UserSettings.findOne(userSettingsId);
         }
+        ,
+        updateUserConfidentialitySettings(obj, {security_lvl}, { userId }){
+            const userSettingsId = UserSettings.update({
+                security_level
+            })
+        }
     }
 }
