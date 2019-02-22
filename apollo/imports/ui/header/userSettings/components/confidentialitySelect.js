@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import UPDATE_USER_SETTINGS from "../queries/updateUserSettings";
+import UPDATE_USER_SETTINGS from "../queries/updateUserConfidentialitySettings";
 
 
 class ConfidentialitySelect extends Component {
@@ -9,22 +9,22 @@ class ConfidentialitySelect extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(e) {
+    updateConfidentialitySetting = e => {
         //this.props.onSelectValueChange(e.target.value)
-        () => {
-                this.props.updateUserSettings({
-                    variables: {
-                        security_lvl: this.state.selectValue
-                    }
-                }).catch(error => {
-                    console.log(error);
-                });
-        };
+        
+        this.props.updateUserSettings({
+            variables: {
+                security_lvl: e.value
+            }
+        }).catch(error => {
+            console.log(error);
+        });
+        
     }
 
     render() {
         return (
-            <select value={this.props.selectValue} onChange={this.handleChange} className="form-control" id="ntype" required >
+            <select value={this.props.selectValue} onChange={this.updateConfidentialitySetting} className="form-control" id="ntype" required >
                 <option value = "1">Visible</option>
                 <option value = "2">Visible to mutuals</option>
                 <option value = "3">Anonymous</option>

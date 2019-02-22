@@ -5,7 +5,7 @@ import { graphql } from "react-apollo";
 import INSERT_USER_DEFAULT_DATA from "../queries/insertUserDefaultData"
 
 class RegisterForm extends Component {
-    registerUser = (e) => {
+    registerUser = e => {
         e.preventDefault();
         Accounts.createUser({
             email:this.email.value,
