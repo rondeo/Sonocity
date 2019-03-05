@@ -2,7 +2,7 @@ type UserSettings {
     _id: String!
     userId: String!
     security_lvl: String!
-    mutuals: [String]
+    mutuals: [String ]
 }
 
 type Mutation {

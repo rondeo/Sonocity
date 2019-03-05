@@ -6,9 +6,6 @@ import UPDATE_USER_CONFIDENTIALITY_SETTINGS from "../queries/updateUserConfident
 
 
 class ConfidentialitySelect extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     updateConfidentialitySetting = e => {
         //this.props.onSelectValueChange(e.target.value)
