@@ -3,18 +3,22 @@ import React from "react";
 import { graphql } from "react-apollo";
 import { withApollo } from "react-apollo";
 
-import Header from "./header/Header";
+import AuthPage from "./nonAuth/AuthPage";
+import MainPage from "./auth/MainPage"
 
-import GET_USER_ID from "./queries/getUserId"
+import GET_AUTH_CONFIRM from "./queries/getAuthConfirm"
 
-const App = ({ client, data }) => {
-    if (data.loading) return null;
+const App = ({ client, authData }) => {
+    if (authData.loading) return null;
     return (
         <div>
-            {console.log(data)}
-            <Header client={client} id={ data.user ? data.user._id : null } />
+            {console.log(authData)}
+            { authData.user._id ? (<MainPage client={client} id={ authData.user._id } refetch={authData.refetch} />) : (<AuthPage client={client} />)  }
+            {/* <Header client={client} id={ data.user ? data.user._id : null } /> */}
         </div>
     )
 }
 
-export default graphql(GET_USER_ID)(withApollo(App));
+export default graphql(GET_AUTH_CONFIRM, {
+    name: "authData"
+})(withApollo(App));
