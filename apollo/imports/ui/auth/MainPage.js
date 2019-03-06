@@ -26,7 +26,7 @@ export default class MainPage extends Component {
                         this.setState({upload: !this.state.upload})
                     }}
                 >
-                    {this.state.upload ? "Close" : "Upload" }
+                    {this.state.upload ? "Cancel" : "Upload" }
                 </button> 
 
                 {this.state.upload ? (<UploadModule id={this.props.id} />) : (null) }

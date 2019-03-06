@@ -3,8 +3,7 @@ import {useDropzone} from 'react-dropzone'
 
 export default function DropZoneImage(props) {
   const sendUp = binaryStr => {
-    let b = new Blob([binaryStr], {type: 'image/*'});
-    props.addUp(b);
+    props.addUp(binaryStr);
   }
   
   const onDrop = useCallback(acceptedFiles => {

@@ -30,7 +30,7 @@ export default class UploadModule extends Component {
     }
 
     upload = () => {
-   
+        
     }
     
     render() {
@@ -40,7 +40,9 @@ export default class UploadModule extends Component {
                 <Fragment>
                     
                     {/* <input type="text" ref={input => (this.state.name = input)} /> */}
-                    Name your upload: <input type="text" onChange={this.handleChange} />
+                    {(this.state.songList.length > 1) ?
+                    <Fragment><p>Name your Playlist:</p> <input type="text" onChange={this.handleChange} /></Fragment>
+                    : (null)}
                     <DropZoneAudio addUp={this.addToList}/>
                     {
                     (this.state.songList.length > 0) ? 
@@ -50,7 +52,8 @@ export default class UploadModule extends Component {
                     }
                     <DropZoneImage addUp={this.changeImage}/>
                     {this.state.image ? ((this.state.image.size < 2000001) ? (<h3>Image Accepted</h3>) : (<h3>Image must be under 2 mb</h3>)) : (null) } 
-                    { (this.state.songList.length > 0) && (this.state.image ? ((this.state.image.size < 2000001) ? (true) : (null)) : (null)) && (this.state.name || !this.state.name=="") ? 
+                    { (this.state.songList.length > 0) && (this.state.image ? ((this.state.image.size < 2000001) ? (true) : (null)) : (null)) 
+                    && ((this.state.songList.length > 1) ? ((this.state.name || !this.state.name=="") ? (true) : (null)) : (true)) ?
                     (
                         <button 
                             onClick={()=> {
