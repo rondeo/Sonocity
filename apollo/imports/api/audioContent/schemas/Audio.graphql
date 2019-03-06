@@ -26,6 +26,6 @@ type AudioPlaylist {
     audioId: [String]
 }
 
-type Mutation {
+extend type Mutation {
     insertAudioContent(title: String!, artist: String!, album: String, duration: Int!, dataformat: String!, audioFile: String!, coverImage: String!): Boolean
 }

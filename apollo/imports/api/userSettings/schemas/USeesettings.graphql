@@ -5,10 +5,10 @@ type UserSettings {
     mutuals: [String ]
 }
 
-type Mutation {
-    insertUserSettings(security_lvl: String!, userId: String!): UserSettings
-    updateUserConfidentialitySettings(security_lvl: String!): UserSettings
-}
+# type Mutation {
+#     insertUserSettings(security_lvl: String!, userId: String!): UserSettings
+#     updateUserConfidentialitySettings(security_lvl: String!): UserSettings
+# }
 
 extend type Query {
     userSettings: UserSettings

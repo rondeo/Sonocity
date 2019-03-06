@@ -5,7 +5,7 @@ import { getUser } from 'meteor/apollo'
 import typeDefs from './schema'
 import resolvers from './resolvers'
 
-// when server modifff
+// when server modiffffffff
 
 const server = new ApolloServer({
   typeDefs,
