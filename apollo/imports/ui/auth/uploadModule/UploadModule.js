@@ -1,44 +1,56 @@
 import React, { Component, Fragment } from 'react'
-import * as mm from 'music-metadata-browser';
 
-import MyDropzone from './components/FileDragger'
+import DropZoneAudio from './components/FileDragger'
+import DropZoneImage from './components/ImageSelector'
 
 export default class UploadModule extends Component {
     state = {
         name: null,
         image: null,
-        fileList: [],
-        songMetaData: [],
+        songList: [],
     };
 
-    addToList = binaryStr => {
-        this.setState({fileList: [...this.state.fileList, binaryStr]})
+    addToList = song => {
+        this.setState({songList: [...this.state.songList, song]});
+    }
+
+    changeImage = image => {
+        this.setState({image: image});
     }
 
     handleChange = e => {
         this.setState({name: e.target.value})
     }
 
+    removeSong = e => {
+        let tempArray = [...this.state.songList];
+        let index = parseInt(e.target.key);
+        tempArray.splice(index, 1);
+        this.setState({songList: tempArray});
+    }
+
     upload = () => {
-        this.state.fileList.forEach(file => mm.parseBlob(file).then(metadata => {
-            this.setState({songMetaData: [...this.state.songMetaData, metadata]})
-    }))}
+   
+    }
     
     render() {
-
+        const files = this.state.songList.map((file, i) => <li key={i} onClick={this.removeSong}>{file[0].common.title} - {file[0].common.artist}</li>)
         return (
             <div>     
                 <Fragment>
                     
                     {/* <input type="text" ref={input => (this.state.name = input)} /> */}
-                    <input type="text" onChange={this.handleChange} />
-                    <MyDropzone addUp={this.addToList}/>
-                    {/* {
-                    (this.state.fileList.length > 0) ? 
-                        (<p>{this.state.fileList.length} files selected for upload</p>) 
-                        : ( ()=>{} )
-                    } */}
-                    { (this.state.fileList.length > 0) && (this.state.name || !this.state.name=="") ? 
+                    Name your upload: <input type="text" onChange={this.handleChange} />
+                    <DropZoneAudio addUp={this.addToList}/>
+                    {
+                    (this.state.songList.length > 0) ? 
+                        (<Fragment> <p>{this.state.songList.length} audio files selected for upload</p> <ul>{files}</ul> </Fragment>) 
+                        : ( null)
+                        
+                    }
+                    <DropZoneImage addUp={this.changeImage}/>
+                    {this.state.image ? ((this.state.image.size < 2000001) ? (<h3>Image Accepted</h3>) : (<h3>Image must be under 2 mb</h3>)) : (null) } 
+                    { (this.state.songList.length > 0) && (this.state.image ? ((this.state.image.size < 2000001) ? (true) : (null)) : (null)) && (this.state.name || !this.state.name=="") ? 
                     (
                         <button 
                             onClick={()=> {
@@ -49,7 +61,7 @@ export default class UploadModule extends Component {
                         </button>
                      ) : ( <h3>The upload is not ready</h3> ) }
 
-                    {console.log([this.state.fileList,this.state.name,this.state.image,this.state.songMetaData])}
+                    {console.log([this.state.songList,this.state.name,this.state.image])}
                 
                 </Fragment>       
             </div>

@@ -1,10 +1,12 @@
 import React, {useCallback, Component, Fragment} from 'react'
 import {useDropzone} from 'react-dropzone'
+import * as mm from 'music-metadata-browser';
 
 
-export default function MyDropzone(props) {
+export default function DropZoneAudio(props) {
   const sendUp = binaryStr => {
-    props.addUp(binaryStr);
+    let b = new Blob([binaryStr], {type: 'audio/*'});
+    mm.parseBlob(b).then(metadata => { props.addUp([metadata, b]); })
   }
   
   const onDrop = useCallback(acceptedFiles => {
@@ -23,39 +25,7 @@ export default function MyDropzone(props) {
   return (
     <div {...getRootProps()}>
       <input {...getInputProps()} />
-      <p>Drag 'n' drop some AUDIO files here, or click to select AUDIO files</p>
+      <p>Drag 'n' drop or click to select AUDIO files for upload - 1 at a time</p>
     </div>
   )
 }
-
-
-// export default class FileDragger extends Component {
-
-//   sendUp = binaryStr => {
-//       this.props.addUp(binaryStr);
-//   }
-
-//   onDrop = () => useCallback(acceptedFiles => {
-//     const reader = new FileReader()
-
-//     reader.onabort = () => console.log('file reading was aborted')
-//     reader.onerror = () => console.log('file reading has failed')
-//     reader.onload = () => {
-//     // Do whatever you want with the file contents
-//     //   const binaryStr = reader.result
-//     //   console.log(binaryStr)
-//         this.sendUp(reader.result);
-//     }
-  
-//     acceptedFiles.forEach(file => reader.readAsBinaryString(file))
-//   }, [])
-//   ({getRootProps, getInputProps, isDragActive}) = useDropzone({onDrop})
-
-//     render() {
-//     return (
-//         <div {...getRootProps()}>
-//         <input {...getInputProps()} />
-//         <p>Drag 'n' drop some files here, or click to select files</p>
-//         </div>
-//     )}   
-// }
