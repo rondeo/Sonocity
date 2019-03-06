@@ -25,7 +25,7 @@ export default function DropZoneAudio(props) {
   return (
     <div {...getRootProps()}>
       <input {...getInputProps()} />
-      <p>Drag 'n' drop or click to select AUDIO files for upload</p>
+      <p>Drag 'n' drop or click to select AUDIO files for upload (15 mb max per file)</p>
     </div>
   )
 }

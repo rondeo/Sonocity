@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from 'react'
+import { graphql } from "react-apollo";
+import { withApollo } from "react-apollo";
+import { compose } from 'react-apollo'
 
-import DropZoneAudio from './components/FileDragger'
+import DropZoneAudio from './components/AudioFileDragger'
 import DropZoneImage from './components/ImageSelector'
 
 export default class UploadModule extends Component {
@@ -11,7 +14,7 @@ export default class UploadModule extends Component {
     };
 
     addToList = song => {
-        this.setState({songList: [...this.state.songList, song]});
+        song[1].length > 15000000 ? (<p>The maximum size of your audio files must be of 15 mb at this time</p>) : this.setState({songList: [...this.state.songList, song]});
     }
 
     changeImage = image => {
@@ -40,9 +43,9 @@ export default class UploadModule extends Component {
                 <Fragment>
                     
                     {/* <input type="text" ref={input => (this.state.name = input)} /> */}
-                    {(this.state.songList.length > 1) ?
+                    {/*(this.state.songList.length > 1) ?
                     <Fragment><p>Name your Playlist:</p> <input type="text" onChange={this.handleChange} /></Fragment>
-                    : (null)}
+                    : (null)*/}
                     <DropZoneAudio addUp={this.addToList}/>
                     {
                     (this.state.songList.length > 0) ? 
@@ -51,9 +54,9 @@ export default class UploadModule extends Component {
                         
                     }
                     <DropZoneImage addUp={this.changeImage}/>
-                    {this.state.image ? ((this.state.image.size < 2000001) ? (<h3>Image Accepted</h3>) : (<h3>Image must be under 2 mb</h3>)) : (null) } 
-                    { (this.state.songList.length > 0) && (this.state.image ? ((this.state.image.size < 2000001) ? (true) : (null)) : (null)) 
-                    && ((this.state.songList.length > 1) ? ((this.state.name || !this.state.name=="") ? (true) : (null)) : (true)) ?
+                    {this.state.image ? ((this.state.image.length < 2000001) ? (<h3>Image Accepted</h3>) : (<h3>Image is too big</h3>)) : (null) } 
+                    { (this.state.songList.length > 0) && (this.state.image ? ((this.state.image.length < 2000001) ? (true) : (null)) : (null)) 
+                    /*&& ((this.state.songList.length > 1) ? ((this.state.name || !this.state.name=="") ? (true) : (null)) : (true)) */ ?
                     (
                         <button 
                             onClick={()=> {
@@ -64,10 +67,21 @@ export default class UploadModule extends Component {
                         </button>
                      ) : ( <h3>The upload is not ready</h3> ) }
 
-                    {console.log([this.state.songList,this.state.name,this.state.image])}
+                    {console.log([this.state.songList,this.state.name,this.state.image, (this.state.image ? this.state.image.length : (null))])}
                 
                 </Fragment>       
             </div>
         )
     }
 }
+
+// export default compose (
+    
+//     graphql(GET_USER_SETTINGS, {
+//         name: "getUserSettings"
+//     }),
+//     graphql(GET_USER_SETTINGS, {
+//         name: "getUserSettings"
+//     }),
+
+// )(SettingsMenu) 

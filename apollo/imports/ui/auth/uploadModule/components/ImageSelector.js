@@ -22,7 +22,7 @@ export default function DropZoneImage(props) {
   return (
     <div {...getRootProps()}>
       <input {...getInputProps()} />
-      <p>Drag 'n' drop or click to select a cover IMAGE</p>
+      <p>Drag 'n' drop or click to select a cover IMAGE under 2 mb</p>
     </div>
   )
 }

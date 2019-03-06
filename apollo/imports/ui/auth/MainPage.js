@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 
-import SettingsMenu from './userSettings/components/SettingsMenu'
+// import SettingsMenu from './userSettings/components/SettingsMenu'
 import UploadModule from './uploadModule/UploadModule'
 
 export default class MainPage extends Component {

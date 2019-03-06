@@ -1,0 +1,31 @@
+type AudioData {
+    _id: String!
+    userId: String!
+    title: String!
+    artist: String!
+    album: String
+    duration: Int!
+    dataformat: String!
+    playlistId: String
+}
+
+type AudioFile {
+    _id: String!
+    audioId: String!
+    file: String!
+}
+
+type AudioCoverImage {
+    _id: String!
+    audioId: String!
+    file: String!
+}
+
+type AudioPlaylist {
+    _id: String!
+    audioId: [String]
+}
+
+type Mutation {
+    insertAudioContent(title: String!, artist: String!, album: String, duration: Int!, dataformat: String!, audioFile: String!, coverImage: String!)
+}
