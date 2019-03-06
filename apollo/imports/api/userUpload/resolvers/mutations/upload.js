@@ -1,6 +1,6 @@
-import AudioData from '../mongoCollection/audioData'
-import AudioFile from '../mongoCollection/audioFile'
-import AudioCoverImage from '../mongoCollection/audioCoverImage'
+import AudioData from '../../collections/audioData'
+import AudioFile from '../../collections/audioFile'
+import AudioCoverImage from '../../collections/audioCoverImage'
 
 export default {
     

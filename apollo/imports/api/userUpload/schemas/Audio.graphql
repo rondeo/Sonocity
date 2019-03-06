@@ -27,5 +27,5 @@ type AudioPlaylist {
 }
 
 type Mutation {
-    insertAudioContent(title: String!, artist: String!, album: String, duration: Int!, dataformat: String!, audioFile: String!, coverImage: String!)
+    insertAudioContent(title: String!, artist: String!, album: String, duration: Int!, dataformat: String!, audioFile: String!, coverImage: String!): Boolean
 }
