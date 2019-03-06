@@ -35,6 +35,7 @@ export default {
                 } catch (e) {
                     console.log("image insert problem");
                 }
+                return AudioData.findOne(songId);
             }
             throw new Error('Unauthorized');
         }

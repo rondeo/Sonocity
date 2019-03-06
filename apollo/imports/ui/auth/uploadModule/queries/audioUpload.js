@@ -1,9 +1,11 @@
 import gql from 'graphql-tag';
 
-const UPDATE_USER_CONFIDENTIALITY_SETTINGS = gql`
-    mutation UPDATE_USER_CONFIDENTIALITY_SETTINGS($security_lvl: String!) {
-        updateUserConfidentialitySettings(security_lvl: $security_lvl) 
+const UPLOAD_SONG = gql`
+    mutation UPLOAD_SONGS($title: String!, $artist: String!, $album: String, $duration: Float!, $dataformat: String!, $audioFile: String!, $coverImage: String!) {
+        insertAudioContent(title: $title, artist: $artist, album: $album, duration: $duration, dataformat: $dataformat, audioFile: $audioFile, coverImage: $coverImage) {
+            _id
+        }
     }
 `;
 
-export default UPDATE_USER_CONFIDENTIALITY_SETTINGS;
+export default UPLOAD_SONG;

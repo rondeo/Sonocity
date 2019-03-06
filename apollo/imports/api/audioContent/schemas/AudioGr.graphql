@@ -4,7 +4,7 @@ type AudioData {
     title: String!
     artist: String!
     album: String
-    duration: Int!
+    duration: Float!
     dataformat: String!
     playlistId: String
 }
@@ -27,5 +27,5 @@ type AudioPlaylist {
 }
 
 extend type Mutation {
-    insertAudioContent(title: String!, artist: String!, album: String, duration: Int!, dataformat: String!, audioFile: String!, coverImage: String!): Boolean
+    insertAudioContent(title: String!, artist: String!, album: String, duration: Float!, dataformat: String!, audioFile: String!, coverImage: String!): AudioData
 }

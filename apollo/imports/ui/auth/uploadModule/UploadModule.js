@@ -5,8 +5,9 @@ import { compose } from 'react-apollo'
 
 import DropZoneAudio from './components/AudioFileDragger'
 import DropZoneImage from './components/ImageSelector'
+import UPLOAD_SONG from './queries/audioUpload'
 
-export default class UploadModule extends Component {
+class UploadModule extends Component {
     state = {
         name: null,
         image: null,
@@ -14,7 +15,7 @@ export default class UploadModule extends Component {
     };
 
     addToList = song => {
-        song[1].length > 15000000 ? (<p>The maximum size of your audio files must be of 15 mb at this time</p>) : this.setState({songList: [...this.state.songList, song]});
+        song[1].length > 15000000 ? (<p>Individual audio files cannot exceed 15 mb a this time</p>) : this.setState({songList: [...this.state.songList, song]});
     }
 
     changeImage = image => {
@@ -33,7 +34,24 @@ export default class UploadModule extends Component {
     }
 
     upload = () => {
-        
+        this.state.songList.forEach(song => {
+            const insertV = [song[0].common.title, song[0].common.artist, song[0].common.disk, song[0].format.duration, song[0].format.dataformat];
+            insertV.forEach(elem => {
+                elem == { no: null, of: null } ? elem == null : (null);
+            });
+
+            this.props.uploadSong({
+                variables: {
+                    title: insertV[0],
+                    artist: insertV[1],
+                    album: insertV[2],
+                    duration: insertV[3],
+                    dataformat: insertV[4],
+                    audioFile:song[1],
+                    coverImage:this.state.image
+                }
+            })
+        });  
     }
     
     render() {
@@ -75,13 +93,10 @@ export default class UploadModule extends Component {
     }
 }
 
-// export default compose (
+export default compose (
     
-//     graphql(GET_USER_SETTINGS, {
-//         name: "getUserSettings"
-//     }),
-//     graphql(GET_USER_SETTINGS, {
-//         name: "getUserSettings"
-//     }),
+    graphql(UPLOAD_SONG, {
+        name: "uploadSong"
+    }),
 
-// )(SettingsMenu) 
+)(UploadModule) 

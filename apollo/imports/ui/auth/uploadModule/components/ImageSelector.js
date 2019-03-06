@@ -15,7 +15,9 @@ export default function DropZoneImage(props) {
       // Do whatever you want with the file contents
       sendUp(reader.result);    
     }
+    try {
     acceptedFiles.forEach(file => reader.readAsBinaryString(file))
+    } catch (e) { console.log(e) }
   }, [])
   const {getRootProps, getInputProps, isDragActive} = useDropzone({accept: 'image/*', onDrop})
 
