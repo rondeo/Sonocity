@@ -11,7 +11,7 @@ export default {
             if(userId) {
                 // const songId = null;
                 // try {
-                    AudioData.remove({});
+                    // AudioData.remove({});
                     const audioId = AudioData.insert({
                         userId: userId,
                         title: title,
@@ -24,8 +24,7 @@ export default {
                 //     console.log("data insert problem");
                 // }
                 // try {
-                    AudioFile.remove({});
-
+                    // AudioFile.remove({});
                     const fileId = AudioFile.insert({
                         audioId: audioId,
                         file: audioFile
@@ -35,7 +34,7 @@ export default {
                 //     console.log("file insert problem");
                 // }
                 // try {
-                    AudioCoverImage.remove({});
+                    // AudioCoverImage.remove({});
                     const coverId = AudioCoverImage.insert({
                         audioId: audioId,
                         file: coverImage,

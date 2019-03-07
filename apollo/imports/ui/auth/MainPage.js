@@ -5,8 +5,8 @@ import { compose } from 'react-apollo'
 
 // import SettingsMenu from './userSettings/components/SettingsMenu'
 import UploadModule from './uploadModule/UploadModule'
-import GET_ALL_AUDIO_DATA from './queries/getAudioData'
-// import DiscoverAllSongs from "./discoverModules/allSongs"
+import GET_ALL_AUDIO_ID from './queries/getAllAudioId'
+import DiscoverAllSongs from "./discoverModules/DiscoverAllSongs"
 
 class MainPage extends Component {
     state = {
@@ -37,13 +37,12 @@ class MainPage extends Component {
                 >
                     {this.state.upload ? "Cancel" : "Upload" }
                 </button> 
-
+                {console.log([this.props.getAllAudioId.allAudioId])}
                 {this.state.upload ? (<UploadModule  uploadSuccess={this.uploadComplete}/>) : (null) }
                 {/* <SettingsMenu /> */}
-                {console.log(this.props.getAllAudioData.allAudioCover)}
+                {/* {console.log(this.props.getAllAudioData.allAudioCover)} */}
                 {/* {this.constructImage} */}
-                {/* <DiscoverAllSongs covers={this.props.getAllAudioData.allAudioCover} data={this.props.getAllAudioData.allAudioData} /> */}
-
+                {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<DiscoverAllSongs audio={this.props.getAllAudioId.allAudioId} />)}
                 </Fragment>       
             </div>
         )
@@ -52,8 +51,8 @@ class MainPage extends Component {
 
 export default compose (
     
-    graphql(GET_ALL_AUDIO_DATA, {
-        name: "getAllAudioData"
+    graphql(GET_ALL_AUDIO_ID, {
+        name: "getAllAudioId"
     }),
 
 )(withApollo(MainPage));

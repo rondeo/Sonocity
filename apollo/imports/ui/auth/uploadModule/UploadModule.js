@@ -41,7 +41,7 @@ class UploadModule extends Component {
     upload = () => {
         this.state.songList.forEach(song => {
             let disque = song[0].common.disk;
-            (typeof disque === 'string' || disque instanceof String) ? (null) : disque="";        
+            (typeof disque === 'string' || disque instanceof String) ? (null) : disque=" ";        
             const result = this.props.uploadSong({
                 variables: {
                     title: song[0].common.title,
@@ -106,7 +106,7 @@ export default compose (
     graphql(UPLOAD_SONG, {
         name: "uploadSong",
         options: {
-          refetchQueries: ["GET_ALL_AUDIO_DATA"]
+          refetchQueries: ["GET_ALL_AUDIO_ID"]
         }
     }),
 

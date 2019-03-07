@@ -1,11 +1,11 @@
 import AudioFile from '../../collections/audioFile'
 
 export default {
-     Query : {
+    Query : {
         audioFile(obj, { audioId }, { user } ) {
-               return AudioFile.find({
-                   audioId: audioId
-                }).fetch();
-         }
-     }
+            return AudioFile.findOne({
+                audioId: audioId
+            });
+        }
+    }
 };

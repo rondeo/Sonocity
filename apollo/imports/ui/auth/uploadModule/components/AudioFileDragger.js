@@ -14,7 +14,6 @@ export default function DropZoneAudio(props) {
     reader.onload = () => {
       asBinaryString=reader.result;
       mm.parseBlob(file).then(metadata => { props.addUp([metadata, asBinaryString]); })
-
     }
   }
   

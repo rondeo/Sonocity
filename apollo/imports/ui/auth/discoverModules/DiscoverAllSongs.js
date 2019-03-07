@@ -4,38 +4,26 @@ import SongDisplay from './components/SongDisplay'
 
 export default class DiscoverAllSongs extends Component {
     state = {
-        processedImage: [],
-        audioId: [],
-        title: [],
-        artist: [],
-        processCompleted: false
+        audioId: []
     };
 
+    componentDidMount() {
+        this.processIntake();  
+    }
+
+    componentDidUpdate(prevProps) {
+         // Typical usage (don't forget to compare props):
+         (console.log("update"))
+         if (this.props.audio.length !== prevProps.audio.length) {
+             this.processIntake();  
+         }
+    }
+
     processIntake = () => {
-        this.props.data.forEach(element => {
             this.setState({
-                audioId: [...this.state.audioId, element._id],
-                title: [...this.state.title, element.title],
-                artist: [...this.state.artist, element.artist],
-            });
-        });
-
-        this.props.covers.forEach((element) => {
-            let image = new Image();
-            image.onload = () => {
-                this.setState({processedImage: [...this.state.processedImage, image]});
-            }
-            image.src = 'data:'+ element.dataformat +';base64' + btoa(element.file);
-        });
-
-        this.setState({ processCompleted: true })
-    }
-
-    produceDisplay = () => {
-        for (let i = 0; i < processedImage.length; i++) {
-            <SongDisplay audioId={this.state.audioId[i]} title={this.state.title[i]} artist={this.state.artist[i]} image={this.state.processedImage[i]} />
-        }
-    }
+                audioId: [this.props.audio]
+            });  
+        }               
     
     render() {
         return (
@@ -43,8 +31,12 @@ export default class DiscoverAllSongs extends Component {
                 <Fragment>
                     <div>
                         <h1>All Songs</h1>
-                        {this.processIntake()}
-                        {processCompleted ? this.produceDisplay() : (<h1>Loading</h1>)}
+                        <div className="snippets">
+                        {this.state.audioId[0] ?
+                             this.state.audioId[0].map((audioId, i) => (
+                                <SongDisplay key={audioId._id} audioId={audioId._id} />
+                        )) : (null) }
+                        </div>             
                     </div>  
                 </Fragment>
             </div>
