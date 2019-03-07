@@ -12,6 +12,7 @@ class UploadModule extends Component {
         name: null,
         image: null,
         songList: [],
+        error: null,
     };
 
     addToList = song => {
@@ -35,23 +36,25 @@ class UploadModule extends Component {
 
     upload = () => {
         this.state.songList.forEach(song => {
-            const insertV = [song[0].common.title, song[0].common.artist, song[0].common.disk, song[0].format.duration, song[0].format.dataformat];
-            insertV.forEach(elem => {
-                elem == { no: null, of: null } ? elem == null : (null);
-            });
-
-            this.props.uploadSong({
+            let disque = song[0].common.disk;
+            (typeof disque === 'string' || disque instanceof String) ? (null) : disque="";        
+            const result = this.props.uploadSong({
                 variables: {
-                    title: insertV[0],
-                    artist: insertV[1],
-                    album: insertV[2],
-                    duration: insertV[3],
-                    dataformat: insertV[4],
-                    audioFile:song[1],
-                    coverImage:this.state.image
+                    title: song[0].common.title,
+                    artist: song[0].common.artist,
+                    album: disque,
+                    duration: song[0].format.duration,
+                    dataformat: song[0].format.dataformat,
+                    audioFile: song[1],
+                    coverImage: this.state.image
                 }
-            })
+            }).catch(error => {
+                console.log(error);
+                this.setState({ error: error.message });
+            });
+            this.state.error ? (null) : this.props.uploadSuccess()
         });  
+        
     }
     
     render() {
@@ -84,8 +87,8 @@ class UploadModule extends Component {
                         Upload
                         </button>
                      ) : ( <h3>The upload is not ready</h3> ) }
-
-                    {console.log([this.state.songList,this.state.name,this.state.image, (this.state.image ? this.state.image.length : (null))])}
+                    {this.state.error && <p>{this.state.error}</p>}
+                    {console.log([this.state.songList,this.state.name, this.state.image, (this.state.image ? this.state.image.length : (null))])}
                 
                 </Fragment>       
             </div>
@@ -99,4 +102,4 @@ export default compose (
         name: "uploadSong"
     }),
 
-)(UploadModule) 
+)(withApollo(UploadModule));

@@ -1,12 +1,20 @@
 import React, { Component, Fragment } from 'react'
+import { graphql } from "react-apollo";
+import { withApollo } from "react-apollo";
+import { compose } from 'react-apollo'
 
 // import SettingsMenu from './userSettings/components/SettingsMenu'
 import UploadModule from './uploadModule/UploadModule'
+import GET_ALL_AUDIO_COVER from './queries/getAllAudioCoverImages'
 
-export default class MainPage extends Component {
+class MainPage extends Component {
     state = {
         upload: false,
     };
+
+    uploadComplete = () => {
+        this.setState({upload: !this.state.upload})
+    }
 
     render() {
         return (
@@ -29,11 +37,22 @@ export default class MainPage extends Component {
                     {this.state.upload ? "Cancel" : "Upload" }
                 </button> 
 
-                {this.state.upload ? (<UploadModule id={this.props.id} />) : (null) }
-                
+                {this.state.upload ? (<UploadModule  uploadSuccess={this.uploadComplete}/>) : (null) }
                 {/* <SettingsMenu /> */}
+                {console.log(this.props.getAllAudioCover)}
+                {/* {this.constructImage} */}
+                
+
                 </Fragment>       
             </div>
         )
     }
 }
+
+export default compose (
+    
+    graphql(GET_ALL_AUDIO_COVER, {
+        name: "getAllAudioCover"
+    }),
+
+)(withApollo(MainPage));
