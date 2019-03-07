@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-
 import SongDisplay from './components/SongDisplay'
 
 export default class DiscoverAllSongs extends Component {

@@ -1,0 +1,9 @@
+.songDisplay {
+    float:left;
+    padding:20px;
+}
+
+.songDisplay img{
+    height: 100px;
+    width: 100px;
+}

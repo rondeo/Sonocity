@@ -2,31 +2,25 @@ import React, { Component, Fragment } from 'react';
 import { graphql } from "react-apollo";
 import { withApollo } from "react-apollo";
 import { compose } from 'react-apollo';
+import "../style/songDisplay.css"
 
-import { GET_COVER_BY_AUDIO_ID, GET_AUDIO_DATA_BY_ID } from './queries/getDataByAudioId';
+import { GET_COVER_BY_AUDIO_ID, GET_AUDIO_DATA_BY_ID } from '../queries/getDataByAudioId';
 
 class SongDisplay extends Component {    
-    // state = {
-    //     ready: false,
-    //     image: new Image()
-    // };
-
-    // processCover = () => {
-    //     this.props.covers.forEach((element) => {
-    //         image.onload = () => {
-    //             this.state.ready = true;
-    //         }
-    //         this.state.image.src = 'data:'+ element.dataformat +';base64' + btoa(this.getCoverByAudioId.file);
-    //     });
-    // }
 
     render() {
         return (
             <div>              
                 <Fragment>
-                    <div>
-                        {this.props.getAudioDataById.loading ? (null) : ( <h5>{this.props.getAudioDataById.title} -  {this.props.getAudioDataById.artist}</h5> )}
-                        {this.props.getCoverByAudioId.loading ? (null) : (<img src={'data:'+ this.props.getCoverByAudioId.dataformat +';base64' + btoa(this.props.getCoverByAudioId.file)} />)}
+                    <div className = "songDisplay">
+                        {this.props.getAudioDataById.loading ? (null) 
+                        : ( 
+                            <Fragment>
+                                <h6>{this.props.getAudioDataById.audioData.title}</h6>
+                                <h6>{this.props.getAudioDataById.audioData.artist}</h6> 
+                            </Fragment>
+                        )}
+                        {this.props.getCoverByAudioId.loading ? (null) : (<img src={'data:'+ this.props.getCoverByAudioId.audioCoverImage.dataformat +';base64,' + btoa(this.props.getCoverByAudioId.audioCoverImage.file)} />) }
                     </div>  
                 </Fragment>
             </div>
