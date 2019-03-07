@@ -1,8 +1,9 @@
 import merge from "lodash/merge";
 
 import Upload from "./mutations/upload"
-import GetCoverImage from "./queries/getCoverImage"
+import GetAllAudioData from "./queries/getAllAudioData"
+import GetAudioFileById from "./queries/getAudioFileByAudioId"
 
-const resolvers = merge(Upload, GetCoverImage);
+const resolvers = merge(Upload, GetAllAudioData, GetAudioFileById);
 
 export default resolvers;

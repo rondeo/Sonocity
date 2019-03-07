@@ -32,8 +32,8 @@ extend type Mutation {
 
 extend type Query {
     # audioData(_id: String!): AudioData
-    # audioFile(audioId: String!): AudioFile
+    audioFile(audioId: String!): AudioFile
     # audioCoverImage(audioId: String!): AudioCoverImage
-    audioCoverImages: [AudioCoverImage]
-    # songsData: [AudioData]
+    allAudioCover: [AudioCoverImage]
+    allAudioData: [AudioData]
 }

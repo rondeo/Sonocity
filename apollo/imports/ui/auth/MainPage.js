@@ -5,7 +5,8 @@ import { compose } from 'react-apollo'
 
 // import SettingsMenu from './userSettings/components/SettingsMenu'
 import UploadModule from './uploadModule/UploadModule'
-import GET_ALL_AUDIO_COVER from './queries/getAllAudioCoverImages'
+import GET_ALL_AUDIO_DATA from './queries/getAudioData'
+// import DiscoverAllSongs from "./discoverModules/allSongs"
 
 class MainPage extends Component {
     state = {
@@ -39,9 +40,9 @@ class MainPage extends Component {
 
                 {this.state.upload ? (<UploadModule  uploadSuccess={this.uploadComplete}/>) : (null) }
                 {/* <SettingsMenu /> */}
-                {console.log(this.props.getAllAudioCover)}
+                {console.log(this.props.getAllAudioData)}
                 {/* {this.constructImage} */}
-                
+                {/* <DiscoverAllSongs covers={this.props.getAllAudioCover} /> */}
 
                 </Fragment>       
             </div>
@@ -51,8 +52,8 @@ class MainPage extends Component {
 
 export default compose (
     
-    graphql(GET_ALL_AUDIO_COVER, {
-        name: "getAllAudioCover"
+    graphql(GET_ALL_AUDIO_DATA, {
+        name: "getAllAudioData"
     }),
 
 )(withApollo(MainPage));
