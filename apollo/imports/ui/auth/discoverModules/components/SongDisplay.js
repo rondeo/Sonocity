@@ -6,7 +6,7 @@ export default class Display extends Component {
             <div>              
                 <Fragment>
                     <div>
-                    
+                    this
                     </div>  
                 </Fragment>
             </div>

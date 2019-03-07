@@ -13,14 +13,18 @@ class UploadModule extends Component {
         image: null,
         songList: [],
         error: null,
+        imageMimeType: null,
     };
 
     addToList = song => {
         song[1].length > 15000000 ? (<p>Individual audio files cannot exceed 15 mb a this time</p>) : this.setState({songList: [...this.state.songList, song]});
     }
 
-    changeImage = image => {
-        this.setState({image: image});
+    changeImage = (mimeType, base64Data) => {
+        this.setState({
+            imageMimeType: mimeType,
+            image: base64Data
+        });
     }
 
     handleChange = e => {
@@ -46,7 +50,8 @@ class UploadModule extends Component {
                     duration: song[0].format.duration,
                     dataformat: song[0].format.dataformat,
                     audioFile: song[1],
-                    coverImage: this.state.image
+                    coverImage: this.state.image,
+                    imgMimeType: this.state.imageMimeType
                 }
             }).catch(error => {
                 console.log(error);
@@ -99,7 +104,10 @@ class UploadModule extends Component {
 export default compose (
     
     graphql(UPLOAD_SONG, {
-        name: "uploadSong"
+        name: "uploadSong",
+        options: {
+          refetchQueries: ["GET_ALL_AUDIO_DATA"]
+        }
     }),
 
 )(withApollo(UploadModule));

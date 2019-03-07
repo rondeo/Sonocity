@@ -6,12 +6,14 @@ const GET_ALL_AUDIO_DATA = gql`
             _id
             audioId
             file
+            dataformat
         },
         allAudioData {
             _id
             title
             artist
             duration
+            dataformat
         }
     }
 `;

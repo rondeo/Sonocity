@@ -40,7 +40,7 @@ class MainPage extends Component {
 
                 {this.state.upload ? (<UploadModule  uploadSuccess={this.uploadComplete}/>) : (null) }
                 {/* <SettingsMenu /> */}
-                {console.log(this.props.getAllAudioData)}
+                {console.log(this.props.getAllAudioData.allAudioCover)}
                 {/* {this.constructImage} */}
                 {/* <DiscoverAllSongs covers={this.props.getAllAudioCover} /> */}
 
