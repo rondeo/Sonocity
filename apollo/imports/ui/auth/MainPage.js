@@ -42,7 +42,7 @@ class MainPage extends Component {
                 {/* <SettingsMenu /> */}
                 {console.log(this.props.getAllAudioData.allAudioCover)}
                 {/* {this.constructImage} */}
-                {/* <DiscoverAllSongs covers={this.props.getAllAudioCover} /> */}
+                {/* <DiscoverAllSongs covers={this.props.getAllAudioData.allAudioCover} data={this.props.getAllAudioData.allAudioData} /> */}
 
                 </Fragment>       
             </div>
