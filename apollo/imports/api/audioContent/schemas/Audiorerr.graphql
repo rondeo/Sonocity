@@ -9,11 +9,11 @@ type AudioData {
     playlistId: String
 }
 
-type AudioFile {
-    _id: String!
-    audioId: String!
-    file: String!
-}
+# type AudioFile {
+#     _id: String!
+#     audioId: String!
+#     file: String!
+# }
 
 type AudioCoverImage {
     _id: String!
@@ -28,11 +28,11 @@ type AudioPlaylist {
 }
 
 extend type Mutation {
-    insertAudioContent(title: String!, artist: String!, album: String, duration: Float!, dataformat: String!, audioFile: String!, coverImage: String!, imgMimeType: String!): AudioData
+    insertAudioContent(title: String!, artist: String!, album: String, duration: Float!, dataformat: String!, coverImage: String!, imgMimeType: String!): AudioData
 }
 
 extend type Query {
-    audioFile(audioId: String!): AudioFile
+    # audioFile(audioId: String!): AudioFile
     audioCoverImage(audioId: String!): AudioCoverImage
     #allAudioCover: [AudioCoverImage]
     audioData(audioId: String!): AudioData

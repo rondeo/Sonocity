@@ -7,14 +7,14 @@ export default function DropZoneAudio(props) {
   const sendUp = file => {
     let asBinaryString = null;
     const reader = new FileReader()
-    reader.readAsBinaryString(file);
+    // reader.readAsBinaryString(file);
 
-    reader.onabort = () => console.log('file reading was aborted')
-    reader.onerror = () => console.log('file reading has failed')
-    reader.onload = () => {
-      asBinaryString=reader.result;
-      mm.parseBlob(file).then(metadata => { props.addUp([metadata, asBinaryString]); })
-    }
+    // reader.onabort = () => console.log('file reading was aborted')
+    // reader.onerror = () => console.log('file reading has failed')
+    // reader.onload = () => {
+      // asBinaryString=reader.result;
+      mm.parseBlob(file).then(metadata => { props.addUp([metadata, file]); })
+    // }
   }
   
   const onDrop = useCallback(acceptedFiles => {

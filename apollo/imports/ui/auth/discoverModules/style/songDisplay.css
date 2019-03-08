@@ -1,9 +1,11 @@
 .songDisplay {
     float:left;
     padding:20px;
+    text-align:center;
 }
 
 .songDisplay img{
     height: 100px;
     width: 100px;
+    border:3px solid black;
 }

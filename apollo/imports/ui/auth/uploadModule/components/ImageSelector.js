@@ -14,12 +14,14 @@ export default function DropZoneImage(props) {
     // base64 encoded data - pure
     let base64Data = base64ContentArray[1];
 
+//    console.log([mimetype,base64Data,dataUrl]);
+
     props.addUp(mimeType, base64Data);
   }
   
   const onDrop = useCallback(acceptedFiles => {
     const reader = new FileReader()
-
+    
     reader.onabort = () => console.log('file reading was aborted')
     reader.onerror = () => console.log('file reading has failed')
     reader.onload = () => {
@@ -27,7 +29,7 @@ export default function DropZoneImage(props) {
       sendUp(reader.result);    
     }
     try {
-    acceptedFiles.forEach(file => reader.readAsDataURL(file))
+      acceptedFiles.forEach(file => reader.readAsDataURL(file))
     } catch (e) { console.log(e) }
   }, [])
   const {getRootProps, getInputProps, isDragActive} = useDropzone({accept: 'image/*', onDrop})

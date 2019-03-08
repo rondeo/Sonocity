@@ -3,6 +3,8 @@ import { graphql } from "react-apollo";
 import { withApollo } from "react-apollo";
 import { compose } from 'react-apollo'
 
+import AudioFile from '../../../api/audioContent/collections/audioData'
+
 import DropZoneAudio from './components/AudioFileDragger'
 import DropZoneImage from './components/ImageSelector'
 import UPLOAD_SONG from './queries/audioUpload'
@@ -17,7 +19,8 @@ class UploadModule extends Component {
     };
 
     addToList = song => {
-        song[1].length > 15000000 ? (<p>Individual audio files cannot exceed 15 mb a this time</p>) : this.setState({songList: [...this.state.songList, song]});
+        console.log(song[1].length)
+        song[1].length > 5000000 ? (<p>Individual audio files cannot exceed 15 mb at this time</p>) : this.setState({songList: [...this.state.songList, song]});
     }
 
     changeImage = (mimeType, base64Data) => {
@@ -42,7 +45,7 @@ class UploadModule extends Component {
         this.state.songList.forEach(song => {
             let disque = song[0].common.disk;
             (typeof disque === 'string' || disque instanceof String) ? (null) : disque=" ";        
-            const result = this.props.uploadSong({
+            const dataresult = this.props.uploadSong({
                 variables: {
                     title: song[0].common.title,
                     artist: song[0].common.artist,
@@ -57,6 +60,10 @@ class UploadModule extends Component {
                 console.log(error);
                 this.setState({ error: error.message });
             });
+            const fileresult = AudioFile.insert({
+                file: file,
+                fileName: dataresult._id + song[0].format.dataformat
+            })
             this.state.error ? (null) : this.props.uploadSuccess()
         });  
         

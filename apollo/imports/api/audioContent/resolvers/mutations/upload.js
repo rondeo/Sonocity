@@ -1,5 +1,5 @@
 import AudioData from '../../collections/audioData'
-import AudioFile from '../../collections/audioFile'
+// import AudioFile from '../../collections/audioFile'
 import AudioCoverImage from '../../collections/audioCoverImage'
 
 export default {
@@ -11,7 +11,7 @@ export default {
             if(userId) {
                 // const songId = null;
                 // try {
-                    AudioData.remove({});
+                    //AudioData.remove({});
                     const audioId = AudioData.insert({
                         userId: userId,
                         title: title,
@@ -24,17 +24,17 @@ export default {
                 //     console.log("data insert problem");
                 // }
                 // try {
-                    AudioFile.remove({});
-                    const fileId = AudioFile.insert({
-                        audioId: audioId,
-                        file: audioFile
-                    });
+                    //AudioFile.remove({});
+                    // const fileId = AudioFile.insert({
+                    //     audioId: audioId,
+                    //     file: audioFile
+                    // });
  
                 // } catch (e) {
                 //     console.log("file insert problem");
                 // }
                 // try {
-                    AudioCoverImage.remove({});
+                    //AudioCoverImage.remove({});
                     const coverId = AudioCoverImage.insert({
                         audioId: audioId,
                         file: coverImage,

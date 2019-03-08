@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import SongDisplay from './components/SongDisplay'
+import "./style/discoverAllSongs.css"
+
 
 export default class DiscoverAllSongs extends Component {
     state = {
@@ -29,7 +31,7 @@ export default class DiscoverAllSongs extends Component {
             <div>              
                 <Fragment>
                     <div>
-                        <h1>All Songs</h1>
+                        <h1 className = "allSongs">All Songs</h1>
                         <div className="snippets">
                         {this.state.audioId[0] ?
                              this.state.audioId[0].map((audioId, i) => (
