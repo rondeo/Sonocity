@@ -39,5 +39,16 @@ const ApolloApp = () => (
 )
 
 Meteor.startup(() => {
-    render(<ApolloApp />, document.getElementById('app'));
+  // if (Meteor.isServer) {
+  //     Meteor.publish('files.audioFile.all', function () {
+  //     return AudioFile.collection.find({});
+  //   });
+  // }
+ 
+  // if (Meteor.isClient) {
+  //   Meteor.subscribe('files.audioFile.all');
+  // }
+  
+  render(<ApolloApp />, document.getElementById('app'));  
 });
+

@@ -5,13 +5,13 @@ import AudioCoverImage from '../../collections/audioCoverImage'
 export default {
     
     Mutation: {
-        insertAudioContent(obj, { title, artist, album, duration, dataformat, audioFile, coverImage, imgMimeType }, { user }) {
+        insertAudioContent(obj, { title, artist, album, duration, dataformat, coverImage, imgMimeType }, { user }) {
             // console.log(user);
             const userId=user._id;
             if(userId) {
                 // const songId = null;
                 // try {
-                    //AudioData.remove({});
+                    AudioData.remove({});
                     const audioId = AudioData.insert({
                         userId: userId,
                         title: title,
@@ -26,15 +26,15 @@ export default {
                 // try {
                     //AudioFile.remove({});
                     // const fileId = AudioFile.insert({
-                    //     audioId: audioId,
-                    //     file: audioFile
+                        // audioId: audioId,
+                        // file: audioFile
                     // });
  
                 // } catch (e) {
                 //     console.log("file insert problem");
                 // }
                 // try {
-                    //AudioCoverImage.remove({});
+                    AudioCoverImage.remove({});
                     const coverId = AudioCoverImage.insert({
                         audioId: audioId,
                         file: coverImage,

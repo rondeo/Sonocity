@@ -5,15 +5,15 @@ import * as mm from 'music-metadata-browser';
 
 export default function DropZoneAudio(props) {
   const sendUp = file => {
-    let asBinaryString = null;
+    let asDataUrl = null;
     const reader = new FileReader()
-    // reader.readAsBinaryString(file);
+    reader.readAsDataURL(file);
 
-    // reader.onabort = () => console.log('file reading was aborted')
-    // reader.onerror = () => console.log('file reading has failed')
-    // reader.onload = () => {
-      // asBinaryString=reader.result;
-      mm.parseBlob(file).then(metadata => { props.addUp([metadata, file]); })
+    reader.onabort = () => console.log('file reading was aborted')
+    reader.onerror = () => console.log('file reading has failed')
+    reader.onload = () => {
+      asDataUrl=reader.result;
+      mm.parseBlob(file).then(metadata => { props.addUp([metadata, asDataUrl]); })
     // }
   }
   

@@ -20,7 +20,7 @@ class SongDisplay extends Component {
                                 <h6>{this.props.getAudioDataById.audioData.artist}</h6> 
                             </Fragment>
                         )}
-                        {this.props.getCoverByAudioId.loading ? (null) : (<img src={'data:'+ this.props.getCoverByAudioId.audioCoverImage.dataformat +';base64,' + this.props.getCoverByAudioId.audioCoverImage.file} />)}
+                        {/* {this.props.getCoverByAudioId.loading ? (null) : (<img src={'data:'+ this.props.getCoverByAudioId.audioCoverImage.dataformat +';base64,' + this.props.getCoverByAudioId.audioCoverImage.file} />)} */}
                     </div>  
                 </Fragment>
             </div>

@@ -19,8 +19,8 @@ class UploadModule extends Component {
     };
 
     addToList = song => {
-        console.log(song[1].length)
-        song[1].length > 5000000 ? (<p>Individual audio files cannot exceed 15 mb at this time</p>) : this.setState({songList: [...this.state.songList, song]});
+        // console.log(song[1].length)
+        song[1].length > 50000000 ? (<p>Individual audio files cannot exceed 15 mb at this time</p>) : this.setState({songList: [...this.state.songList, song]});
     }
 
     changeImage = (mimeType, base64Data) => {
@@ -52,7 +52,7 @@ class UploadModule extends Component {
                     album: disque,
                     duration: song[0].format.duration,
                     dataformat: song[0].format.dataformat,
-                    audioFile: song[1],
+                    // audioFile: song[1],
                     coverImage: this.state.image,
                     imgMimeType: this.state.imageMimeType
                 }
@@ -61,16 +61,21 @@ class UploadModule extends Component {
                 this.setState({ error: error.message });
             });
             const fileresult = AudioFile.insert({
-                file: file,
-                fileName: dataresult._id + song[0].format.dataformat
+                file: song[1],
+                isBase64: true,
+                fileName: dataresult._id + song[0].format.dataformat,
+                streams: 'dynamic',
+                chunkSize: 'dynamic'}, false);
             })
+            console.log(fileresult);
             this.state.error ? (null) : this.props.uploadSuccess()
-        });  
+        };  
         
     }
     
     render() {
         const files = this.state.songList.map((file, i) => <li key={i} onClick={this.removeSong}>{file[0].common.title} - {file[0].common.artist}</li>)
+        const file = AudioFile.find({});
         return (
             <div>     
                 <Fragment>
@@ -101,7 +106,8 @@ class UploadModule extends Component {
                      ) : ( <h3>The upload is not ready</h3> ) }
                     {this.state.error && <p>{this.state.error}</p>}
                     {console.log([this.state.songList,this.state.name, this.state.image, (this.state.image ? this.state.image.length : (null))])}
-                
+
+                                    
                 </Fragment>       
             </div>
         )
