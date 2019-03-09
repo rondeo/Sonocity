@@ -6,6 +6,7 @@ const GET_AUDIO_DATA_BY_ID = gql`
             title
             artist
             album
+            fileUrl
         }
     }
 `;

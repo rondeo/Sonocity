@@ -16,11 +16,15 @@ class UploadModule extends Component {
         songList: [],
         error: null,
         imageMimeType: null,
+        url: null
+        // uploading: [],
+        // progress: 0,
+        // inProgress: false
     };
 
     addToList = song => {
         // console.log(song[1].length)
-        song[1].length > 50000000 ? (<p>Individual audio files cannot exceed 15 mb at this time</p>) : this.setState({songList: [...this.state.songList, song]});
+        song[1].length > 10000000 ? console.log(">10mb") : this.setState({songList: [...this.state.songList, song]});
     }
 
     changeImage = (mimeType, base64Data) => {
@@ -43,36 +47,69 @@ class UploadModule extends Component {
 
     upload = () => {
         this.state.songList.forEach(song => {
-            let disque = song[0].common.disk;
-            (typeof disque === 'string' || disque instanceof String) ? (null) : disque=" ";        
-            const dataresult = this.props.uploadSong({
-                variables: {
-                    title: song[0].common.title,
-                    artist: song[0].common.artist,
-                    album: disque,
-                    duration: song[0].format.duration,
-                    dataformat: song[0].format.dataformat,
-                    // audioFile: song[1],
-                    coverImage: this.state.image,
-                    imgMimeType: this.state.imageMimeType
-                }
-            }).catch(error => {
-                console.log(error);
-                this.setState({ error: error.message });
-            });
-            const fileresult = AudioFile.insert({
-                file: song[1],
-                isBase64: true,
-                fileName: dataresult._id + song[0].format.dataformat,
-                streams: 'dynamic',
-                chunkSize: 'dynamic'}, false);
-            })
-            console.log(fileresult);
+            
+            try{
+                this.uploadAudioFile(song);
+            } catch (e) {
+                console.log(e);
+                this.setState({ error: e.message })
+            } 
+
+        }) 
             this.state.error ? (null) : this.props.uploadSuccess()
         };  
-        
-    }
-    
+
+        uploadAudioFile = song => {
+            const cloudName = 'dkt7hv91e';
+            const unsignedUploadPreset = 'gqo3naek';
+            let url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+            let xhr = new XMLHttpRequest();
+            let fd = new FormData();
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+            // Update progress (can be used to show progress indicator)
+            xhr.upload.addEventListener("progress", function(e) {
+                let progress = Math.round((e.loaded * 100.0) / e.total);            
+                console.log(`fileuploadprogress data.loaded: ${e.loaded},
+            data.total: ${e.total}`);
+            });
+
+                xhr.onreadystatechange = (e) => {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // File uploaded successfully
+                    let response = JSON.parse(xhr.responseText);
+                    let url = response.secure_url;   
+                    console.log(url);       
+                    
+                    let disque = song[0].common.disk;
+                    (typeof disque === 'string' || disque instanceof String) ? (null) : disque=" ";        
+                    const dataresult = this.props.uploadSong({
+                        variables: {
+                            title: song[0].common.title,
+                            artist: song[0].common.artist,
+                            album: disque,
+                            duration: song[0].format.duration,
+                            dataformat: song[0].format.dataformat,
+                            fileUrl: url,
+                            coverImage: this.state.image,
+                            imgMimeType: this.state.imageMimeType
+                        }
+                    });
+                    // this.uploadImage(dataresult._id);
+                };
+            }
+            
+            fd.append('upload_preset', unsignedUploadPreset);
+            fd.append('tags', 'browser_upload'); // Optional - add tag for image admin in Cloudinary
+            fd.append('file', song[1]);
+            xhr.send(fd);
+        }
+
+        // uploadImage = () => {
+
+        // }
+           
     render() {
         const files = this.state.songList.map((file, i) => <li key={i} onClick={this.removeSong}>{file[0].common.title} - {file[0].common.artist}</li>)
         const file = AudioFile.find({});
@@ -106,7 +143,7 @@ class UploadModule extends Component {
                      ) : ( <h3>The upload is not ready</h3> ) }
                     {this.state.error && <p>{this.state.error}</p>}
                     {console.log([this.state.songList,this.state.name, this.state.image, (this.state.image ? this.state.image.length : (null))])}
-
+                    {this.state.inProgress ? console.log("uploading") : (null)}
                                     
                 </Fragment>       
             </div>

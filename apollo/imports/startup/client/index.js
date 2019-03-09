@@ -8,6 +8,8 @@ import { HttpLink } from 'apollo-link-http'
 import { MeteorAccountsLink } from 'meteor/apollo'
 import { ApolloProvider } from "react-apollo";
 import { onError } from "apollo-link-error";
+
+// import AudioFile from "../../api/audioContent/collections/audioFile"
  
 const errorlink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
@@ -40,15 +42,22 @@ const ApolloApp = () => (
 
 Meteor.startup(() => {
   // if (Meteor.isServer) {
-  //     Meteor.publish('files.audioFile.all', function () {
-  //     return AudioFile.collection.find({});
-  //   });
-  // }
- 
-  // if (Meteor.isClient) {
-  //   Meteor.subscribe('files.audioFile.all');
+  //   AudioFile.allowClient();
   // }
   
-  render(<ApolloApp />, document.getElementById('app'));  
+  // // Example: Subscribe:
+  // if (Meteor.isClient) {
+  //     Meteor.subscribe('files.audioFile.all');
+  // }
+  
+  // // Example: Publish:
+  // if (Meteor.isServer) {
+  //     Meteor.publish('files.audioFile.all', function () {
+  //         return AudioFile.find().cursor;
+  //     });
+  // }
+  
+  render(<ApolloApp />, document.getElementById('app'));
+    
 });
 

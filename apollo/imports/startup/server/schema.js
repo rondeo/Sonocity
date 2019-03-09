@@ -1,6 +1,6 @@
 import UsersSchema from "../../api/users/schemas/User.graphql";
 import UserSettingsSchema from "../../api/userSettings/schemas/USrsettings.graphql";
-import AudioContentSchema from "../../api/audioContent/schemas/Audiorerrrr.graphql"
+import AudioContentSchema from "../../api/audioContent/schemas/Audiooo.graphql"
 
 const typeDefs = [UsersSchema, UserSettingsSchema, AudioContentSchema];
 

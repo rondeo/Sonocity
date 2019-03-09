@@ -13,6 +13,7 @@ class SongDisplay extends Component {
             <div>              
                 <Fragment>
                     <div className = "songDisplay">
+                        {this.props.getAudioDataById.loading ? (null) : console.log(this.props.getAudioDataById.audioData)}
                         {this.props.getAudioDataById.loading ? (null) 
                         : ( 
                             <Fragment>
@@ -20,7 +21,7 @@ class SongDisplay extends Component {
                                 <h6>{this.props.getAudioDataById.audioData.artist}</h6> 
                             </Fragment>
                         )}
-                        {/* {this.props.getCoverByAudioId.loading ? (null) : (<img src={'data:'+ this.props.getCoverByAudioId.audioCoverImage.dataformat +';base64,' + this.props.getCoverByAudioId.audioCoverImage.file} />)} */}
+                        {this.props.getCoverByAudioId.loading ? (null) : (<img src={'data:'+ this.props.getCoverByAudioId.audioCoverImage.dataformat +';base64,' + this.props.getCoverByAudioId.audioCoverImage.file} />)}
                     </div>  
                 </Fragment>
             </div>

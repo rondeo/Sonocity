@@ -6,10 +6,11 @@ import { Meteor }          from 'meteor/meteor';
 import { FilesCollection } from 'meteor/ostrio:files';
 
     const AudioFile = new FilesCollection({
-        collection: new Mongo.Collection("audioFile"),
+        storagePath: "/C:/Users/geoff/Desktop/iVMusic/ivMusic/apollo/data/uploads/audioFile",
         collectionName: 'AudioFile',
+        allowClientCode: true,
+        debug: true,
     });
-
 
     if (Meteor.isServer) {
         AudioFile.allowClient();
@@ -26,3 +27,5 @@ import { FilesCollection } from 'meteor/ostrio:files';
             return AudioFile.find().cursor;
         });
     }
+
+// export default AudioFile;
