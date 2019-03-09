@@ -1,20 +1,26 @@
 import React, { Component, Fragment } from 'react'
-import { graphql } from "react-apollo";
-import { withApollo } from "react-apollo";
-import { compose } from 'react-apollo'
+import { graphql, withApollo, compose } from "react-apollo";
 
 // import SettingsMenu from './userSettings/components/SettingsMenu'
 import UploadModule from './uploadModule/UploadModule'
 import GET_ALL_AUDIO_ID from './queries/getAllAudioId'
 import DiscoverAllSongs from "./discoverModules/DiscoverAllSongs"
+import Player from "./player/Player"
 
 class MainPage extends Component {
     state = {
         upload: false,
+        playerContent: null
     };
 
     uploadComplete = () => {
         this.setState({upload: !this.state.upload})
+    }
+
+    songSelectedDA = (audioId, i) => {
+        this.setState({
+            playerContent: [audioId, i, "playlist", "All songs"]
+        })
     }
 
     render() {
@@ -37,9 +43,14 @@ class MainPage extends Component {
                 >
                     {this.state.upload ? "Cancel" : "Upload" }
                 </button> 
-                {console.log([this.props.getAllAudioId.allAudioId])}
                 {this.state.upload ? (<UploadModule  uploadSuccess={this.uploadComplete}/>) : (null) }
-                {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<DiscoverAllSongs audio={this.props.getAllAudioId.allAudioId} />)}
+
+                <Player content={this.state.playerContent} />
+
+                {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<DiscoverAllSongs audio={this.props.getAllAudioId.allAudioId} songSelected={this.songSelectedDA} />)}
+                
+                {console.log(this.state.playerContent)}
+
                 </Fragment>       
             </div>
         )

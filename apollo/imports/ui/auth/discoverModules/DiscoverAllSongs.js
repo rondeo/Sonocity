@@ -13,18 +13,22 @@ export default class DiscoverAllSongs extends Component {
     }
 
     componentDidUpdate(prevProps) {
-         // Typical usage (don't forget to compare props):
-         (console.log("update"))
-         if (this.props.audio.length !== prevProps.audio.length) {
-             this.processIntake();  
-         }
+        // Typical usage (don't forget to compare props):
+        (console.log("update"))
+        if (this.props.audio.length !== prevProps.audio.length) {
+            this.processIntake();  
+        }
     }
 
     processIntake = () => {
-            this.setState({
-                audioId: [this.props.audio]
-            });  
-        }               
+        this.setState({
+            audioId: [this.props.audio]
+        });  
+    } 
+    
+    songSelected = i => {
+        this.props.songSelected(this.state.audioId, parseInt(i));
+    }
     
     render() {
         return (
@@ -33,10 +37,10 @@ export default class DiscoverAllSongs extends Component {
                     <div>
                         <h1 className = "allSongs">All Songs</h1>
                         <div className="snippets">
-                        {this.state.audioId[0] ?
-                             this.state.audioId[0].map((audioId, i) => (
-                                <SongDisplay key={audioId._id} audioId={audioId._id} />
-                        )) : (null) }
+                            {this.state.audioId[0] ?
+                                this.state.audioId[0].map((audioId, i) => (
+                                    <SongDisplay key={i} index={i} onClick={this.songSelected} audioId={audioId._id} />
+                            )) : (null) }
                         </div>             
                     </div>  
                 </Fragment>

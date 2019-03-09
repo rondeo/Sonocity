@@ -1,0 +1,10 @@
+type ListeningHistoryEntry {
+    _id: String!
+    userId: String!
+    audioId: String!
+    timeStamp: Float!
+}
+
+extend type Mutation {
+    insertLhLog(audioId: String!): ListeningHistoryEntry
+}

@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { graphql } from "react-apollo";
-import { withApollo } from "react-apollo";
-import { compose } from 'react-apollo'
+import { graphql, withApollo, compose } from "react-apollo";
 
 import DropZoneAudio from './components/AudioFileDragger'
 import DropZoneImage from './components/ImageSelector'
@@ -15,6 +13,7 @@ class UploadModule extends Component {
         error: null,
         imageMimeType: null,
         url: null,
+        inProgress: false
     };
 
     addToList = song => {
@@ -39,7 +38,7 @@ class UploadModule extends Component {
     }
 
     upload = () => {
-    
+
         this.state.songList.forEach(song => {
             
             try{
@@ -47,8 +46,6 @@ class UploadModule extends Component {
             } catch (e) {
                 console.log(e);
                 this.setState({ error: e.message })
-            } finally {
-                this.state.error ? (null) : this.props.uploadSuccess()
             }
 
         }) 
@@ -106,6 +103,9 @@ class UploadModule extends Component {
                                     coverUrl: url2
                                 }
                             });
+
+                            this.state.error ? (null) : this.props.uploadSuccess()
+
                         };
                     }
                         xhr1.send(fd1); 
@@ -128,18 +128,24 @@ class UploadModule extends Component {
                         
                     }
                     <DropZoneImage addUp={this.changeImage}/>
+
+                    {this.state.inProgress && <h2>... Uploading ...</h2>}
+
                     {this.state.image ? ((this.state.image.length < 2000001) ? (<h3>Image Accepted</h3>) : (<h3>Image is too big</h3>)) : (null) } 
                     { (this.state.songList.length > 0) && (this.state.image ? ((this.state.image.length < 2000001) ? (true) : (null)) : (null)) ?
                     (
                         <button 
                             onClick={()=> {
+                                this.setState({
+                                    inProgress: true
+                                })
                                 this.upload();
                             }}
                         >
                         Upload
                         </button>
                      ) : ( <h3>The upload is not ready</h3> ) }
-                     
+
                     {this.state.error && <p>{this.state.error}</p>}
                                     
                 </Fragment>       

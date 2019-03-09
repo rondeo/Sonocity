@@ -1,13 +1,14 @@
 import gql from 'graphql-tag';
 
-const GET_AUDIO_DATA_BY_ID = gql`
-    query GET_AUDIO_DATA_BY_ID ($audioId: String!) {
+const GET_AUDIO_LINK_BY_ID = gql`
+    query GET_AUDIO_LINK_BY_ID ($audioId: String!) {
         audioData (audioId: $audioId) {
             title
             artist
             coverUrl
+            fileUrl
         }
     }
 `;
 
-export default GET_AUDIO_DATA_BY_ID;
+export default GET_AUDIO_LINK_BY_ID;

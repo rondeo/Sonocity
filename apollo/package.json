@@ -18,6 +18,7 @@
     "graphql": "^14.1.1",
     "graphql-server-express": "^1.4.0",
     "graphql-tools": "^4.0.4",
+    "howler": "^2.1.1",
     "lodash": "^4.17.11",
     "meteor-node-stubs": "^0.4.1",
     "mmmagic": "^0.5.2",
@@ -25,7 +26,8 @@
     "react": "^16.8.2",
     "react-apollo": "^2.4.1",
     "react-dom": "^16.8.2",
-    "react-dropzone": "^10.0.0"
+    "react-dropzone": "^10.0.0",
+    "react-howler": "^3.7.4"
   },
   "devDependencies": {
     "babel-plugin-inline-import": "^3.0.0"

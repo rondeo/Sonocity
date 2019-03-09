@@ -1,0 +1,23 @@
+import ListeningHistory from '../../collections/listeningHistory'
+
+export default {
+    
+    Mutation: {
+        insertLhLog(obj, { audioId }, { user }) {
+            const userId=user._id;
+            const timeStamp = Date.now();
+            console.log(timeStamp)
+            if(userId) {
+                    const lhLogId = ListeningHistory.insert({
+                        userId: userId,
+                        audioId: audioId,
+                        timeStamp: timeStamp                      
+                    });
+                    console.log("done");
+                return ListeningHistory.findOne(lhLogId);
+            }
+            throw new Error('Unauthorized');
+        }
+    }
+
+}
