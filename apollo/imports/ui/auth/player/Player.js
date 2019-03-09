@@ -83,7 +83,10 @@ export default class DiscoverAllSongs extends Component {
                                 <button 
                                 onClick={()=> {
                                     if(parseInt(this.state.currentSong) !== 0)
-                                    this.setState({currentSong: parseInt(this.state.currentSong) - 1,})
+                                        this.setState({currentSong: parseInt(this.state.currentSong) - 1,})
+                                    else{
+                                        this.setState({currentSong: parseInt(this.state.currentSong)})
+                                    }
                                 }}
                                 >
                                     Previous

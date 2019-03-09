@@ -4,6 +4,7 @@ import { graphql, withApollo, compose } from "react-apollo";
 
 import GET_AUDIO_LINK_BY_ID from '../queries/getAudioLinkById'
 import INSERT_LH_LOG from '../queries/insertIntoLogHistory'
+import Slider from '@material-ui/lab/Slider';
 
 class AudioPlayer extends Component {
 
@@ -77,13 +78,13 @@ class AudioPlayer extends Component {
        <h3>Currently Playing : </h3>
        <h3>{this.props.getAudioLinkById.audioData.title} by {this.props.getAudioLinkById.audioData.artist}</h3>
        <button 
-                    onClick={()=> {
-                        this.state.play ? this.pause() : this.play()
-                        this.setState({play: !this.state.play})
-                    }}
-                >
-                    {this.state.play ? "Pause" : "Play" }
-                </button> 
+            onClick={()=> {
+                this.state.play ? this.pause() : this.play()
+                this.setState({play: !this.state.play})
+            }}
+        >
+            {this.state.play ? "Pause" : "Play" }
+        </button> 
        <ReactHowler
         src={this.props.getAudioLinkById.audioData.fileUrl}
         playing={this.state.play}
