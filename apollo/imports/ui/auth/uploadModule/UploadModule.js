@@ -3,7 +3,7 @@ import { graphql } from "react-apollo";
 import { withApollo } from "react-apollo";
 import { compose } from 'react-apollo'
 
-import AudioFile from '../../../api/audioContent/collections/audioData'
+// import AudioFile from '../../../api/audioContent/collections/audioData'
 
 import DropZoneAudio from './components/AudioFileDragger'
 import DropZoneImage from './components/ImageSelector'
