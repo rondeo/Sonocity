@@ -7,20 +7,9 @@ const GET_AUDIO_DATA_BY_ID = gql`
             artist
             album
             fileUrl
+            coverUrl
         }
     }
 `;
 
-const GET_COVER_BY_AUDIO_ID = gql`
-    query GET_COVER_BY_AUDIO_ID ($audioId: String!) {
-        audioCoverImage (audioId: $audioId) {
-            file
-            dataformat
-        }
-    }
-`;
-
-export { 
-    GET_AUDIO_DATA_BY_ID,
-    GET_COVER_BY_AUDIO_ID
-}
+export default GET_AUDIO_DATA_BY_ID;

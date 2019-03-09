@@ -39,9 +39,6 @@ class MainPage extends Component {
                 </button> 
                 {console.log([this.props.getAllAudioId.allAudioId])}
                 {this.state.upload ? (<UploadModule  uploadSuccess={this.uploadComplete}/>) : (null) }
-                {/* <SettingsMenu /> */}
-                {/* {console.log(this.props.getAllAudioData.allAudioCover)} */}
-                {/* {this.constructImage} */}
                 {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<DiscoverAllSongs audio={this.props.getAllAudioId.allAudioId} />)}
                 </Fragment>       
             </div>

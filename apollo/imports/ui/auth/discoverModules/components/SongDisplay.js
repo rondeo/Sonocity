@@ -4,7 +4,7 @@ import { withApollo } from "react-apollo";
 import { compose } from 'react-apollo';
 import "../style/songDisplay.css"
 
-import { GET_COVER_BY_AUDIO_ID, GET_AUDIO_DATA_BY_ID } from '../queries/getDataByAudioId';
+import GET_AUDIO_DATA_BY_ID from '../queries/getDataByAudioId';
 
 class SongDisplay extends Component {    
 
@@ -19,9 +19,9 @@ class SongDisplay extends Component {
                             <Fragment>
                                 <h6>{this.props.getAudioDataById.audioData.title}</h6>
                                 <h6>{this.props.getAudioDataById.audioData.artist}</h6> 
+                                <img src={this.props.getAudioDataById.audioData.coverUrl}/>
                             </Fragment>
                         )}
-                        {this.props.getCoverByAudioId.loading ? (null) : (<img src={'data:'+ this.props.getCoverByAudioId.audioCoverImage.dataformat +';base64,' + this.props.getCoverByAudioId.audioCoverImage.file} />)}
                     </div>  
                 </Fragment>
             </div>
@@ -31,9 +31,6 @@ class SongDisplay extends Component {
 
 export default compose (
     
-    graphql(GET_COVER_BY_AUDIO_ID, {
-        name: "getCoverByAudioId"
-    }),
     graphql(GET_AUDIO_DATA_BY_ID, {
         name: "getAudioDataById"
     }),

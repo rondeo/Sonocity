@@ -1,0 +1,21 @@
+type AudioData {
+    _id: String!
+    userId: String!
+    title: String!
+    artist: String!
+    album: String
+    duration: Float!
+    dataformat: String!
+    playlistId: String
+    fileUrl: String!
+    coverUrl: String!
+}
+
+extend type Mutation {
+    insertAudioContent(title: String!, artist: String!, album: String, duration: Float!, dataformat: String!, fileUrl: String!, coverUrl: String!): AudioData
+}
+
+extend type Query {
+    audioData(audioId: String!): AudioData
+    allAudioId: [AudioData]
+}
