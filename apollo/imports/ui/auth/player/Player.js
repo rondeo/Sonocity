@@ -2,15 +2,21 @@ import React, { Component, Fragment } from 'react'
 
 import AudioPlayer from './components/AudioPlayer'
 
-export default class DiscoverAllSongs extends Component {
-    state = {
+export default class Player extends Component {
+    constructor(props){
+    super(props);
+    this.state = {
         context: null,
         playList: null,
         stationId: null,
         currentSong: null,
         name: null,
-        ready: false
+        ready: false,
+        loop: false
     };
+    this.keydown = this.keydown.bind(this);
+    }
+
 
     componentDidMount() {
 
@@ -58,52 +64,83 @@ export default class DiscoverAllSongs extends Component {
 
     } 
 
-    onEnd = () => {
+
+    keydown (e) {
+        if(this.state.playList && this.state.ready) {
+            switch(e.which) {
+                case 37: this.previous();
+                break;
+        
+                case 39: this.next(); 
+                break; 
+        
+                default: return; // exit this handler for other keys
+            }
+            e.preventDefault(); // prevent the default action (scroll / move caret)
+        }
+    }
+
+    next = () => {
         if(this.state.context == "playlist"){
             if(parseInt(this.state.currentSong) !== (this.state.playList[0].length - 1)) {  
                 this.setState({
                     currentSong: parseInt(this.state.currentSong) + 1,
                 })
+            } else if (this.state.loop){
+                this.setState({
+                    currentSong: 0
+                })
             }
+        }
+
+    }
+
+    previous = () => {
+        if(parseInt(this.state.currentSong) !== 0)
+            this.setState({currentSong: parseInt(this.state.currentSong) - 1,})
+        else if (this.state.loop){
+            this.setState({currentSong: this.state.playList[0].length - 1})
         }
     }
     
     render() {
         return (
-            <div>              
+            <div onKeyDown={this.keydown}>              
                 <Fragment>
                     <div>   
                         {/* {this.state.name ? console.log(this.state.playList[0].length) : (null)} */}
                         {this.state.name ? (<h2>{this.state.name} Playlist</h2>): (null)}
                         {this.state.playList && this.state.ready ?  
                         <Fragment>
-                            <AudioPlayer onEnd={this.onEnd} audioId={this.state.playList[0][this.state.currentSong]._id} /> 
+                            <AudioPlayer onEnd={this.next} audioId={this.state.playList[0][this.state.currentSong]._id} /> 
                             {this.state.context == "playlist" ?
                             <Fragment>
                                 <button 
                                 onClick={()=> {
-                                    if(parseInt(this.state.currentSong) !== 0)
-                                        this.setState({currentSong: parseInt(this.state.currentSong) - 1,})
-                                    else{
-                                        this.setState({currentSong: parseInt(this.state.currentSong)})
-                                    }
+                                   this.previous();
                                 }}
                                 >
                                     Previous
                                 </button> 
                                 <button 
                                     onClick={()=> {
-                                        this.onEnd();
+                                        this.next();
                                     }}
                                 >
                                     Next
+                                </button>
+                                <button 
+                                    onClick={()=> {
+                                        this.setState({loop: !this.state.loop})
+                                    }}
+                                >
+                                    {this.state.loop ? "stop Loop" : "Loop All" }
                                 </button>
                             </Fragment>    
                             : (null) 
                             }
                         </Fragment>    
                         : (<h3>Browse our collections and select something to listen to !</h3>)} 
-                       
                     </div>  
                 </Fragment>
             </div>

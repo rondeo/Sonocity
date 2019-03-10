@@ -4,17 +4,20 @@ import { graphql, withApollo, compose } from "react-apollo";
 
 import GET_AUDIO_LINK_BY_ID from '../queries/getAudioLinkById'
 import INSERT_LH_LOG from '../queries/insertIntoLogHistory'
-import Slider from '@material-ui/lab/Slider';
+
+import Seeker from './Seeker'
 
 class AudioPlayer extends Component {
 
     state = {
-        play: true,
+        play: false,
     }
 
     componentDidMount() {
       
         this.props.audioId.loading ? (null) : 
+        (this.setState({play:true}))
+
         this.props.insertIntoLogHistory({
             variables: {
                 audioId: this.props.audioId
@@ -25,7 +28,6 @@ class AudioPlayer extends Component {
 
     componentDidUpdate(prevProps) {
     // Typical usage (don't forget to compare props):
-    // (console.log("update"))
         if (this.props.audioId != prevProps.audioId){
             this.props.getAudioLinkById.refetch();
 
@@ -39,16 +41,25 @@ class AudioPlayer extends Component {
         }
     }
 
+    componentWillUnmount() {
+        // delete this.player;
+        // console.log("delete")
+    }
+
+    lookAtChange = () => {
+
+    }
+
     getHower = () => {
         this.player.howler
     }
      
     getDuration = () => {
-        this.player.duration()
+        return this.player.duration();
     }
      
     getSeek = () => {
-        this.player.seek()
+        return this.player.seek();
     }
      
     setSeek = () => {
@@ -92,6 +103,8 @@ class AudioPlayer extends Component {
         onEnd={this.onEnd}
         ref={(ref) => (this.player = ref)}
         />
+        {/* <Seeker play={this.state.play} seek={this.getSeek} info={this.getDuration()}/> */}
+        
       </Fragment>)
       
       } 
