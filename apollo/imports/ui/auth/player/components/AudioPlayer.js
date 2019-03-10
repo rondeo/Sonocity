@@ -4,39 +4,32 @@ import { graphql, withApollo, compose } from "react-apollo";
 
 import GET_AUDIO_LINK_BY_ID from '../queries/getAudioLinkById'
 import INSERT_LH_LOG from '../queries/insertIntoLogHistory'
+import INSERT_LIKED_AUDIO from '../queries/insertLikedAudio'
+import IS_AUDIO_LIKED from '../queries/isAudioLiked'
+import REMOVE_LIKED_AUDIO from '../queries/removeLikedAudio'
+import LIKED_COUNT from '../queries/likedCount'
+import LISTEN_COUNT from '../queries/listenCount'
 
 import Seeker from './Seeker'
-import { lookup } from 'dns';
 
 class AudioPlayer extends Component {
 
     state = {
         play: false,
+        liked: null
     }
 
     componentDidMount() {
-      
         this.props.audioId.loading ? (null) : 
         (this.setState({play:true}))
-
-        this.props.insertIntoLogHistory({
-            variables: {
-                audioId: this.props.audioId
-            }
-        });
-
     }
 
     componentDidUpdate(prevProps) {
     // Typical usage (don't forget to compare props):
         if (this.props.audioId != prevProps.audioId){
             this.props.getAudioLinkById.refetch();
-
-            const dataresult = this.props.insertIntoLogHistory({
-                variables: {
-                    audioId: this.props.audioId
-                }
-            });
+            this.props.isAudioLiked.refetch();
+            this.setState({liked:null})
 
             // insert into station upNext
         }
@@ -68,6 +61,7 @@ class AudioPlayer extends Component {
     }
 
     onEnd = () => {
+        {this.props.audioId.loading ? (null) : this.insertIntoLogHistory()}
         this.props.onEnd();
     }
 
@@ -81,10 +75,55 @@ class AudioPlayer extends Component {
 
     previous = () => {
         const seek = this.getSeek();
-        if(seek<3){
+        if(seek<2){
             this.props.previous();
         } else {
             this.setSeek(0);
+        }
+    }
+
+    insertIntoLogHistory = () => {
+        this.props.insertIntoLogHistory({
+            variables: {
+                audioId: this.props.audioId
+            }
+        });
+    }
+
+    addLiked = () => {
+        const like = this.props.insertLikedAudio({
+            variables: {
+                audioId: this.props.audioId
+            }
+        });
+        console.log(like)
+    }
+
+    removeLiked = () => {
+        this.props.removeLikedAudio({
+            variables: {
+                audioId: this.props.audioId
+            }
+        });
+    }
+
+    likedChange = () => {
+        if(this.state.liked == null){
+            if(!this.props.isAudioLiked.isAudioLiked){
+                this.addLiked();
+                this.setState({liked: true})
+            } else {
+                this.removeLiked();
+                this.setState({liked: false})
+            }
+        } else {
+            if(this.state.liked){
+                this.removeLiked();
+                this.setState({liked: false})
+            } else {
+                this.addLiked();
+                this.setState({liked: true})
+            }
         }
     }
 
@@ -120,15 +159,34 @@ class AudioPlayer extends Component {
         >
             Next
         </button>
-       <ReactHowler
+        {this.props.isAudioLiked.loading ?
+        (null)
+        :
+        (<button 
+            onClick={()=> {
+                this.likedChange();
+            }}
+        >
+            {(this.props.isAudioLiked.isAudioLiked && this.state.liked == null) ? "UnLike" : (this.state.liked ? "UnLike" : "Like") }
+        </button>)
+        }
+
+        <div>
+        {this.props.likedCount.loading ? (null) : (<p>{this.props.likedCount.audioLikedCount} likes</p>)}
+        {this.props.listenCount.loading ? (null) : (<p>{this.props.listenCount.audioListenCount} plays</p>)}
+
+        </div>
+        
+        <ReactHowler
         src={this.props.getAudioLinkById.audioData.fileUrl}
         playing={this.state.play}
         html5={true}
         onEnd={this.onEnd}
         ref={(ref) => (this.player = ref)}
         />
+
         {/* <Seeker play={this.state.play} seek={this.getSeek} info={this.getDuration()}/> */}
-        
+
       </Fragment>)
       
       } 
@@ -138,7 +196,6 @@ class AudioPlayer extends Component {
   }
 }
 
-
 export default compose (
     
     graphql(GET_AUDIO_LINK_BY_ID, {
@@ -146,7 +203,36 @@ export default compose (
     }),
 
     graphql(INSERT_LH_LOG, {
-        name: "insertIntoLogHistory"
+        name: "insertIntoLogHistory",
+        options: {
+            refetchQueries: ["LISTEN_COUNT"]
+        }
+    }),
+
+    graphql(IS_AUDIO_LIKED, {
+        name: "isAudioLiked"
+    }),
+
+    graphql(LIKED_COUNT, {
+        name: "likedCount"
+    }),
+
+    graphql(LISTEN_COUNT, {
+        name: "listenCount"
+    }),
+
+    graphql(INSERT_LIKED_AUDIO, {
+        name: "insertLikedAudio",
+        options: {
+            refetchQueries: ["GET_USER_LIKED_AUDIO", "LIKED_COUNT"]
+        }
+    }),
+
+    graphql(REMOVE_LIKED_AUDIO, {
+        name: "removeLikedAudio",
+        options: {
+            refetchQueries: ["GET_USER_LIKED_AUDIO", "LIKED_COUNT"]
+        }
     }),
 
 )(withApollo(AudioPlayer));

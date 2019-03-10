@@ -8,3 +8,7 @@ type ListeningHistoryEntry {
 extend type Mutation {
     insertLhLog(audioId: String!): ListeningHistoryEntry
 }
+
+extend type Query {
+    audioListenCount(audioId: String!): Int
+}

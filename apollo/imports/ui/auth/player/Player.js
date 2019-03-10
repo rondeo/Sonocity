@@ -18,7 +18,6 @@ export default class Player extends Component {
     this.keydown = this.keydown.bind(this);
     }
 
-
     componentDidMount() {
 
     }
@@ -28,11 +27,15 @@ export default class Player extends Component {
         // (console.log("update"))
         
         if(this.props.content !== null){
+            // console.log(this.props.content[0][0].length)
             if(prevProps.content == null) {
                 this.processIntake();
             } else {
                 if(this.props.content[3] !== prevProps.content[3]) {
                     this.processIntake();
+                }
+                else if (this.props.content[0][0].length != prevProps.content[0][0].length && this.props.content[3] == prevProps.content[3] && this.props.content[0][0].length != 0){
+                    this.resetPlaylist();
                 }
                 else if (this.props.content[1] !== prevProps.content[1] && this.props.content[3] == prevProps.content[3]) {
                     this.changePosition();  
@@ -47,6 +50,10 @@ export default class Player extends Component {
         this.setState({
             currentSong: [this.props.content[1]]
         })
+    }
+
+    resetPlaylist = () =>{
+        this.setState({playList: this.props.content[0]})
     }
 
     processIntake = () => {
@@ -80,7 +87,7 @@ export default class Player extends Component {
         }
     }
 
-    next = () => {
+    onEnd = () => {
         if(this.state.context == "playlist"){          
             if (this.state.loopOne){
                 this.setState({
@@ -94,9 +101,28 @@ export default class Player extends Component {
                 this.setState({
                     currentSong: 0
                 })
+            } else {
+                this.setState({
+                    ready:false,
+                    name: null
+                })
+            }
+
+        }
+    }
+
+    next = () => {
+        if(this.state.context == "playlist"){   
+            if(parseInt(this.state.currentSong) !== (this.state.playList[0].length - 1)) {  
+                this.setState({
+                    currentSong: parseInt(this.state.currentSong) + 1,
+                })
+            } else if (this.state.loopAll){
+                this.setState({
+                    currentSong: 0
+                })
             }
         }
-
     }
 
     previous = () => {
@@ -131,7 +157,12 @@ export default class Player extends Component {
                         {this.state.name ? (<h2>{this.state.name} Playlist</h2>): (null)}
                         {this.state.playList && this.state.ready ?  
                         <Fragment>
-                            <AudioPlayer next={this.next} previous={this.previous} onEnd={this.next} audioId={this.state.playList[0][this.state.currentSong]._id} /> 
+                            {this.state.name == ""}
+                            {this.state.playList[0][this.state.currentSong] ?
+                            <AudioPlayer next={this.next} previous={this.previous} onEnd={this.onEnd} 
+                                audioId={(this.state.name == "All songs") ? this.state.playList[0][this.state.currentSong]._id : (this.state.playList[0][this.state.currentSong].audioId)} 
+                            /> 
+                            : (null) }
                             {this.state.context == "playlist" ?
                             <Fragment>
                                 <button 

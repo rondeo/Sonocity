@@ -1,0 +1,16 @@
+type LikedAudio {
+    _id: String!
+    userId: String!
+    audioId: String!
+}
+
+extend type Mutation {
+    insertLikedAudio(audioId: String!): LikedAudio
+    removeLikedAudio(audioId: String!): Boolean
+}
+
+extend type Query {
+    userLikedAudio: [LikedAudio]
+    isAudioLiked(audioId: String!): Boolean
+    audioLikedCount(audioId: String!): Int
+}
