@@ -1,9 +1,11 @@
 .snippets{
     width:80%;
     margin:auto;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .allSongs {
     text-align:center;
-    margin-top:300px;
+    margin-top:20px;
 }

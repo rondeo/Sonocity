@@ -18,13 +18,13 @@ class RegisterForm extends Component {
             console.log(error);
         }
         );
-        this.props.insertUserDefaultData({
-            variables: {
-                security_lvl: "1"
-            }
-        }).catch(error => {
-            console.log(error);
-        })
+        // this.props.insertUserDefaultData({
+        //     variables: {
+        //         security_lvl: "1"
+        //     }
+        // }).catch(error => {
+        //     console.log(error);
+        // })
     };
     
     render(){

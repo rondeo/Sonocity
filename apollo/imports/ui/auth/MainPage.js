@@ -34,11 +34,13 @@ class MainPage extends Component {
 
     render() {
         return (
-            <div>     
+            <div>   
                 <Fragment>
+                    
                 <button 
                     onClick={()=> {
                         Meteor.logout();
+                        this.props.client.cache.reset()
                         this.props.client.resetStore();
                     }}
                 >

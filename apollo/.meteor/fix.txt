@@ -1,0 +1,4 @@
+shuffle
+seeker
+logout resetStore()
+likedTracks
