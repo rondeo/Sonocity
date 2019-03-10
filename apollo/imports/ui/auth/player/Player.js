@@ -157,24 +157,11 @@ export default class Player extends Component {
                         {this.state.name ? (<h2>{this.state.name} Playlist</h2>): (null)}
                         {this.state.playList && this.state.ready ?  
                         <Fragment>
-                            {this.state.name == ""}
                             {this.state.playList[0][this.state.currentSong] ?
-                            <AudioPlayer next={this.next} previous={this.previous} onEnd={this.onEnd} 
+                            <AudioPlayer next={this.next} previous={this.previous} onEnd={this.onEnd} handleLoop={this.handleLoop} loopAll={this.state.loopAll} loopOne={this.state.loopOne}
                                 audioId={(this.state.name == "All songs") ? this.state.playList[0][this.state.currentSong]._id : (this.state.playList[0][this.state.currentSong].audioId)} 
                             /> 
                             : (null) }
-                            {this.state.context == "playlist" ?
-                            <Fragment>
-                                <button 
-                                    onClick={()=> {
-                                        this.handleLoop();
-                                    }}
-                                >
-                                    {this.state.loopAll ? "loopOne" : (this.state.loopOne ? "stop loop" : "loop All") }
-                                </button>
-                            </Fragment>    
-                            : (null) 
-                            }
                         </Fragment>    
                         : (<h3>Browse our collections and select something to listen to !</h3>)} 
                     </div>  

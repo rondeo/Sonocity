@@ -137,6 +137,13 @@ class AudioPlayer extends Component {
        (<Fragment>
        <h3>Currently Playing : </h3>
        <h3>{this.props.getAudioLinkById.audioData.title} by {this.props.getAudioLinkById.audioData.artist}</h3>
+        <button 
+            onClick={()=> {
+                this.props.handleLoop();
+            }}
+        >
+            {this.props.loopAll ? "loopOne" : (this.props.loopOne ? "stop loop" : "loop All") }
+        </button>
        <button 
                     onClick={()=> {
                         this.previous();
