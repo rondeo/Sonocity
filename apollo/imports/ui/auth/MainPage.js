@@ -1,13 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import { graphql, withApollo, compose } from "react-apollo";
 
-// import SettingsMenu from './userSettings/components/SettingsMenu'
 import UploadModule from './uploadModule/UploadModule'
 import GET_ALL_AUDIO_ID from './queries/getAllAudioId'
 import GET_USER_LIKED_AUDIO from './queries/getUserLikedAudio'
 
-import DiscoverAllSongs from "./discoverModules/DiscoverAllSongs"
-import YourLikedAudio from "./discoverModules/YourLikedAudio"
+import DiscoverSongs from "./discoverModules/DiscoverSongs"
 import Player from "./player/Player"
 
 class MainPage extends Component {
@@ -60,9 +58,9 @@ class MainPage extends Component {
 
                 {console.log(this.props.getUserLikedAudio.userLikedAudio)}
 
-                {this.props.getUserLikedAudio.loading ? (<p>loading</p>) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<YourLikedAudio audio={this.props.getUserLikedAudio.userLikedAudio} songSelected={this.songSelectedYLA} />) : (null))}
+                {this.props.getUserLikedAudio.loading ? (<p>loading</p>) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<DiscoverSongs name={"Your liked songs"} audio={this.props.getUserLikedAudio.userLikedAudio} songSelected={this.songSelectedYLA} />) : (null))}
 
-                {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<DiscoverAllSongs audio={this.props.getAllAudioId.allAudioId} songSelected={this.songSelectedDA} />)}
+                {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<DiscoverSongs name={"All songs"} audio={this.props.getAllAudioId.allAudioId} songSelected={this.songSelectedDA} />)}
                 
                 {console.log(this.state.playerContent)}
 

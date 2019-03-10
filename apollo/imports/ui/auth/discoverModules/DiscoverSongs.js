@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import SongDisplay from './components/SongDisplay'
-import "./style/yourLikedAudio.css"
+import "./style/discoverSongs.css"
 
 
-export default class YourLikedAudio extends Component {
+export default class Discover extends Component {
     state = {
         audioId: []
     };
@@ -35,11 +35,11 @@ export default class YourLikedAudio extends Component {
             <div>              
                 <Fragment>
                     <div>
-                        <h1 className = "allSongsL">Your Liked Audio</h1>
-                        <div className="snippetsL">
+                        {this.props.name.loading? (null) : (<h1 className = "dName">{this.props.name}</h1>)}
+                        <div className="snippets">
                             {this.state.audioId[0] ?
                                 this.state.audioId[0].map((audioId, i) => (
-                                    <SongDisplay key={i} index={i} onClick={this.songSelected} audioId={audioId.audioId} />
+                                    <SongDisplay key={i} index={i} onClick={this.songSelected} audioId={this.props.name == "All songs" ? audioId._id : audioId.audioId} />
                             )) : (null) }
                         </div>             
                     </div>  

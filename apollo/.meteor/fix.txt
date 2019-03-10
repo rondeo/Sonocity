@@ -1,4 +1,5 @@
 shuffle
 seeker
-logout resetStore()
-likedTracks
+logout resetStore() - GG
+likedTracks mix up
+reading id from playlist -> gimmick _id // audioId
