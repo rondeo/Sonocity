@@ -12,7 +12,8 @@ export default class Player extends Component {
         currentSong: null,
         name: null,
         ready: false,
-        loop: false
+        loopOne: false,
+        loopAll: false,
     };
     this.keydown = this.keydown.bind(this);
     }
@@ -64,7 +65,6 @@ export default class Player extends Component {
 
     } 
 
-
     keydown (e) {
         if(this.state.playList && this.state.ready) {
             switch(e.which) {
@@ -81,12 +81,16 @@ export default class Player extends Component {
     }
 
     next = () => {
-        if(this.state.context == "playlist"){
-            if(parseInt(this.state.currentSong) !== (this.state.playList[0].length - 1)) {  
+        if(this.state.context == "playlist"){          
+            if (this.state.loopOne){
+                this.setState({
+                    currentSong: this.state.currentSong
+                })
+            } else if(parseInt(this.state.currentSong) !== (this.state.playList[0].length - 1)) {  
                 this.setState({
                     currentSong: parseInt(this.state.currentSong) + 1,
                 })
-            } else if (this.state.loop){
+            } else if (this.state.loopAll){
                 this.setState({
                     currentSong: 0
                 })
@@ -98,11 +102,26 @@ export default class Player extends Component {
     previous = () => {
         if(parseInt(this.state.currentSong) !== 0)
             this.setState({currentSong: parseInt(this.state.currentSong) - 1,})
-        else if (this.state.loop){
+        else if (this.state.loopAll){
             this.setState({currentSong: this.state.playList[0].length - 1})
         }
     }
     
+    handleLoop = () => {
+        if(!this.state.loopOne && !this.state.loopAll){
+            this.setState({loopAll: !this.state.loopAll})
+        } else if (this.state.loopAll){
+            this.setState({
+                loopOne: !this.state.loopOne,
+                loopAll: !this.state.loopAll
+            }) 
+        } else {
+            this.setState({
+                loopOne: !this.state.loopOne
+            }) 
+        }
+    }
+
     render() {
         return (
             <div onKeyDown={this.keydown}>              
@@ -112,29 +131,15 @@ export default class Player extends Component {
                         {this.state.name ? (<h2>{this.state.name} Playlist</h2>): (null)}
                         {this.state.playList && this.state.ready ?  
                         <Fragment>
-                            <AudioPlayer onEnd={this.next} audioId={this.state.playList[0][this.state.currentSong]._id} /> 
+                            <AudioPlayer next={this.next} previous={this.previous} onEnd={this.next} audioId={this.state.playList[0][this.state.currentSong]._id} /> 
                             {this.state.context == "playlist" ?
                             <Fragment>
                                 <button 
-                                onClick={()=> {
-                                   this.previous();
-                                }}
-                                >
-                                    Previous
-                                </button> 
-                                <button 
                                     onClick={()=> {
-                                        this.next();
+                                        this.handleLoop();
                                     }}
                                 >
-                                    Next
-                                </button>
-                                <button 
-                                    onClick={()=> {
-                                        this.setState({loop: !this.state.loop})
-                                    }}
-                                >
-                                    {this.state.loop ? "stop Loop" : "Loop All" }
+                                    {this.state.loopAll ? "loopOne" : (this.state.loopOne ? "stop loop" : "loop All") }
                                 </button>
                             </Fragment>    
                             : (null) 

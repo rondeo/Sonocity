@@ -6,6 +6,7 @@ import GET_AUDIO_LINK_BY_ID from '../queries/getAudioLinkById'
 import INSERT_LH_LOG from '../queries/insertIntoLogHistory'
 
 import Seeker from './Seeker'
+import { lookup } from 'dns';
 
 class AudioPlayer extends Component {
 
@@ -62,8 +63,8 @@ class AudioPlayer extends Component {
         return this.player.seek();
     }
      
-    setSeek = () => {
-        this.player.seek(0.5)
+    setSeek = e => {
+        this.player.seek(e)
     }
 
     onEnd = () => {
@@ -78,6 +79,15 @@ class AudioPlayer extends Component {
         this.player.play();
     }
 
+    previous = () => {
+        const seek = this.getSeek();
+        if(seek<3){
+            this.props.previous();
+        } else {
+            this.setSeek(0);
+        }
+    }
+
   render () {
     return (
         <div>
@@ -89,6 +99,13 @@ class AudioPlayer extends Component {
        <h3>Currently Playing : </h3>
        <h3>{this.props.getAudioLinkById.audioData.title} by {this.props.getAudioLinkById.audioData.artist}</h3>
        <button 
+                    onClick={()=> {
+                        this.previous();
+                    }}
+                    >
+                        Previous
+        </button> 
+       <button 
             onClick={()=> {
                 this.state.play ? this.pause() : this.play()
                 this.setState({play: !this.state.play})
@@ -96,6 +113,13 @@ class AudioPlayer extends Component {
         >
             {this.state.play ? "Pause" : "Play" }
         </button> 
+        <button 
+            onClick={()=> {
+                this.props.next();
+            }}
+        >
+            Next
+        </button>
        <ReactHowler
         src={this.props.getAudioLinkById.audioData.fileUrl}
         playing={this.state.play}
