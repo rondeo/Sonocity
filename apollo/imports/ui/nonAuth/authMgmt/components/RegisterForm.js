@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { Accounts } from "meteor/accounts-base";
 import { graphql } from "react-apollo";
 
-import INSERT_USER_DEFAULT_DATA from "../queries/insertUserDefaultData"
-
-class RegisterForm extends Component {
+export default class RegisterForm extends Component {
     registerUser = e => {
         e.preventDefault();
         Accounts.createUser({
@@ -38,6 +36,6 @@ class RegisterForm extends Component {
     }
 }
 
-export default graphql(INSERT_USER_DEFAULT_DATA, {
-    name: "insertUserDefaultData"
-})(RegisterForm)
+// export default compose (
+
+// )(withApollo(RegisterForm));

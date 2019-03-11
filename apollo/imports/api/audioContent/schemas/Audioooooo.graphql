@@ -11,7 +11,7 @@ type AudioData {
     coverUrl: String!
 }
 
-extend type Mutation {
+type Mutation {
     insertAudioContent(title: String!, artist: String!, album: String, duration: Float!, dataformat: String!, fileUrl: String!, coverUrl: String!): AudioData
 }
 

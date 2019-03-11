@@ -1,0 +1,21 @@
+type Station {
+    _id: String!
+    userId: String!
+    name: String
+    description: String
+    lastKnownLon: Float
+    lastKnownLat: Float
+    broadcast: Boolean
+    status: Boolean
+    currentSong: String
+    upNext: [String]
+    confidentialitySetting: Int
+}
+
+extend type Mutation {
+    createStation: Station
+}
+
+extend type Query {
+    allStation: [Station]
+}

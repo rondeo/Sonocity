@@ -36,7 +36,7 @@ export default class Player extends Component {
                 }
                 else if (this.props.content[1] !== prevProps.content[1] && this.props.content[3] == prevProps.content[3]) {
                     this.changePosition();  
-                }
+                } 
             }
         } else {
             console.log("content is null")
