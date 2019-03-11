@@ -20,15 +20,9 @@ class MainPage extends Component {
         this.setState({upload: !this.state.upload})
     }
 
-    songSelectedDA = (audioId, i) => {
+    songSelected = (audioId, i, context, name) => {
         this.setState({
-            playerContent: [audioId, i, "playlist", "All songs"]
-        })
-    }
-
-    songSelectedYLA = (audioId, i) => {
-        this.setState({
-            playerContent: [audioId, i, "playlist", "Your liked songs"]
+            playerContent: [audioId, i, context, name]
         })
     }
 
@@ -62,9 +56,9 @@ class MainPage extends Component {
 
                 {console.log(this.props.getUserLikedAudio.userLikedAudio)}
 
-                {this.props.getUserLikedAudio.loading ? (<p>loading</p>) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<DiscoverSongs name={"Your liked songs"} audio={this.props.getUserLikedAudio.userLikedAudio} songSelected={this.songSelectedYLA} />) : (null))}
+                {this.props.getUserLikedAudio.loading ? (<p>loading</p>) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<DiscoverSongs name={"Your liked songs"} audio={this.props.getUserLikedAudio.userLikedAudio} songSelected={this.songSelected} />) : (null))}
 
-                {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<DiscoverSongs name={"All songs"} audio={this.props.getAllAudioId.allAudioId} songSelected={this.songSelectedDA} />)}
+                {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<DiscoverSongs name={"All songs"} audio={this.props.getAllAudioId.allAudioId} songSelected={this.songSelected} />)}
                 
                 </div>
 

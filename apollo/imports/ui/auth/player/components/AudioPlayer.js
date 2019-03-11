@@ -96,7 +96,6 @@ class AudioPlayer extends Component {
                 audioId: this.props.audioId
             }
         });
-        console.log(like)
     }
 
     removeLiked = () => {
@@ -127,6 +126,11 @@ class AudioPlayer extends Component {
         }
     }
 
+    handlePlayPause = () => {
+        this.state.play ? this.pause() : this.play()
+        this.setState({play: !this.state.play})
+    }
+
   render () {
     return (
         <div>
@@ -145,16 +149,15 @@ class AudioPlayer extends Component {
             {this.props.loopAll ? "loopOne" : (this.props.loopOne ? "stop loop" : "loop All") }
         </button>
        <button 
-                    onClick={()=> {
-                        this.previous();
-                    }}
-                    >
-                        Previous
+            onClick={()=> {
+                this.previous();
+            }}
+            >
+                Previous
         </button> 
        <button 
             onClick={()=> {
-                this.state.play ? this.pause() : this.play()
-                this.setState({play: !this.state.play})
+                this.handlePlayPause();
             }}
         >
             {this.state.play ? "Pause" : "Play" }

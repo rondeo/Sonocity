@@ -151,7 +151,7 @@ export default class Player extends Component {
                 <Fragment>
                     <div>   
                         {/* {this.state.name ? console.log(this.state.playList[0].length) : (null)} */}
-                        {this.state.name ? (<h2>{this.state.name} Playlist</h2>): (null)}
+                        {this.state.name ? (<h2>{this.state.name} {this.state.context}</h2>): (null)}
                         {this.state.playList && this.state.ready ?  
                         <Fragment>
                             {this.state.playList[0][this.state.currentSong] ?

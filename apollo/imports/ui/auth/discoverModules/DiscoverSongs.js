@@ -5,7 +5,9 @@ import "./style/discoverSongs.css"
 
 export default class Discover extends Component {
     state = {
-        audioId: []
+        audioId: [],
+        name: null,
+        context: "playlist"
     };
 
     componentDidMount() {
@@ -22,12 +24,14 @@ export default class Discover extends Component {
 
     processIntake = () => {
         this.setState({
-            audioId: [this.props.audio]
+            audioId: [this.props.audio],
+            name: this.props.name
         });  
     } 
     
     songSelected = i => {
-        this.props.songSelected(this.state.audioId, parseInt(i));
+        {console.log(i)}
+        this.props.songSelected(this.state.audioId, parseInt(i), this.state.context, this.state.name);
     }
     
     render() {
@@ -35,13 +39,14 @@ export default class Discover extends Component {
             <div>              
                 <Fragment>
                     <div>
-                        {this.props.name.loading? (null) : (<h1 className = "dName">{this.props.name}</h1>)}
+                        {this.props.name.loading ? (null) : (<h1 className = "dName">{this.props.name}</h1>)}
                         <div className="snippets">
                             {this.state.audioId[0] ?
                                 this.state.audioId[0].map((audioId, i) => (
-                                    <SongDisplay key={i} index={i} onClick={this.songSelected} audioId={this.props.name == "All songs" ? audioId._id : audioId.audioId} />
+                                    <SongDisplay key={i} index={i} onClick={this.songSelected} audioId={this.state.name == "All songs" ? audioId._id : audioId.audioId} />
                             )) : (null) }
-                        </div>             
+                        </div>        
+                        {console.log(this.state.audioId)}     
                     </div>  
                 </Fragment>
             </div>
