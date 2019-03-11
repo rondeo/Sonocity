@@ -3,9 +3,8 @@ import React, { Component, Fragment } from 'react'
 import AudioPlayer from './components/AudioPlayer'
 
 export default class Player extends Component {
-    constructor(props){
-    super(props);
-    this.state = {
+
+    state = {
         context: null,
         playList: null,
         stationId: null,
@@ -15,8 +14,6 @@ export default class Player extends Component {
         loopOne: false,
         loopAll: false,
     };
-    this.keydown = this.keydown.bind(this);
-    }
 
     componentDidMount() {
 
@@ -72,20 +69,20 @@ export default class Player extends Component {
 
     } 
 
-    keydown (e) {
-        if(this.state.playList && this.state.ready) {
-            switch(e.which) {
-                case 37: this.previous();
-                break;
+    // keydown (e) {
+    //     if(this.state.playList && this.state.ready) {
+    //         switch(e.which) {
+    //             case 37: this.previous();
+    //             break;
         
-                case 39: this.next(); 
-                break; 
+    //             case 39: this.next(); 
+    //             break; 
         
-                default: return; // exit this handler for other keys
-            }
-            e.preventDefault(); // prevent the default action (scroll / move caret)
-        }
-    }
+    //             default: return; // exit this handler for other keys
+    //         }
+    //         e.preventDefault(); // prevent the default action (scroll / move caret)
+    //     }
+    // }
 
     onEnd = () => {
         if(this.state.context == "playlist"){          
@@ -150,7 +147,7 @@ export default class Player extends Component {
 
     render() {
         return (
-            <div onKeyDown={this.keydown}>              
+            <div>              
                 <Fragment>
                     <div>   
                         {/* {this.state.name ? console.log(this.state.playList[0].length) : (null)} */}
