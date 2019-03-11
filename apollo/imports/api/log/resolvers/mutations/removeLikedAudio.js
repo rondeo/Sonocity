@@ -10,7 +10,6 @@ export default {
                     userId: userId,
                     audioId: audioId,                     
                 });
-                console.log(result);
                 return true;
             }
             throw new Error('Unauthorized');

@@ -4,3 +4,5 @@ logout resetStore() - GG
 likedTracks mix up
 previous/next currentSongId condition on change prevProps this.Props sur main page ne change pas
 reading id from playlist -> gimmick _id // audioId
+
+check return of mutations if not needed don't query database for nothing

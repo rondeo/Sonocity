@@ -7,13 +7,18 @@ type Station {
     lastKnownLat: Float
     broadcast: Boolean
     status: Boolean
-    currentSong: String
+    currentAudio: String
     upNext: [String]
     confidentialitySetting: Int
+    timeStamp: Int
 }
 
 extend type Mutation {
     createStation: Station
+    updateName(name: String!): Boolean
+    updateDescription(description: String!): Boolean
+    updateCurrentAudio(timeStamp: Int!): Boolean
+    addToUpNext(audioId: String!): Boolean
 }
 
 extend type Query {

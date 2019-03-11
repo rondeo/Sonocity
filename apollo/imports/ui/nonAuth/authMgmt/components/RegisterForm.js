@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Accounts } from "meteor/accounts-base";
-import { graphql } from "react-apollo";
+import { graphql, withApollo, compose } from "react-apollo";
 
-export default class RegisterForm extends Component {
+import CREATE_STATION from "../queries/createStation"
+
+class RegisterForm extends Component {
     registerUser = e => {
         e.preventDefault();
         Accounts.createUser({
@@ -12,17 +14,13 @@ export default class RegisterForm extends Component {
         error => {
             if (!error) {
                 this.props.client.resetStore();
+                const stationId = this.props.createStation({});
+                console.log(stationId);
             }
             console.log(error);
         }
         );
-        // this.props.insertUserDefaultData({
-        //     variables: {
-        //         security_lvl: "1"
-        //     }
-        // }).catch(error => {
-        //     console.log(error);
-        // })
+        
     };
     
     render(){
@@ -36,6 +34,10 @@ export default class RegisterForm extends Component {
     }
 }
 
-// export default compose (
+export default compose (
 
-// )(withApollo(RegisterForm));
+    graphql(CREATE_STATION, {
+        name: "createStation"
+    }),
+
+)(withApollo(RegisterForm));

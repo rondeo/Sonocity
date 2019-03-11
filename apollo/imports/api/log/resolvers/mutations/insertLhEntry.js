@@ -13,7 +13,6 @@ export default {
                         audioId: audioId,
                         timeStamp: timeStamp                      
                     });
-                    console.log("done");
                 return ListeningHistory.findOne(lhLogId);
             }
             throw new Error('Unauthorized');
