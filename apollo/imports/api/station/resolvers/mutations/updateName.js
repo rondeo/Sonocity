@@ -6,19 +6,30 @@ export default {
         updateName(obj, { name }, { user }) {
             const userId=user._id;
             if(userId) {
-                const isNameUsed = Station.findOne({name: name});
-                if(!isNameUsed) {
-                    Station.update(
-                        { userId: userId },
-                        { $set:
-                            {
-                              name: name
-                            }
-                        }
-                    );
-                    return true;
+
+                async function isNameUsed() {
+                    const isNameUsed = Station.findOne({name: name});
+                    return isNameUsed;
                 }
-                return false;     
+
+                async function runMutation() {
+                    const isNameUsed = await isNameUsed();
+                    if(!isNameUsed) {
+                        Station.update(
+                            { userId: userId },
+                            { $set:
+                                {
+                                name: name
+                                }
+                            }
+                        );
+                        return true;
+                    }
+                    return false;     
+                }
+
+                runMutation();
+
             }
             throw new Error('Unauthorized');
         }

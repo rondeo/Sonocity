@@ -1,8 +1,8 @@
 import merge from "lodash/merge";
 
 import CreateStation from "./mutations/createStation"
-import Tests from "./queries/tests"
+import GetStationDataByUserId from "./queries/getStationDataByUserId"
 
-const resolvers = merge(CreateStation, Tests);
+const resolvers = merge(CreateStation, GetStationDataByUserId);
 
 export default resolvers;

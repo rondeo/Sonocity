@@ -2,10 +2,10 @@ import Station from '../../collections/station'
 
 export default {
      Query : {
-          allStation(obj, arg, {user} ){
+          userStation(obj, arg, {user} ){
                const userId=user._id;
                if(userId) {
-                    return Station.find({}).fetch();
+                    return Station.findOne({userId: userId});
                }
             throw new Error('Unauthorized');
           }

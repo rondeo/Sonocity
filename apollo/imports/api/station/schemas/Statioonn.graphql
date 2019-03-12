@@ -22,5 +22,5 @@ extend type Mutation {
 }
 
 extend type Query {
-    allStation: [Station]
+    userStation: Station
 }

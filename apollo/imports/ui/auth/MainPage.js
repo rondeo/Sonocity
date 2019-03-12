@@ -4,21 +4,17 @@ import { graphql, withApollo, compose } from "react-apollo";
 import GET_ALL_AUDIO_ID from './queries/getAllAudioId'
 import GET_USER_LIKED_AUDIO from './queries/getUserLikedAudio'
 
-import UploadModule from './uploadModule/UploadModule'
 import DiscoverSongs from "./discoverModules/DiscoverSongs"
 import Player from "./player/Player"
+import Station from "./station/Station"
 
 import "./style/mainPage.css"
 
 class MainPage extends Component {
     state = {
-        upload: false,
+        station: false,
         playerContent: null
     };
-
-    uploadComplete = () => {
-        this.setState({upload: !this.state.upload})
-    }
 
     songSelected = (audioId, i, context, name) => {
         this.setState({
@@ -43,12 +39,13 @@ class MainPage extends Component {
 
                 <button 
                     onClick={()=> {
-                        this.setState({upload: !this.state.upload})
+                        this.setState({station: !this.state.station})
                     }}
                 >
-                    {this.state.upload ? "Cancel" : "Upload" }
+                    {this.state.station ? "Close" : "Station" }
                 </button> 
-                {this.state.upload ? (<UploadModule  uploadSuccess={this.uploadComplete}/>) : (null) }
+
+                {this.state.station ? (<Station />) : (null) }
 
                 <div className="core">
 
@@ -60,6 +57,8 @@ class MainPage extends Component {
 
                 {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<DiscoverSongs name={"All songs"} audio={this.props.getAllAudioId.allAudioId} songSelected={this.songSelected} />)}
                 
+                
+
                 </div>
 
                 {console.log(this.state.playerContent)}

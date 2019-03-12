@@ -23,7 +23,7 @@ export default class Player extends Component {
         // Typical usage (don't forget to compare props):
         // (console.log("update"))
         
-        if(this.props.content !== null){
+        if(this.props.content !== null) {
             // console.log(this.props.content[0][0].length)
             if(prevProps.content == null) {
                 this.processIntake();
@@ -49,7 +49,7 @@ export default class Player extends Component {
         })
     }
 
-    resetPlaylist = () =>{
+    resetPlaylist = () => {
         this.setState({playList: this.props.content[0]})
     }
 

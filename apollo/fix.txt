@@ -1,4 +1,6 @@
 shuffle
+volume
+listening count
 seeker
 logout resetStore() - GG
 likedTracks mix up
