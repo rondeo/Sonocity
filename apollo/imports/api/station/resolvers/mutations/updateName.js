@@ -9,7 +9,7 @@ export default {
 
                 async function isNameUsed() {
                     try {
-                        const is = Station.findOne({name: name});
+                        const is = Station.find({name: name}).count()
                         return is;
                     } catch (e) {
                         console.log(e)
