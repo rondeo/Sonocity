@@ -8,27 +8,35 @@ export default {
             if(userId) {
 
                 async function isNameUsed() {
-                    const isNameUsed = Station.findOne({name: name});
-                    return isNameUsed;
+                    try {
+                        const is = Station.findOne({name: name});
+                        return is;
+                    } catch (e) {
+                        console.log(e)
+                    }
                 }
 
                 async function runMutation() {
-                    const isNameUsed = await isNameUsed();
-                    if(!isNameUsed) {
-                        Station.update(
-                            { userId: userId },
-                            { $set:
-                                {
-                                name: name
+                    try {
+                        const is = await isNameUsed();
+                        if(!is) {
+                            Station.update(
+                                { userId: userId },
+                                { $set:
+                                    {
+                                    name: name
+                                    }
                                 }
-                            }
-                        );
-                        return true;
+                            );
+                            return true;
+                        }
+                    } catch (e) {
+                        console.log(e)
                     }
                     return false;     
                 }
 
-                runMutation();
+                return runMutation();
 
             }
             throw new Error('Unauthorized');

@@ -6,7 +6,6 @@ export default {
         insertLhLog(obj, { audioId }, { user }) {
             const userId=user._id;
             const timeStamp = Date.now();
-            console.log(timeStamp)
             if(userId) {
                     const lhLogId = ListeningHistory.insert({
                         userId: userId,

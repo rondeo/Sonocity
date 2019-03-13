@@ -89,7 +89,7 @@ class Station extends Component {
         return (
             <div>   
                 <Fragment>
-                    { this.state.name ? <Profile name={this.state.name} description={this.state.description} /> : (console.log("ok")) }  
+                    {this.state.name ? <Profile name={this.state.name} description={this.state.description} /> : (null)}  
                     <button 
                         onClick={()=> {
                             this.setState({upload: !this.state.upload})
@@ -97,7 +97,7 @@ class Station extends Component {
                     >
                         {this.state.upload ? "Cancel" : "Upload" }
                     </button> 
-                {this.state.upload ? (<UploadModule  uploadSuccess={this.uploadComplete}/>) : (null) } 
+                    {this.state.upload ? (<UploadModule  uploadSuccess={this.uploadComplete}/>) : (null) } 
                 </Fragment>       
             </div>
         )
