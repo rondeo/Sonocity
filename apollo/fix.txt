@@ -1,7 +1,7 @@
 shuffle
 volume
 listening count
-seeker
+seeker -> errors object passed & setSeek on drag
 logout resetStore() - GG
 likedTracks mix up
 previous/next currentSongId condition on change prevProps this.Props sur main page ne change pas
