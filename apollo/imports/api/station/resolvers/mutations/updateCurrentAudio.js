@@ -8,37 +8,45 @@ export default {
             if(userId) {
 
                 async function getUserStation() {
-                    const userStation = Station.findOne({userId: userId});
-                    return userStation;
+                    try{
+                        const userStation = Station.findOne({userId: userId});
+                        return userStation;
+                    } catch (e) {
+                        console.log(e)
+                    } 
                 }
 
                 async function runMutation() {
-                    const userStation = await getUserStation();
-                    if(userStation.upNext[0]) {
-                        Station.update(
-                            { userId: userId },
-                            { $set:
-                                {
-                                    currentAudio: userStation.upNext[0],
-                                    timeStamp: timeStamp
-                                },
-                            $pop: 
-                                { 
-                                    upNext: -1 
-                                }   
-                            }
-                        );
-                        return true;
-                    } else {
-                        Station.update(
-                            { userId: userId },
-                            { $set: 
-                                {
-                                    status: false
+                    try{
+                        const userStation = await getUserStation();
+                        if(userStation.upNext[0]) {
+                            Station.update(
+                                { userId: userId },
+                                { $set:
+                                    {
+                                        currentAudio: userStation.upNext[0],
+                                        timeStamp: timeStamp
+                                    },
+                                $pop: 
+                                    { 
+                                        upNext: -1 
+                                    }   
                                 }
-                            }
-                        );
-                        return false;
+                            );
+                            return true;
+                        } else {
+                            Station.update(
+                                { userId: userId },
+                                { $set: 
+                                    {
+                                        status: false
+                                    }
+                                }
+                            );
+                            return false;
+                        }
+                    } catch (e) {
+                        console.log(e)
                     }
                 }
                 
