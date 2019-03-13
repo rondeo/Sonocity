@@ -81,7 +81,7 @@ class Profile extends Component {
     updateDescription = () => {
         this.props.updateStationDescription({
             variables: {
-                description: this.description.value
+                description: this.state.description
             }
         })
     }
