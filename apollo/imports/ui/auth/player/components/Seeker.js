@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import Slider from '@material-ui/lab/Slider';
-import "../style/seeker.css"
+import "../style/seeker.css";
 
 
 export default class Seeker extends Component {
@@ -12,41 +12,39 @@ export default class Seeker extends Component {
     }
 
     componentDidMount() {
-        if(!this.props.info.loading ) {
-            if(this.props.play && this.props.info){
-                this.setUp();
-                this.tick();
-            }
-        } 
+        this.timer = setInterval(() => { 
+            let value = this.props.seek();
+            console.log("a");
+            this.setState({
+                value: value
+            })
+        }, 100);
     }
 
     componentDidUpdate(prevProps) {
-        if(prevProps.info != this.props.info){
+        if(this.state.max != this.props.info()) {
             this.setUp();
         }
     }
 
+    componentWillUnmount() {
+        clearInterval(this.timer);
+    }
+
     setUp = () => {
         this.setState({
-            max: this.props.info[0],
-            value: 0
+            value: 0,
+            max: this.props.info()
         })
     }
 
     tick = () => {
-        if(this.props.play) {
-            console.log("a")
-            setInterval(this.tick, 10000);
-            let value = this.props.seek();
-            this.setState({
-            value: value
-            })
-        }   
+        
     }
 
-    // onDrag = e => {
-    //     this.props.dragged(this.seeker.value);
-    // }
+    onDrag = e => {
+        this.props.setSeek(this.seeker.value);
+    }
 
 
     render() {
@@ -57,7 +55,7 @@ export default class Seeker extends Component {
                     max={this.state.max}
                     min={this.state.min}
                     ref={(ref) => (this.seeker = ref)}
-                    // onDragEnd={this.onDrag}
+                    onDragEnd={this.onDrag}
                />
             </div>
         )

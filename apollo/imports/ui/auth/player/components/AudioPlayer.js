@@ -12,6 +12,8 @@ import LISTEN_COUNT from '../queries/listenCount'
 
 import Seeker from './Seeker'
 
+import "../style/audioPlayer.css";
+
 class AudioPlayer extends Component {
 
     state = {
@@ -39,6 +41,11 @@ class AudioPlayer extends Component {
         // delete this.player;
         // console.log("delete")
     }
+
+    componentDidCatch(error, errorInfo) {
+        console.log(error)
+    }
+
 
     lookAtChange = () => {
 
@@ -141,6 +148,19 @@ class AudioPlayer extends Component {
        (<Fragment>
        <h3>Currently Playing : </h3>
        <h3>{this.props.getAudioLinkById.audioData.title} by {this.props.getAudioLinkById.audioData.artist}</h3>
+
+       <ReactHowler
+        src={this.props.getAudioLinkById.audioData.fileUrl}
+        playing={this.state.play}
+        html5={true}
+        onEnd={this.onEnd}
+        ref={(ref) => (this.player = ref)}
+        />
+         
+        <Seeker play={this.state.play} seek={this.getSeek} info={this.getDuration} setSeek={this.setSeek}/>
+          
+        <div className="audioPlayerButtons">
+
         <button 
             onClick={()=> {
                 this.props.handleLoop();
@@ -181,21 +201,13 @@ class AudioPlayer extends Component {
         </button>)
         }
 
+        </div>
+
         <div>
         {this.props.likedCount.loading ? (null) : (<p>{this.props.likedCount.audioLikedCount} likes</p>)}
         {this.props.listenCount.loading ? (null) : (<p>{this.props.listenCount.audioListenCount} plays</p>)}
 
         </div>
-        
-        <ReactHowler
-        src={this.props.getAudioLinkById.audioData.fileUrl}
-        playing={this.state.play}
-        html5={true}
-        onEnd={this.onEnd}
-        ref={(ref) => (this.player = ref)}
-        />
-
-        {/* <Seeker play={this.state.play} seek={this.getSeek} info={this.getDuration()}/> */}
 
       </Fragment>)
       
