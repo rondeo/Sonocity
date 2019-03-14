@@ -47,18 +47,14 @@ class MainPage extends Component {
 
                 {this.state.station ? (<Station />) : (null) }
 
-                <div className="core">
-
                 <Player content={this.state.playerContent} />
 
-                {console.log(this.props.getUserLikedAudio.userLikedAudio)}
+                <div className="core">
 
                 {this.props.getUserLikedAudio.loading ? (<p>loading</p>) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<DiscoverSongs name={"Your liked songs"} audio={this.props.getUserLikedAudio.userLikedAudio} songSelected={this.songSelected} />) : (null))}
 
                 {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<DiscoverSongs name={"All songs"} audio={this.props.getAllAudioId.allAudioId} songSelected={this.songSelected} />)}
                 
-                
-
                 </div>
 
                 {console.log(this.state.playerContent)}

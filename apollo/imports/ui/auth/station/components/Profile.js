@@ -3,7 +3,6 @@ import { graphql, withApollo, compose } from "react-apollo";
 
 import UPDATE_STATION_DESCRIPTION from "../queries/updateDescription"
 import UPDATE_STATION_NAME from "../queries/updateName"
-import { Button } from '@material-ui/core';
 
 class Profile extends Component {
     state = {
@@ -22,7 +21,7 @@ class Profile extends Component {
     componentWillUpdate(prevProps) {
         if(!this.state.name || this.props.name !== this.state.name) {
             console.log("name")
-            if(this.props.name !== this.state.name || this.props.description !== this.state.description) {
+            if(this.props.name !== this.state.name) {
                 this.update();
             }
         }
@@ -78,12 +77,12 @@ class Profile extends Component {
         })
     }
 
-    updateDescription = () => {
-        this.props.updateStationDescription({
+    async updateDescription() {
+        await this.props.updateStationDescription({
             variables: {
                 description: this.state.description
             }
-        })
+        })        
     }
 
     render() {

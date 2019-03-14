@@ -7,4 +7,6 @@ likedTracks mix up
 previous/next currentSongId condition on change prevProps this.Props sur main page ne change pas
 reading id from playlist -> gimmick _id // audioId
 
+description in profile -> sometimes i think the refetch on GET_USER_STATION is done before the update in db
+
 check return of mutations if not needed don't query database for nothing

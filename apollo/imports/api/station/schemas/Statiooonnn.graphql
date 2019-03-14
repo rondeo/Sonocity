@@ -11,6 +11,7 @@ type Station {
     upNext: [String]
     confidentialitySetting: Int
     timeStamp: Int
+    coverUrl: String
 }
 
 extend type Mutation {
@@ -19,6 +20,7 @@ extend type Mutation {
     updateDescription(description: String!): Boolean
     updateCurrentAudio(timeStamp: Int!): Boolean
     addToUpNext(audioId: String!): Boolean
+    clearUpNext: Boolean
 }
 
 extend type Query {

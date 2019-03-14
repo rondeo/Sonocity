@@ -1,8 +1,13 @@
 import React, { Component, Fragment } from 'react'
+import { graphql, withApollo, compose } from "react-apollo";
+
+import CLEAR_UP_NEXT from './queries/clearUpNext'
 
 import AudioPlayer from './components/AudioPlayer'
 
-export default class Player extends Component {
+import "./style/player.css"
+
+class Player extends Component {
 
     state = {
         context: null,
@@ -16,7 +21,7 @@ export default class Player extends Component {
     };
 
     componentDidMount() {
-
+        this.props.clearUpNext();
     }
 
     componentDidUpdate(prevProps) {
@@ -69,6 +74,7 @@ export default class Player extends Component {
 
     } 
 
+    
     // keydown (e) {
     //     if(this.state.playList && this.state.ready) {
     //         switch(e.which) {
@@ -147,11 +153,10 @@ export default class Player extends Component {
 
     render() {
         return (
-            <div>              
+            <div className="playerModule">              
                 <Fragment>
                     <div>   
-                        {/* {this.state.name ? console.log(this.state.playList[0].length) : (null)} */}
-                        {this.state.name ? (<h2>{this.state.name} {this.state.context}</h2>): (null)}
+                        {this.state.name ? (<h3>{this.state.name} {this.state.context}</h3>): (null)}
                         {this.state.playList && this.state.ready ?  
                         <Fragment>
                             {this.state.playList[0][this.state.currentSong] ?
@@ -167,3 +172,11 @@ export default class Player extends Component {
         )
     }
 }
+
+export default compose (
+
+graphql(CLEAR_UP_NEXT, {
+    name: "clearUpNext",
+}),
+
+)(withApollo(Player));

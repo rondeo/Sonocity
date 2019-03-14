@@ -9,6 +9,7 @@ import IS_AUDIO_LIKED from '../queries/isAudioLiked'
 import REMOVE_LIKED_AUDIO from '../queries/removeLikedAudio'
 import LIKED_COUNT from '../queries/likedCount'
 import LISTEN_COUNT from '../queries/listenCount'
+import ADD_TO_UP_NEXT from '../queries/addToUpNext'
 
 import Seeker from './Seeker'
 
@@ -23,7 +24,7 @@ class AudioPlayer extends Component {
 
     componentDidMount() {
         this.props.audioId.loading ? (null) : 
-        (this.setState({play:true}))
+        this.setState({play:true}), this.addToUpnext() 
     }
 
     componentDidUpdate(prevProps) {
@@ -32,7 +33,7 @@ class AudioPlayer extends Component {
             this.props.getAudioLinkById.refetch();
             this.props.isAudioLiked.refetch();
             this.setState({liked:null})
-
+            this.addToUpnext();
             // insert into station upNext
         }
     }
@@ -42,10 +43,17 @@ class AudioPlayer extends Component {
         // console.log("delete")
     }
 
+    addToUpnext = () => {
+        this.props.addToUpNext({
+            variables: {
+                audioId: this.props.audioId
+            }
+        });  
+    }
+
     componentDidCatch(error, errorInfo) {
         console.log(error)
     }
-
 
     lookAtChange = () => {
 
@@ -146,8 +154,7 @@ class AudioPlayer extends Component {
        (null)
        :
        (<Fragment>
-       <h3>Currently Playing : </h3>
-       <h3>{this.props.getAudioLinkById.audioData.title} by {this.props.getAudioLinkById.audioData.artist}</h3>
+       <h4>{this.props.getAudioLinkById.audioData.title} by {this.props.getAudioLinkById.audioData.artist}</h4>
 
        <ReactHowler
         src={this.props.getAudioLinkById.audioData.fileUrl}
@@ -255,6 +262,10 @@ export default compose (
         options: {
             refetchQueries: ["GET_USER_LIKED_AUDIO", "LIKED_COUNT"]
         }
+    }),
+
+    graphql(ADD_TO_UP_NEXT, {
+        name: "addToUpNext",
     }),
 
 )(withApollo(AudioPlayer));
