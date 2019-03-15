@@ -14,6 +14,10 @@ class StationManager extends Component {
         this.setUp()
     }
 
+    componentWillUnmount() {
+        clearInterval(this.timer);
+    }
+
     async updateCurrent() {
         const audioData = await this.props.updateCurrentAudio()
         if(audioData.data.updateCurrentAudio){
@@ -59,5 +63,5 @@ export default compose (
     graphql(UPDATE_STATION_CURRENT_AUDIO, {
         name: "updateCurrentAudio",
     }),
-    
+
     )(withApollo(StationManager));
