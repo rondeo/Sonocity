@@ -9,6 +9,7 @@ const GET_USER_STATION = gql`
             upNext
             broadcast 
             timeStamp
+            coverUrl
         }
     }
 `;

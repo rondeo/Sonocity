@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import { graphql, withApollo, compose } from "react-apollo";
 
+import UPLOAD_SONG from './queries/audioUpload'
+
 import DropZoneAudio from './components/AudioFileDragger'
 import DropZoneImage from './components/ImageSelector'
-import UPLOAD_SONG from './queries/audioUpload'
 
 class UploadModule extends Component {
     state = {

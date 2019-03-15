@@ -21,6 +21,7 @@ extend type Mutation {
     updateCurrentAudio: AudioData
     addToUpNext(audioId: String!): Boolean
     clearUpNext: Boolean
+    updateCover(coverUrl: String): Boolean
 }
 
 extend type Query {

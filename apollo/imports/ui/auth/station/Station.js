@@ -16,6 +16,7 @@ class Station extends Component {
         broadcast: null,
         timeStamp: null,
         upload: false,
+        coverUrl: null
     };
 
     componentDidMount() {
@@ -81,7 +82,8 @@ class Station extends Component {
             currentAudio: this.props.getUserStation.userStation.currentAudio,
             upNext: this.props.getUserStation.userStation.upNext,
             broadcast: this.props.getUserStation.userStation.broadcast,
-            timeStamp: this.props.getUserStation.userStation.timeStamp
+            timeStamp: this.props.getUserStation.userStation.timeStamp,
+            coverUrl: this.props.getUserStation.userStation.coverUrl
         })
     }
 
@@ -89,7 +91,7 @@ class Station extends Component {
         return (
             <div>   
                 <Fragment>
-                    {this.state.name ? <Profile name={this.state.name} description={this.state.description} /> : (null)}  
+                    {this.state.name ? <Profile name={this.state.name} description={this.state.description} coverUrl={this.state.coverUrl} /> : (null)}  
                     <button 
                         onClick={()=> {
                             this.setState({upload: !this.state.upload})
