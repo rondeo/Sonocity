@@ -4,6 +4,7 @@ import { graphql, withApollo, compose } from "react-apollo";
 import CLEAR_UP_NEXT from './queries/clearUpNext'
 
 import AudioPlayer from './components/AudioPlayer'
+import StationManager from './components/StationManager'
 
 import "./style/player.css"
 
@@ -74,7 +75,6 @@ class Player extends Component {
 
     } 
 
-    
     // keydown (e) {
     //     if(this.state.playList && this.state.ready) {
     //         switch(e.which) {
@@ -164,6 +164,7 @@ class Player extends Component {
                                 audioId={(this.state.name == "All songs") ? this.state.playList[0][this.state.currentSong]._id : (this.state.playList[0][this.state.currentSong].audioId)} 
                             /> 
                             : (null) }
+                            <StationManager />
                         </Fragment>    
                         : (<h3>Browse our collections and select something to listen to !</h3>)} 
                     </div>  

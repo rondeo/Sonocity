@@ -10,7 +10,7 @@ type Station {
     currentAudio: String
     upNext: [String]
     confidentialitySetting: Int
-    timeStamp: Int
+    timeStamp: Float
     coverUrl: String
 }
 
@@ -18,7 +18,7 @@ extend type Mutation {
     createStation: Station
     updateName(name: String!): Boolean
     updateDescription(description: String!): Boolean
-    updateCurrentAudio(timeStamp: Int!): Boolean
+    updateCurrentAudio: AudioData
     addToUpNext(audioId: String!): Boolean
     clearUpNext: Boolean
 }

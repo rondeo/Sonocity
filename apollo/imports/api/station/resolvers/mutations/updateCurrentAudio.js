@@ -1,12 +1,12 @@
 import Station from '../../collections/station'
+import AudioData from '../../../audioContent/collections/audioData'
 
 export default {
     
     Mutation: {
-        updateCurrentAudio(obj, { timeStamp }, { user }) {
+        updateCurrentAudio(obj, arg, { user }) {
             const userId=user._id;
             if(userId) {
-
                 async function getUserStation() {
                     try{
                         const userStation = Station.findOne({userId: userId});
@@ -16,15 +16,26 @@ export default {
                     } 
                 }
 
+                async function getAudioData(audioId) {
+                    try{
+                        const audioData = AudioData.findOne({_id: audioId});
+                        return audioData;
+                    } catch (e) {
+                        console.log(e)
+                    } 
+                }    
+
                 async function runMutation() {
                     try{
                         const userStation = await getUserStation();
-                        if(userStation.upNext[0]) {
+                        const timeStamp = Date.now();
+                        const upNextO = userStation.upNext[0]
+                        if(upNextO) {
                             Station.update(
                                 { userId: userId },
                                 { $set:
                                     {
-                                        currentAudio: userStation.upNext[0],
+                                        currentAudio: upNextO,
                                         timeStamp: timeStamp
                                     },
                                 $pop: 
@@ -33,7 +44,7 @@ export default {
                                     }   
                                 }
                             );
-                            return true;
+                            return await getAudioData(upNextO); 
                         } else {
                             Station.update(
                                 { userId: userId },
@@ -43,14 +54,14 @@ export default {
                                     }
                                 }
                             );
-                            return false;
+                            return null;
                         }
                     } catch (e) {
                         console.log(e)
                     }
                 }
                 
-                runMutation();
+                return runMutation();
 
             }
             throw new Error('Unauthorized');
