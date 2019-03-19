@@ -3,6 +3,7 @@ import { graphql, withApollo, compose } from "react-apollo";
 
 import GET_ALL_AUDIO_ID from './queries/getAllAudioId'
 import GET_USER_LIKED_AUDIO from './queries/getUserLikedAudio'
+import CLEAR_UP_NEXT from './queries/clearUpNext'
 
 import DiscoverSongs from "./discoverModules/DiscoverSongs"
 import Player from "./player/Player"
@@ -14,8 +15,15 @@ import "./style/mainPage.css"
 class MainPage extends Component {
     state = {
         station: false,
-        playerContent: null
+        playerContent: null,
+        clear: false
     };
+
+    componentDidMount() {
+        this.setState({
+            clear: this.clear()
+        })
+    }
 
     songSelected = (audioId, i, context, name) => {
         this.setState({
@@ -23,11 +31,17 @@ class MainPage extends Component {
         })
     }
 
+    async clear() {
+        return await this.props.clearUpNext();
+    }
+
     render() {
         return (
             <div>   
                 <Fragment>
-                <StationManager />
+
+                {this.state.clear ? <StationManager /> : (null)}
+
                 <button 
                     onClick={()=> {
                         Meteor.logout();
@@ -74,6 +88,10 @@ export default compose (
 
     graphql(GET_USER_LIKED_AUDIO, {
         name: "getUserLikedAudio"
+    }),
+
+    graphql(CLEAR_UP_NEXT, {
+        name: "clearUpNext",
     }),
 
 )(withApollo(MainPage));

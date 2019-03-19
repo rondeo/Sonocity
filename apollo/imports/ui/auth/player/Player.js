@@ -1,13 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import { graphql, withApollo, compose } from "react-apollo";
 
-import CLEAR_UP_NEXT from './queries/clearUpNext'
-
 import AudioPlayer from './components/AudioPlayer'
 
 import "./style/player.css"
 
-class Player extends Component {
+export default class Player extends Component {
 
     state = {
         context: null,
@@ -21,7 +19,7 @@ class Player extends Component {
     };
 
     componentDidMount() {
-        this.props.clearUpNext();
+
     }
 
     componentDidUpdate(prevProps) {
@@ -172,10 +170,10 @@ class Player extends Component {
     }
 }
 
-export default compose (
+// export default compose (
 
-graphql(CLEAR_UP_NEXT, {
-    name: "clearUpNext",
-}),
+// graphql(CLEAR_UP_NEXT, {
+//     name: "clearUpNext",
+// }),
 
-)(withApollo(Player));
+// )(withApollo(Player));

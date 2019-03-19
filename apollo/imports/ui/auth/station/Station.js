@@ -116,7 +116,7 @@ class Station extends Component {
                     </div>
 
                     <div className="currentlyPlaying">
-                        <h3>Now playing on your station: </h3>
+                        <h3>Now playing: </h3>
                         {this.state.status ? <CurrentAudio currentUpdate={this.props.getUserStation.refetch()} audioId={this.state.currentAudio} timeStamp={this.state.timeStamp} /> : <h3>Offline</h3>}
                     </div>
                     <div className="clearBoth"></div>
