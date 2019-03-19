@@ -62,6 +62,9 @@ export default compose (
 
     graphql(UPDATE_STATION_CURRENT_AUDIO, {
         name: "updateCurrentAudio",
+        options: {
+            refetchQueries: ["GET_USER_STATION", "GET_AUDIO_DATA_BY_ID"]
+        }
     }),
 
-    )(withApollo(StationManager));
+)(withApollo(StationManager));

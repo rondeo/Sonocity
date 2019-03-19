@@ -6,6 +6,9 @@ import UploadModule from '../uploadModule/UploadModule'
 import GET_USER_STATION from './queries/getStationDataByUserId'
 
 import Profile from './components/Profile'
+import CurrentAudio from './components/CurrentAudio'
+
+import "./style/station.css"
 
 class Station extends Component {
     state = {
@@ -16,7 +19,8 @@ class Station extends Component {
         broadcast: null,
         timeStamp: null,
         upload: false,
-        coverUrl: null
+        coverUrl: null,
+        status: false
     };
 
     componentDidMount() {
@@ -43,9 +47,11 @@ class Station extends Component {
                     this.nameUpdate();
                 } else if (this.props.getUserStation.userStation.description !== this.state.description) {
                     this.descriptionUpdate();
+                } else if (this.props.getUserStation.userStation.status != this.state.status){
+                    this.statusUpdate();
                 }
             }
-        } else {
+        } else {s
             console.log("content is null")
         }
     }
@@ -55,8 +61,13 @@ class Station extends Component {
             currentAudio: this.props.getUserStation.userStation.currentAudio,
             upNext: this.props.getUserStation.userStation.upNext,
             broadcast: this.props.getUserStation.userStation.broadcast,
-            timeStamp: this.props.getUserStation.userStation.timeStamp
+            timeStamp: this.props.getUserStation.userStation.timeStamp,
+            status: this.props.getUserStation.userStation.status
         })
+    }
+
+    statusUpdate = () => {
+        this.setState({status: this.props.getUserStation.userStation.status})
     }
 
     nameUpdate = () => {
@@ -83,7 +94,8 @@ class Station extends Component {
             upNext: this.props.getUserStation.userStation.upNext,
             broadcast: this.props.getUserStation.userStation.broadcast,
             timeStamp: this.props.getUserStation.userStation.timeStamp,
-            coverUrl: this.props.getUserStation.userStation.coverUrl
+            coverUrl: this.props.getUserStation.userStation.coverUrl,
+            status: this.props.getUserStation.userStation.status
         })
     }
 
@@ -91,6 +103,7 @@ class Station extends Component {
         return (
             <div>   
                 <Fragment>
+                    <div className="profile">
                     {this.state.name ? <Profile name={this.state.name} description={this.state.description} coverUrl={this.state.coverUrl} /> : (null)}  
                     <button 
                         onClick={()=> {
@@ -100,6 +113,14 @@ class Station extends Component {
                         {this.state.upload ? "Cancel" : "Upload" }
                     </button> 
                     {this.state.upload ? (<UploadModule  uploadSuccess={this.uploadComplete}/>) : (null) } 
+                    </div>
+
+                    <div className="currentlyPlaying">
+                        <h3>Now playing on your station: </h3>
+                        {this.state.status ? <CurrentAudio currentUpdate={this.props.getUserStation.refetch()} audioId={this.state.currentAudio} timeStamp={this.state.timeStamp} /> : <h3>Offline</h3>}
+                    </div>
+                    <div className="clearBoth"></div>
+
                 </Fragment>       
             </div>
         )

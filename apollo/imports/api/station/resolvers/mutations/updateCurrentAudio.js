@@ -36,7 +36,8 @@ export default {
                                 { $set:
                                     {
                                         currentAudio: upNextO,
-                                        timeStamp: timeStamp
+                                        timeStamp: timeStamp,
+                                        status: true
                                     },
                                 $pop: 
                                     { 

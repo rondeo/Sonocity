@@ -1,0 +1,18 @@
+.currentlyPlaying {
+    float:left;
+    margin-left:100px;
+}
+
+.currentlyPlaying img{
+    height: 100px;
+    width: 100px;
+    border:3px solid black;
+}
+
+.profile {
+    float:left;
+}
+
+.clearBoth {
+    clear:both;
+}

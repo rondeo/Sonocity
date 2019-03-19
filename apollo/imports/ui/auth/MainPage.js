@@ -7,6 +7,7 @@ import GET_USER_LIKED_AUDIO from './queries/getUserLikedAudio'
 import DiscoverSongs from "./discoverModules/DiscoverSongs"
 import Player from "./player/Player"
 import Station from "./station/Station"
+import StationManager from "./station/components/StationManager"
 
 import "./style/mainPage.css"
 
@@ -26,7 +27,7 @@ class MainPage extends Component {
         return (
             <div>   
                 <Fragment>
-                    
+                <StationManager />
                 <button 
                     onClick={()=> {
                         Meteor.logout();

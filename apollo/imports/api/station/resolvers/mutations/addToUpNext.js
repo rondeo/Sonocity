@@ -11,11 +11,7 @@ export default {
                     { $push: 
                         { 
                             upNext: audioId 
-                        }, 
-                      $set: 
-                      {
-                            status: true
-                      }
+                        }
                     }
                 );
                 return true;
