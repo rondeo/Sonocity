@@ -67,7 +67,7 @@ class CurrentAudio extends Component {
                     <h6>{this.state.title}</h6>
                     <h6>{this.state.artist}</h6> 
                     <img src={this.state.coverUrl}/>
-                    <h6>{this.timeRemaining()} seconds before change</h6>
+                    <h6>{Math.floor(this.timeRemaining())} seconds before change</h6>
                 </Fragment>
                 )}
             </div>
