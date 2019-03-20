@@ -42,6 +42,7 @@ class StationManager extends Component {
     }
 
     evaluate = () => {
+        console.log(this.state.localCount+ " " +this.state.songDuration)
         if(this.state.localCount >= this.state.songDuration) {
             this.updateCurrent();
             this.setState({

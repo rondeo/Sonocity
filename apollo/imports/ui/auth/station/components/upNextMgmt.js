@@ -28,8 +28,6 @@ class UpNextMgmt extends Component {
         this.setState({
             upNext: this.props.upNext
         })
-        console.log("3")
-
     }
 
     remove = i => {

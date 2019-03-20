@@ -13,8 +13,6 @@ class Profile extends Component {
     state = {
         name: null,
         description: null,
-        mDescription: false,
-        mName: false,
         taken: null, 
         edit: false,
         coverUrl: null
@@ -151,14 +149,11 @@ class Profile extends Component {
                         Edit
                         </button>) : (<div><input type="text" defaultValue={this.state.name} maxLength={64}  ref={input => (this.name = input)} /> <button onClick={() => this.updateNameUi()}> Change </button></div>) }
                         {this.state.taken ? (<h2>the name is already taken</h2>) : (null)} 
-                        <
-                            div className="stationCover"><img src={this.state.coverUrl}/></div>
+                        <div className="stationCover"><img src={this.state.coverUrl}/></div>
                         <DropZoneImage addUp={this.changeImage}/>
                         
                         <div><textarea cols={33} rows={10} onChange={this.handleDescriptionChange} defaultValue={this.state.description} maxLength={256}  ref={input => (this.description = input)} /></div>
                         
-
-
                     </div>)
                     }
                 </Fragment>       

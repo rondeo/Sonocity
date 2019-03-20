@@ -56,7 +56,6 @@ class Station extends Component {
                 }
                 if (JSON.stringify(this.props.getUserStation.userStation.upNext) !== JSON.stringify(this.state.upNext)) {
                     this.upNextUpdate();
-                    console.log("1")
                 }
             }
         } else {
@@ -78,7 +77,6 @@ class Station extends Component {
         this.setState({
             upNext: this.props.getUserStation.userStation.upNext
         })
-        console.log("2")
     }
 
     statusUpdate = () => {
