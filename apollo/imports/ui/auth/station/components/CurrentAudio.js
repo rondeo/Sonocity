@@ -50,7 +50,7 @@ class CurrentAudio extends Component {
             artist: this.props.getAudioDataById.audioData.artist,
             duration: this.props.getAudioDataById.audioData.duration,
             coverUrl: this.props.getAudioDataById.audioData.coverUrl,
-            localCount: (Date.now()-this.props.timeStamp+1.5)/1000
+            localCount: (Date.now()-this.props.timeStamp+5)/1000
         })    
     }
 

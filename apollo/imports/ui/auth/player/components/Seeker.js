@@ -14,7 +14,6 @@ export default class Seeker extends Component {
     componentDidMount() {
         this.timer = setInterval(() => { 
             let value = this.props.seek();
-            console.log("a");
             this.setState({
                 value: value
             })

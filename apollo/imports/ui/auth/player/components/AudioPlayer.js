@@ -266,6 +266,9 @@ export default compose (
 
     graphql(ADD_TO_UP_NEXT, {
         name: "addToUpNext",
+        options: {
+            refetchQueries: ["GET_USER_STATION"]
+        }
     }),
 
 )(withApollo(AudioPlayer));

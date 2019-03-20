@@ -7,6 +7,7 @@ import GET_USER_STATION from './queries/getStationDataByUserId'
 
 import Profile from './components/Profile'
 import CurrentAudio from './components/CurrentAudio'
+import UpNextMgmt from './components/UpNextMgmt'
 
 import "./style/station.css"
 
@@ -15,7 +16,7 @@ class Station extends Component {
         name: null,
         description: null,
         currentAudio: null,
-        upNext: null,
+        upNext: [],
         broadcast: null,
         timeStamp: null,
         upload: false,
@@ -43,15 +44,22 @@ class Station extends Component {
             } else {
                 if(this.props.getUserStation.userStation.timeStamp !== this.state.timeStamp) {
                     this.audioUpdate();
-                } else if (this.props.getUserStation.userStation.name !== this.state.name) {
+                }
+                if (this.props.getUserStation.userStation.name !== this.state.name) {
                     this.nameUpdate();
-                } else if (this.props.getUserStation.userStation.description !== this.state.description) {
+                }
+                if (this.props.getUserStation.userStation.description !== this.state.description) {
                     this.descriptionUpdate();
-                } else if (this.props.getUserStation.userStation.status != this.state.status){
+                }
+                if (this.props.getUserStation.userStation.status != this.state.status){
                     this.statusUpdate();
                 }
+                if (JSON.stringify(this.props.getUserStation.userStation.upNext) !== JSON.stringify(this.state.upNext)) {
+                    this.upNextUpdate();
+                    console.log("1")
+                }
             }
-        } else {s
+        } else {
             console.log("content is null")
         }
     }
@@ -64,6 +72,13 @@ class Station extends Component {
             timeStamp: this.props.getUserStation.userStation.timeStamp,
             status: this.props.getUserStation.userStation.status
         })
+    }
+
+    upNextUpdate = () => {
+        this.setState({
+            upNext: this.props.getUserStation.userStation.upNext
+        })
+        console.log("2")
     }
 
     statusUpdate = () => {
@@ -119,6 +134,12 @@ class Station extends Component {
                         <h3>Now playing: </h3>
                         {this.state.status ? <CurrentAudio currentUpdate={this.props.getUserStation.refetch()} audioId={this.state.currentAudio} timeStamp={this.state.timeStamp} /> : <h3>Offline</h3>}
                     </div>
+
+                    <div className="currentlyPlaying">
+                        <h3>Up Next: </h3>
+                        {this.state.status ? (this.state.upNext[0] ? <UpNextMgmt upNext={this.state.upNext}/> : <h3>Nothing in up next</h3>) : <h3></h3>}
+                    </div>
+
                     <div className="clearBoth"></div>
 
                 </Fragment>       

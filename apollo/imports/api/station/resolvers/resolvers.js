@@ -8,7 +8,8 @@ import AddToUpNext from "./mutations/addToUpNext"
 import ClearUpNext from "./mutations/clearUpNext"
 import UpdateCurrentAudio from "./mutations/updateCurrentAudio"
 import UpdateCover from "./mutations/updateCover"
+import UpdateUpNext from "./mutations/updateUpNext"
 
-const resolvers = merge(CreateStation, GetStationDataByUserId, UpdateName, UpdateDescription, AddToUpNext, ClearUpNext, UpdateCurrentAudio, UpdateCover);
+const resolvers = merge(CreateStation, GetStationDataByUserId, UpdateName, UpdateDescription, AddToUpNext, ClearUpNext, UpdateCurrentAudio, UpdateCover, UpdateUpNext);
 
 export default resolvers;

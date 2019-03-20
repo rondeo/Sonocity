@@ -26,7 +26,6 @@ class Profile extends Component {
 
     componentWillUpdate(prevProps) {
         if(!this.state.name || this.props.name !== this.state.name) {
-            console.log("name")
             if(this.props.name !== this.state.name) {
                 this.update();
             }
