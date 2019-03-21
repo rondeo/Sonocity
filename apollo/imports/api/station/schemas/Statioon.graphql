@@ -27,4 +27,6 @@ extend type Mutation {
 
 extend type Query {
     userStation: Station
+    onlineStations: [Station]
+    station: Station
 }
