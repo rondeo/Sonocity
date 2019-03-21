@@ -116,30 +116,31 @@ class Station extends Component {
         return (
             <div>   
                 <Fragment>
-                    <div className="profile">
-                    {this.state.name ? <Profile name={this.state.name} description={this.state.description} coverUrl={this.state.coverUrl} /> : (null)}  
-                    <button 
-                        onClick={()=> {
-                            this.setState({upload: !this.state.upload})
-                        }}
-                    >
-                        {this.state.upload ? "Cancel" : "Upload" }
-                    </button> 
-                    {this.state.upload ? (<UploadModule  uploadSuccess={this.uploadComplete}/>) : (null) } 
+                    <div className="stationCore">
+                        <div className="profile">
+                            {this.state.name ? <Profile name={this.state.name} description={this.state.description} coverUrl={this.state.coverUrl} /> : (null)}  
+                            <button 
+                                onClick={()=> {
+                                    this.setState({upload: !this.state.upload})
+                                }}
+                            >
+                                {this.state.upload ? "Cancel" : "Upload" }
+                            </button> 
+                            {this.state.upload ? (<UploadModule  uploadSuccess={this.uploadComplete}/>) : (null) } 
+                        </div>
+
+                        <div className="currentlyPlaying">
+                            <h3>Now playing: </h3>
+                            {this.state.status ? <CurrentAudio currentUpdate={this.props.getUserStation.refetch()} audioId={this.state.currentAudio} timeStamp={this.state.timeStamp} /> : <h3>Offline</h3>}
+                        </div>
+
+                        <div className="currentlyPlaying">
+                            <h3>Up Next: </h3>
+                            {this.state.status ? (this.state.upNext[0] ? <UpNextMgmt upNext={this.state.upNext}/> : <h3>Nothing in up next</h3>) : <h3></h3>}
+                        </div>
+
+                        <div className="clearBoth"></div>
                     </div>
-
-                    <div className="currentlyPlaying">
-                        <h3>Now playing: </h3>
-                        {this.state.status ? <CurrentAudio currentUpdate={this.props.getUserStation.refetch()} audioId={this.state.currentAudio} timeStamp={this.state.timeStamp} /> : <h3>Offline</h3>}
-                    </div>
-
-                    <div className="currentlyPlaying">
-                        <h3>Up Next: </h3>
-                        {this.state.status ? (this.state.upNext[0] ? <UpNextMgmt upNext={this.state.upNext}/> : <h3>Nothing in up next</h3>) : <h3></h3>}
-                    </div>
-
-                    <div className="clearBoth"></div>
-
                 </Fragment>       
             </div>
         )

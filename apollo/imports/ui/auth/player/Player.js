@@ -34,7 +34,7 @@ export default class Player extends Component {
                 if(this.props.content[3] !== prevProps.content[3]) {
                     this.processIntake();
                 }
-                else if (this.props.content[0][0].length != prevProps.content[0][0].length && this.props.content[3] == prevProps.content[3] && this.props.content[0][0].length != 0){
+                else if (JSON.stringify(this.props.content[0][0]) != JSON.stringify(prevProps.content[0][0]) && this.props.content[3] == prevProps.content[3] && this.props.content[0][0].length != 0){
                     this.resetPlaylist();
                 }
                 else if (this.props.content[1] !== prevProps.content[1] && this.props.content[3] == prevProps.content[3]) {
@@ -154,13 +154,13 @@ export default class Player extends Component {
                 <Fragment>
                     <div>   
                         {this.state.name ? (<h3>{this.state.name} {this.state.context}</h3>): (null)}
-                        {this.state.playList && this.state.ready ?  
+                        {this.state.ready ?  
                         <Fragment>
-                            {this.state.playList[0][this.state.currentSong] ?
-                            <AudioPlayer next={this.next} previous={this.previous} onEnd={this.onEnd} handleLoop={this.handleLoop} loopAll={this.state.loopAll} loopOne={this.state.loopOne}
-                                audioId={(this.state.name == "All songs") ? this.state.playList[0][this.state.currentSong]._id : (this.state.playList[0][this.state.currentSong].audioId)} 
+                            {/* {this.state.playList[0][this.state.currentSong] ? */}
+                            <AudioPlayer context={this.state.context} next={this.next} previous={this.previous} onEnd={this.onEnd} handleLoop={this.handleLoop} loopAll={this.state.loopAll} loopOne={this.state.loopOne}
+                                audioId={this.state.context == "playlist" ? ((this.state.name == "All songs") ? this.state.playList[0][this.state.currentSong]._id : (this.state.playList[0][this.state.currentSong].audioId)) : (null)} 
                             /> 
-                            : (null) }
+                            {/* : (null) } */}
                         </Fragment>    
                         : (<h3>Browse our collections and select something to listen to !</h3>)} 
                     </div>  

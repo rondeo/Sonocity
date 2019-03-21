@@ -1,6 +1,11 @@
+.stationCore {
+    width: 60%;
+    margin:auto;
+}
+
 .currentlyPlaying {
     float:left;
-    margin-left:100px;
+    margin-left:200px;
 }
 
 .currentlyPlaying img{
