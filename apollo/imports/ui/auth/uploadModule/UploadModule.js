@@ -53,67 +53,67 @@ class UploadModule extends Component {
 
     }  
 
-        setUpUpload = file => {
-            const cloudName = 'dkt7hv91e';
-            const unsignedUploadPreset = 'gqo3naek';
-            let url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
-            let xhr = new XMLHttpRequest();
-            let fd = new FormData();
-            xhr.open('POST', url, true);
-            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    setUpUpload = file => {
+        const cloudName = 'dkt7hv91e';
+        const unsignedUploadPreset = 'gqo3naek';
+        let url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+        let xhr = new XMLHttpRequest();
+        let fd = new FormData();
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
-            fd.append('upload_preset', unsignedUploadPreset);
-            fd.append('tags', 'browser_upload'); // Optional - add tag for image admin in Cloudinary
-            fd.append('file', file);
+        fd.append('upload_preset', unsignedUploadPreset);
+        fd.append('tags', 'browser_upload'); // Optional - add tag for image admin in Cloudinary
+        fd.append('file', file);
 
-            return [xhr, fd];
-        }
+        return [xhr, fd];
+    }
 
-        uploadAudioFile = song => {
+    uploadAudioFile = song => {
 
-            const set = this.setUpUpload(song[1]);
-            const xhr = set[0];
-            const fd = set[1];
+        const set = this.setUpUpload(song[1]);
+        const xhr = set[0];
+        const fd = set[1];
 
-            xhr.onreadystatechange = (e) => {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    // File uploaded successfully
-                    let response = JSON.parse(xhr.responseText);
-                    let url = response.secure_url;   
+        xhr.onreadystatechange = (e) => {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // File uploaded successfully
+                let response = JSON.parse(xhr.responseText);
+                let url = response.secure_url;   
 
-                    const set1 = this.setUpUpload(this.state.image);
-                    const xhr1 = set1[0];
-                    const fd1 = set1[1];
-            
-                    xhr1.onreadystatechange = (e) => {
-                        if (xhr1.readyState == 4 && xhr1.status == 200) {
-                            let response1 = JSON.parse(xhr1.responseText);
-                            let url2 = response1.secure_url; 
-                            console.log(url2)  
-                            
-                            let disque = song[0].common.disk;
-                            (typeof disque === 'string' || disque instanceof String) ? (null) : disque=" ";        
-                            const dataresult = this.props.uploadSong({
-                                variables: {
-                                    title: song[0].common.title,
-                                    artist: song[0].common.artist,
-                                    album: disque,
-                                    duration: song[0].format.duration,
-                                    dataformat: song[0].format.dataformat,
-                                    fileUrl: url,
-                                    coverUrl: url2
-                                }
-                            });
+                const set1 = this.setUpUpload(this.state.image);
+                const xhr1 = set1[0];
+                const fd1 = set1[1];
+        
+                xhr1.onreadystatechange = (e) => {
+                    if (xhr1.readyState == 4 && xhr1.status == 200) {
+                        let response1 = JSON.parse(xhr1.responseText);
+                        let url2 = response1.secure_url; 
+                        console.log(url2)  
+                        
+                        let disque = song[0].common.disk;
+                        (typeof disque === 'string' || disque instanceof String) ? (null) : disque=" ";        
+                        const dataresult = this.props.uploadSong({
+                            variables: {
+                                title: song[0].common.title,
+                                artist: song[0].common.artist,
+                                album: disque,
+                                duration: song[0].format.duration,
+                                dataformat: song[0].format.dataformat,
+                                fileUrl: url,
+                                coverUrl: url2
+                            }
+                        });
 
-                            this.state.error ? (null) : this.props.uploadSuccess()
+                        this.state.error ? (null) : this.props.uploadSuccess()
 
-                        };
-                    }
-                        xhr1.send(fd1); 
+                    };
                 }
-            };
-            xhr.send(fd);
-        }
+                    xhr1.send(fd1); 
+            }
+        };
+        xhr.send(fd);
+    }
            
     render() {
         const files = this.state.songList.map((file, i) => <li key={i} onClick={this.removeSong}>{file[0].common.title} - {file[0].common.artist}</li>)

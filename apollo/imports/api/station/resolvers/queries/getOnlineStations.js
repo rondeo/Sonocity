@@ -26,7 +26,7 @@ export default {
 
                         if(onlineUsersId.length > 0) {
                             return Station.find({ 
-                                    userId: { $in : [onlineUsersId] },
+                                    userId: { $in : onlineUsersId },
                                     status: true 
                                 }).fetch();    
                         } else {
