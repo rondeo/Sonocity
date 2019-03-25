@@ -4,8 +4,9 @@ import { graphql, withApollo, compose } from "react-apollo";
 import GET_ALL_AUDIO_ID from './queries/getAllAudioId'
 import GET_USER_LIKED_AUDIO from './queries/getUserLikedAudio'
 import CLEAR_UP_NEXT from './queries/clearUpNext'
+import GET_ALL_ONLINE_STATION from './queries/getAllOnlineStationId'
 
-import DiscoverSongs from "./discoverModules/DiscoverSongs"
+import Discover from "./discoverModules/Discover"
 import Player from "./player/Player"
 import Station from "./station/Station"
 import StationManager from "./station/components/StationManager"
@@ -66,9 +67,11 @@ class MainPage extends Component {
 
                 <div className="core">
 
-                {this.props.getUserLikedAudio.loading ? (<p>loading</p>) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<DiscoverSongs name={"Your liked songs"} audio={this.props.getUserLikedAudio.userLikedAudio} songSelected={this.songSelected} />) : (null))}
+                {this.props.getAllOnlineStation.loading ? (<p>loading</p>) : ( (this.props.getAllOnlineStation.onlineStations && this.props.getAllOnlineStation.onlineStations.length >  0) ? (<Discover context={"station"} name={"Online Stations"} idList={this.props.getAllOnlineStation.onlineStations} elemSelected={this.songSelected} />) : (<h3>There is no other online stations</h3>))}
 
-                {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<DiscoverSongs name={"All songs"} audio={this.props.getAllAudioId.allAudioId} songSelected={this.songSelected} />)}
+                {this.props.getUserLikedAudio.loading ? (<p>loading</p>) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<Discover context={"playlist"} name={"Your liked songs"} idList={this.props.getUserLikedAudio.userLikedAudio} elemSelected={this.songSelected} />) : (null))}
+                
+                {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<Discover name={"All songs"} context={"playlist"} idList={this.props.getAllAudioId.allAudioId} elemSelected={this.songSelected} />)}
                 
                 </div>
 
@@ -88,6 +91,10 @@ export default compose (
 
     graphql(GET_USER_LIKED_AUDIO, {
         name: "getUserLikedAudio"
+    }),
+
+    graphql(GET_ALL_ONLINE_STATION, {
+        name: "getAllOnlineStation"
     }),
 
     graphql(CLEAR_UP_NEXT, {

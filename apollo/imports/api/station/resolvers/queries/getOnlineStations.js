@@ -21,7 +21,9 @@ export default {
                         
                         const onlineUsersId = [];
                         await onlineUsers.forEach(element => {
-                            onlineUsersId.push(element._id);
+                            if(element._id !== userId) {
+                                onlineUsersId.push(element._id);
+                            }
                         });
 
                         if(onlineUsersId.length > 0) {
