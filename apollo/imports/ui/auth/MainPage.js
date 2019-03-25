@@ -24,6 +24,13 @@ class MainPage extends Component {
         this.setState({
             clear: this.clear()
         })
+        this.timer = setInterval(() => { 
+            this.props.getAllOnlineStation.refetch();
+        }, 20000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer);
     }
 
     songSelected = (audioId, i, context, name) => {

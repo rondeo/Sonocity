@@ -19,16 +19,13 @@ export default class Discover extends Component {
 
     componentDidUpdate(prevProps) {
         if(prevProps.idList && this.props.idList) {
-            if(this.props.idList.length !== prevProps.idList.length) {
+            if(this.props.idList[0].length !== prevProps.idList[0].length) {
                 this.processIntake();  
             }
         }
     }
 
     processIntake = () => {
-        console.log("1")
-        console.log(this.props.idList)
-        console.log("2")
         this.setState({
             idList: [this.props.idList],
             name: this.props.name,
