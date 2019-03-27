@@ -19,7 +19,7 @@ export default class Discover extends Component {
 
     componentDidUpdate(prevProps) {
         if(prevProps.idList && this.props.idList) {
-            if(this.props.idList[0].length !== prevProps.idList[0].length || this.props.idList[0][0] !== prevProps.idList[0][0]) {
+            if(this.props.idList.length !== prevProps.idList.length || this.props.idList[0][0] !== prevProps.idList[0][0]) {
                 this.processIntake();  
             }
         }
