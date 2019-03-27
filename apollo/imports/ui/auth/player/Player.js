@@ -40,6 +40,9 @@ export default class Player extends Component {
                 else if (this.props.content[1] !== prevProps.content[1] && this.props.content[3] == prevProps.content[3]) {
                     this.changePosition();  
                 } 
+                else if(this.props.content[2] !== prevProps.content[2]) {
+                    this.processIntake();
+                }
             }
         } else {
             console.log("content is null")
@@ -47,9 +50,14 @@ export default class Player extends Component {
     }
 
     changePosition = () => {
+
+        this.props.content[2] == "playlist" ? 
         this.setState({
-            currentSong: [this.props.content[1]]
+            currentSong: [this.props.content[1]],
+            playList: this.props.content[0]
         })
+        : (null)
+
     }
 
     resetPlaylist = () => {
@@ -65,7 +73,8 @@ export default class Player extends Component {
             playList: this.props.content[0],
             currentSong: [this.props.content[1]],
             name: this.props.content[3],
-            ready: true
+            ready: true,
+            stationId: null
         })
 
         : (null)
