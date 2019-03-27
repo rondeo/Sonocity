@@ -1,11 +1,11 @@
 .stationCore {
-    width: 60%;
+    width: 90%;
     margin:auto;
 }
 
 .currentlyPlaying {
     float:left;
-    margin-left:200px;
+    margin-left:100px;
 }
 
 .currentlyPlaying img{

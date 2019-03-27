@@ -5,6 +5,8 @@ import GET_STATION_DATA_BY_ID from './queries/getStationDataById';
 
 import AudioPlayer from './components/AudioPlayer'
 
+import "./style/player.css"
+
 class StationPlayer extends Component {
 
     state = {
