@@ -36,6 +36,7 @@ class MainPage extends Component {
     }
 
     songSelected = (listId, i, context, name) => {
+        console.log("got here")
         this.setState({
             playerContent: [listId, i, context, name],
             stationPlayer: false
@@ -81,18 +82,17 @@ class MainPage extends Component {
                 {this.state.station ? (<Station />) : (null) }
 
                 {!this.state.stationPlayer ? (<Player content={this.state.playerContent} />) : (<StationPlayer _id={this.state.playerContent[0][0][this.state.playerContent[1]]._id} content={this.state.playerContent} />)}
-
+                {!this.state.stationPlayer ? (console.log(this.state.playerContent)) : (console.log(this.state.playerContent))}
                 <div className="core">
 
-                {this.props.getAllOnlineStation.loading ? (<p>loading</p>) : ( (this.props.getAllOnlineStation.onlineStations && this.props.getAllOnlineStation.onlineStations.length >  0) ? (<Discover context={"station"} name={"Online Stations"} idList={this.props.getAllOnlineStation.onlineStations} elemSelected={this.stationSelected} />) : (<h3>There is no other online stations</h3>))}
+                    {this.props.getAllOnlineStation.loading ? (<p>loading</p>) : ( (this.props.getAllOnlineStation.onlineStations && this.props.getAllOnlineStation.onlineStations.length >  0) ? (<Discover context={"station"} name={"Online Stations"} idList={this.props.getAllOnlineStation.onlineStations} elemSelected={this.stationSelected} />) : (<h3>There is no other online stations</h3>))}
 
-                {this.props.getUserLikedAudio.loading ? (<p>loading</p>) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<Discover context={"playlist"} name={"Your liked songs"} idList={this.props.getUserLikedAudio.userLikedAudio} elemSelected={this.songSelected} />) : (null))}
-                
-                {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<Discover name={"All songs"} context={"playlist"} idList={this.props.getAllAudioId.allAudioId} elemSelected={this.songSelected} />)}
+                    {this.props.getUserLikedAudio.loading ? (<p>loading</p>) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<Discover context={"playlist"} name={"Your liked songs"} idList={this.props.getUserLikedAudio.userLikedAudio} elemSelected={this.songSelected} />) : (null))}
+                    
+                    {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<Discover name={"All songs"} context={"playlist"} idList={this.props.getAllAudioId.allAudioId} elemSelected={this.songSelected} />)}
                 
                 </div>
 
-                {/* {console.log(this.state.playerContent)} */}
 
                 </Fragment>       
             </div>

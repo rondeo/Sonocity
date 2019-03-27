@@ -18,16 +18,15 @@ export default class Player extends Component {
     };
 
     componentDidMount() {
-
+        console.log(this.props.content)
+        this.props.content ? this.processIntake() : (null)
     }
 
     componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
-        // (console.log("update"))
-        
+
         if(this.props.content !== null) {
             // console.log(this.props.content[0][0].length)
-            if(prevProps.content == null) {
+            if(prevProps.content == null || this.state.ready == false) {
                 this.processIntake();
             } else {
                 if(this.props.content[3] !== prevProps.content[3]) {
@@ -43,6 +42,10 @@ export default class Player extends Component {
         } else {
             console.log("content is null")
         }
+    }
+
+    componentWillUnmount() {
+        console.log("unmount")
     }
 
     changePosition = () => {

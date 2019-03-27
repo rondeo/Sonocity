@@ -52,7 +52,6 @@ class StationPlayer extends Component {
     changePosition = () => { }
 
     processIntake = () => {
-        console.log(this.props.getStationDataById.station)
         this.setState({
             // currentSong: [this.props.content[1]],
             // name: this.props.content[3],
@@ -131,7 +130,7 @@ class StationPlayer extends Component {
                             /> 
                             {/* : (null) } */}
                         </Fragment>    
-                        : (<h3>Browse our collections and select something to listen to !</h3>)} 
+                        : (<h3> Station Player </h3>)} 
                     </div>  
                 </Fragment>
             </div>
