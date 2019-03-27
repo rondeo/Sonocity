@@ -1,20 +1,23 @@
 import React, { Component, Fragment } from 'react'
 import { graphql, withApollo, compose } from "react-apollo";
 
+import GET_STATION_DATA_BY_ID from './queries/getStationDataById';
+
 import AudioPlayer from './components/AudioPlayer'
 
-import "./style/player.css"
-
-export default class Player extends Component {
+class StationPlayer extends Component {
 
     state = {
         context: null,
-        playList: null,
-        currentSong: null,
-        name: null,
+        stationId: null,
+        stationName: null,
+        stationDescription: null,
+        upNext: null,
+        currentAudioId: null,
+        listName: null,
         ready: false,
-        loopOne: false,
         loopAll: false,
+        loopOne: false
     };
 
     componentDidMount() {
@@ -26,53 +29,34 @@ export default class Player extends Component {
         // (console.log("update"))
         
         if(this.props.content !== null) {
-            // console.log(this.props.content[0][0].length)
+
             if(prevProps.content == null) {
                 this.processIntake();
-            } else {
-                if(this.props.content[3] !== prevProps.content[3]) {
-                    this.processIntake();
-                }
-                else if (JSON.stringify(this.props.content[0][0]) != JSON.stringify(prevProps.content[0][0]) && this.props.content[3] == prevProps.content[3] && this.props.content[0][0].length != 0){
-                    this.resetPlaylist();
-                }
-                else if (this.props.content[1] !== prevProps.content[1] && this.props.content[3] == prevProps.content[3]) {
-                    this.changePosition();  
-                } 
+            // } else {
+            //     if(this.props.content[3] !== prevProps.content[3]) {
+            //         this.processIntake();
+            //     }
+            //     else if (JSON.stringify(this.props.content[0][0]) != JSON.stringify(prevProps.content[0][0]) && this.props.content[3] == prevProps.content[3] && this.props.content[0][0].length != 0){
+            //         this.resetPlaylist();
+            //     }
+            //     else if (this.props.content[1] !== prevProps.content[1] && this.props.content[3] == prevProps.content[3]) {
+            //         this.changePosition();  
+            //     } 
             }
         } else {
             console.log("content is null")
         }
     }
 
-    changePosition = () => {
-
-        this.props.content[2] == "playlist" ? 
-        this.setState({
-            currentSong: [this.props.content[1]],
-            playList: this.props.content[0]
-        })
-        : (null)
-
-    }
-
-    resetPlaylist = () => {
-        this.setState({playList: this.props.content[0]})
-    }
+    changePosition = () => { }
 
     processIntake = () => {
-
-        this.props.content[2] == "playlist" ? 
-        
+        console.log(getStationDataById.station)
         this.setState({
-            context: this.props.content[2],
-            playList: this.props.content[0],
-            currentSong: [this.props.content[1]],
-            name: this.props.content[3],
-            ready: true,
+            // currentSong: [this.props.content[1]],
+            // name: this.props.content[3],
+            // ready: true,
         })
-
-        : (null)
 
     } 
 
@@ -129,28 +113,8 @@ export default class Player extends Component {
         }
     }
 
-    previous = () => {
-        if(parseInt(this.state.currentSong) !== 0)
-            this.setState({currentSong: parseInt(this.state.currentSong) - 1,})
-        else if (this.state.loopAll){
-            this.setState({currentSong: this.state.playList[0].length - 1})
-        }
-    }
-    
-    handleLoop = () => {
-        if(!this.state.loopOne && !this.state.loopAll){
-            this.setState({loopAll: !this.state.loopAll})
-        } else if (this.state.loopAll){
-            this.setState({
-                loopOne: !this.state.loopOne,
-                loopAll: !this.state.loopAll
-            }) 
-        } else {
-            this.setState({
-                loopOne: !this.state.loopOne
-            }) 
-        }
-    }
+    previous = () => {}
+    handleLoop = () => {}
 
     render() {
         return (
@@ -162,7 +126,7 @@ export default class Player extends Component {
                         <Fragment>
                             {/* {this.state.playList[0][this.state.currentSong] ? */}
                             <AudioPlayer context={this.state.context} next={this.next} previous={this.previous} onEnd={this.onEnd} handleLoop={this.handleLoop} loopAll={this.state.loopAll} loopOne={this.state.loopOne}
-                                audioId={this.state.context == "playlist" ? ((this.state.name == "All songs") ? this.state.playList[0][this.state.currentSong]._id : (this.state.playList[0][this.state.currentSong].audioId)) : (null)} 
+                                audioId={this.state.currentAudioId} 
                             /> 
                             {/* : (null) } */}
                         </Fragment>    
@@ -174,10 +138,10 @@ export default class Player extends Component {
     }
 }
 
-// export default compose (
+export default compose (
 
-// graphql(CLEAR_UP_NEXT, {
-//     name: "clearUpNext",
-// }),
+graphql(GET_STATION_DATA_BY_ID, {
+    name: "getStationDataById",
+}),
 
-// )(withApollo(Player));
+)(withApollo(StationPlayer));

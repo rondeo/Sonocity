@@ -8,6 +8,7 @@ import GET_ALL_ONLINE_STATION from './queries/getAllOnlineStationId'
 
 import Discover from "./discoverModules/Discover"
 import Player from "./player/Player"
+import StationPlayer from "./player/StationPlayer"
 import Station from "./station/Station"
 import StationManager from "./station/components/StationManager"
 
@@ -17,7 +18,8 @@ class MainPage extends Component {
     state = {
         station: false,
         playerContent: null,
-        clear: false
+        clear: false,
+        stationPlayer: false
     };
 
     componentDidMount() {
@@ -33,9 +35,17 @@ class MainPage extends Component {
         clearInterval(this.timer);
     }
 
-    elemSelected = (listId, i, context, name) => {
+    songSelected = (listId, i, context, name) => {
         this.setState({
-            playerContent: [listId, i, context, name]
+            playerContent: [listId, i, context, name],
+            stationPlayer: false
+        })
+    }
+
+    stationSelected = (listId, i, context, name) => {
+        this.setState({
+            playerContent: [listId, i, context, name],
+            stationPlayer: true
         })
     }
 
@@ -70,15 +80,15 @@ class MainPage extends Component {
 
                 {this.state.station ? (<Station />) : (null) }
 
-                <Player content={this.state.playerContent} />
+                {!this.state.stationPlayer ? (<Player content={this.state.playerContent} />) : (<StationPlayer stationId={this.state.playerContent[0][0][this.state.playerContent[1]]._id} content={this.state.playerContent} />)}
 
                 <div className="core">
 
-                {this.props.getAllOnlineStation.loading ? (<p>loading</p>) : ( (this.props.getAllOnlineStation.onlineStations && this.props.getAllOnlineStation.onlineStations.length >  0) ? (<Discover context={"station"} name={"Online Stations"} idList={this.props.getAllOnlineStation.onlineStations} elemSelected={this.elemSelected} />) : (<h3>There is no other online stations</h3>))}
+                {this.props.getAllOnlineStation.loading ? (<p>loading</p>) : ( (this.props.getAllOnlineStation.onlineStations && this.props.getAllOnlineStation.onlineStations.length >  0) ? (<Discover context={"station"} name={"Online Stations"} idList={this.props.getAllOnlineStation.onlineStations} elemSelected={this.stationSelected} />) : (<h3>There is no other online stations</h3>))}
 
-                {this.props.getUserLikedAudio.loading ? (<p>loading</p>) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<Discover context={"playlist"} name={"Your liked songs"} idList={this.props.getUserLikedAudio.userLikedAudio} elemSelected={this.elemSelected} />) : (null))}
+                {this.props.getUserLikedAudio.loading ? (<p>loading</p>) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<Discover context={"playlist"} name={"Your liked songs"} idList={this.props.getUserLikedAudio.userLikedAudio} elemSelected={this.songSelected} />) : (null))}
                 
-                {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<Discover name={"All songs"} context={"playlist"} idList={this.props.getAllAudioId.allAudioId} elemSelected={this.elemSelected} />)}
+                {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<Discover name={"All songs"} context={"playlist"} idList={this.props.getAllAudioId.allAudioId} elemSelected={this.songSelected} />)}
                 
                 </div>
 
