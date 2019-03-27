@@ -34,10 +34,10 @@ export default class Player extends Component {
                     this.processIntake();
                 }
                 else if (JSON.stringify(this.props.content[0][0]) != JSON.stringify(prevProps.content[0][0]) && this.props.content[3] == prevProps.content[3] && this.props.content[0][0].length != 0){
-                    this.resetPlaylist();
+                    this.processIntake();
                 }
                 else if (this.props.content[1] !== prevProps.content[1] && this.props.content[3] == prevProps.content[3]) {
-                    this.changePosition();  
+                    this.processIntake();
                 } 
             }
         } else {
@@ -50,7 +50,8 @@ export default class Player extends Component {
         this.props.content[2] == "playlist" ? 
         this.setState({
             currentSong: [this.props.content[1]],
-            playList: this.props.content[0]
+            playList: this.props.content[0],
+
         })
         : (null)
 

@@ -80,7 +80,7 @@ class MainPage extends Component {
 
                 {this.state.station ? (<Station />) : (null) }
 
-                {!this.state.stationPlayer ? (<Player content={this.state.playerContent} />) : (<StationPlayer stationId={this.state.playerContent[0][0][this.state.playerContent[1]]._id} content={this.state.playerContent} />)}
+                {!this.state.stationPlayer ? (<Player content={this.state.playerContent} />) : (<StationPlayer _id={this.state.playerContent[0][0][this.state.playerContent[1]]._id} content={this.state.playerContent} />)}
 
                 <div className="core">
 
@@ -92,7 +92,7 @@ class MainPage extends Component {
                 
                 </div>
 
-                {console.log(this.state.playerContent)}
+                {/* {console.log(this.state.playerContent)} */}
 
                 </Fragment>       
             </div>

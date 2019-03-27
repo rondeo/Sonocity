@@ -28,9 +28,10 @@ class StationPlayer extends Component {
         // Typical usage (don't forget to compare props):
         // (console.log("update"))
         
-        if(this.props.content !== null) {
+        if(this.props.getStationDataById !== null) {
+            console.log(this.props.getStationDataById.station)
 
-            if(prevProps.content == null) {
+            if(prevProps.getStationDataById == null) {
                 this.processIntake();
             // } else {
             //     if(this.props.content[3] !== prevProps.content[3]) {
@@ -51,7 +52,7 @@ class StationPlayer extends Component {
     changePosition = () => { }
 
     processIntake = () => {
-        console.log(getStationDataById.station)
+        console.log(this.props.getStationDataById.station)
         this.setState({
             // currentSong: [this.props.content[1]],
             // name: this.props.content[3],
