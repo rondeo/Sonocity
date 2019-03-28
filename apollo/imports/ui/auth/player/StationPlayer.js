@@ -11,110 +11,74 @@ class StationPlayer extends Component {
 
     state = {
         context: null,
-        stationId: null,
         stationName: null,
         stationDescription: null,
         upNext: null,
         currentAudioId: null,
-        listName: null,
         ready: false,
         loopAll: false,
-        loopOne: false
+        loopOne: false,
+        syncTime: null,
+        coverUrl: null
+
     };
 
     componentDidMount() {
-
+        this.props.getStationDataById.loading ?  (null) : this.processIntake()
     }
 
     componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
-        // (console.log("update"))
-        
-        if(this.props.getStationDataById !== null) {
-            console.log(this.props.getStationDataById.station)
-
-            if(prevProps.getStationDataById == null) {
-                this.processIntake();
-            // } else {
-            //     if(this.props.content[3] !== prevProps.content[3]) {
-            //         this.processIntake();
-            //     }
-            //     else if (JSON.stringify(this.props.content[0][0]) != JSON.stringify(prevProps.content[0][0]) && this.props.content[3] == prevProps.content[3] && this.props.content[0][0].length != 0){
-            //         this.resetPlaylist();
-            //     }
-            //     else if (this.props.content[1] !== prevProps.content[1] && this.props.content[3] == prevProps.content[3]) {
-            //         this.changePosition();  
-            //     } 
+        if(this.props.getStationDataById.station.name) {
+            if(!this.props.getStationDataById.station.status){
+                this.stationOffline()
             }
-        } else {
-            console.log("content is null")
+            if(this.props.getStationDataById.station.name !== this.state.stationName) {
+                this.processIntake();
+            } else if(this.props.getStationDataById.station.currentAudio !== this.state.currentAudioId) {
+                this.changeAudio();
+            } // else if(this.props.getStationDataById.station.currentAudio == this.state.currentAudioId) {
+            //     this.onEnd();
+            // }
         }
     }
 
-    changePosition = () => { }
+    changeAudio = () => { 
+        this.setState({
+            currentAudioId: this.props.getStationDataById.station.currentAudio,
+            syncTime: null
+        })
+    }
 
     processIntake = () => {
         this.setState({
-            // currentSong: [this.props.content[1]],
-            // name: this.props.content[3],
-            // ready: true,
+            context: "station",
+            stationName: this.props.getStationDataById.station.name,
+            stationDescription: this.props.getStationDataById.station.description,
+            upNext: this.props.getStationDataById.station.upNext,
+            currentAudioId: this.props.getStationDataById.station.currentAudio,
+            syncTime: (Date.now() - this.props.getStationDataById.station.timeStamp)/1000,
+            coverUrl: this.props.getStationDataById.station.coverUrl,
+            ready: true,
         })
-
     } 
 
-    // keydown (e) {
-    //     if(this.state.playList && this.state.ready) {
-    //         switch(e.which) {
-    //             case 37: this.previous();
-    //             break;
-        
-    //             case 39: this.next(); 
-    //             break; 
-        
-    //             default: return; // exit this handler for other keys
-    //         }
-    //         e.preventDefault(); // prevent the default action (scroll / move caret)
-    //     }
-    // }
+    getSync = () => {
+        return (Date.now() - this.props.getStationDataById.station.timeStamp)/1000;
+    }
 
     onEnd = () => {
-        if(this.state.context == "playlist"){          
-            if (this.state.loopOne){
-                this.setState({
-                    currentSong: this.state.currentSong
-                })
-            } else if(parseInt(this.state.currentSong) !== (this.state.playList[0].length - 1)) {  
-                this.setState({
-                    currentSong: parseInt(this.state.currentSong) + 1,
-                })
-            } else if (this.state.loopAll){
-                this.setState({
-                    currentSong: 0
-                })
-            } else {
-                this.setState({
-                    ready:false,
-                    name: null
-                })
-            }
-
-        }
+        this.props.getStationDataById.refetch();
     }
 
-    next = () => {
-        if(this.state.context == "playlist"){   
-            if(parseInt(this.state.currentSong) !== (this.state.playList[0].length - 1)) {  
-                this.setState({
-                    currentSong: parseInt(this.state.currentSong) + 1,
-                })
-            } else if (this.state.loopAll){
-                this.setState({
-                    currentSong: 0
-                })
-            }
-        }
+    stationOffline = () => {
+        this.props.offline();
     }
 
+    stationRefetch = () => {
+        this.props.getStationDataById.refetch();
+    }
+
+    next = () => {}
     previous = () => {}
     handleLoop = () => {}
 
@@ -127,7 +91,7 @@ class StationPlayer extends Component {
                         {this.state.ready ?  
                         <Fragment>
                             {/* {this.state.playList[0][this.state.currentSong] ? */}
-                            <AudioPlayer context={this.state.context} next={this.next} previous={this.previous} onEnd={this.onEnd} handleLoop={this.handleLoop} loopAll={this.state.loopAll} loopOne={this.state.loopOne}
+                            <AudioPlayer stationName={this.state.stationName} context={this.state.context} getSync={this.getSync} synchro={this.state.syncTime} offline={this.stationOffline} next={this.next} previous={this.previous} onEnd={this.onEnd} handleLoop={this.handleLoop} loopAll={this.state.loopAll} loopOne={this.state.loopOne}
                                 audioId={this.state.currentAudioId} 
                             /> 
                             {/* : (null) } */}

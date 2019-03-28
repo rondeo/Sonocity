@@ -7,6 +7,7 @@ const GET_AUDIO_LINK_BY_ID = gql`
             artist
             coverUrl
             fileUrl
+            duration
         }
     }
 `;

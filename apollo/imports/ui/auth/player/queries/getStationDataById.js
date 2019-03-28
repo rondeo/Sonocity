@@ -9,6 +9,7 @@ const GET_STATION_DATA_BY_ID = gql`
             currentAudio
             timeStamp
             upNext
+            status
         }
     }
 `;

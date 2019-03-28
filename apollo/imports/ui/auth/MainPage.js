@@ -23,9 +23,9 @@ class MainPage extends Component {
     };
 
     componentDidMount() {
-        this.setState({
-            clear: this.clear()
-        })
+        // this.setState({
+        //     clear: this.clear()
+        // })
         this.timer = setInterval(() => { 
             this.props.getAllOnlineStation.refetch();
         }, 20000);
@@ -36,7 +36,6 @@ class MainPage extends Component {
     }
 
     songSelected = (listId, i, context, name) => {
-        console.log("got here")
         this.setState({
             playerContent: [listId, i, context, name],
             stationPlayer: false
@@ -50,6 +49,13 @@ class MainPage extends Component {
         })
     }
 
+    stationOffline = () => {
+        this.setState({
+            playerContent: null,
+            stationPlayer: false
+        })
+    }
+
     async clear() {
         return await this.props.clearUpNext();
     }
@@ -59,7 +65,8 @@ class MainPage extends Component {
             <div>   
                 <Fragment>
 
-                {this.state.clear ? <StationManager /> : (null)}
+                {/* {this.state.clear ? <StationManager /> : (null)} */}
+                <StationManager />
 
                 <button 
                     onClick={()=> {
@@ -81,7 +88,7 @@ class MainPage extends Component {
 
                 {this.state.station ? (<Station />) : (null) }
 
-                {!this.state.stationPlayer ? (<Player content={this.state.playerContent} />) : (<StationPlayer _id={this.state.playerContent[0][0][this.state.playerContent[1]]._id} content={this.state.playerContent} />)}
+                {!this.state.stationPlayer ? (<Player content={this.state.playerContent} />) : (<StationPlayer _id={this.state.playerContent[0][0][this.state.playerContent[1]]._id} content={this.state.playerContent} offline={this.stationOffline} />)}
                 {!this.state.stationPlayer ? (console.log(this.state.playerContent)) : (console.log(this.state.playerContent))}
                 <div className="core">
 

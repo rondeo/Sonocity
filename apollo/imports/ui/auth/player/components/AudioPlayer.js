@@ -20,22 +20,41 @@ class AudioPlayer extends Component {
     state = {
         play: false,
         liked: null,
-        context: null
+        context: null,
+        audioId: null
     }
 
     componentDidMount() {
-        this.props.audioId.loading ? (null) : 
-        this.setState({play:true, context: this.props.context}), this.addToUpnext() 
+        this.props.getAudioLinkById.loading ? (null) : 
+        this.processIntake();
     }
 
     componentDidUpdate(prevProps) {
     // Typical usage (don't forget to compare props):
-        if (this.props.audioId != prevProps.audioId){
-            this.props.getAudioLinkById.refetch();
-            this.props.isAudioLiked.refetch();
-            this.setState({liked:null, context: this.props.context})
-            this.addToUpnext();
-            // insert into station upNext
+        if (!this.props.getAudioLinkById.loading) { 
+            if(this.state.audioId == null) {
+                this.processIntake();
+            }  
+            else if (this.props.audioId !== this.state.audioId){
+                this.props.getAudioLinkById.refetch();
+                this.props.isAudioLiked.refetch();
+                this.processIntake();
+            } else if(this.props.context == "station" && this.props.stationName !== prevProps.stationName) {
+                if(this.props.getSync() > 3)
+                    this.setSeek(this.props.getSync()-2);
+            }
+            // else if (this.context=="station" && this.props.audioId == this.state.audioId) {
+            //     console.log("sameId station")
+            //     this.props.stationRefetch();
+            // } 
+        }
+    }
+
+    processIntake = () => {
+        this.setState({liked:null, play:true, context: this.props.context, audioId:this.props.audioId});
+        this.addToUpnext();
+        if(this.props.context == "station" && this.props.synchro > 3) {
+            this.setSeek(this.props.synchro-2);
         }
     }
 
@@ -86,6 +105,9 @@ class AudioPlayer extends Component {
     }
 
     play = () => {
+        if(this.state.context == "station") {
+            this.setSeek(this.props.getSync())
+        }
         this.player.play();
     }
 
@@ -187,8 +209,7 @@ class AudioPlayer extends Component {
                     >
                         Previous
             </button>
-            </Fragment>)
-        : (null) }
+           
 
         <button 
             onClick={()=> {
@@ -198,16 +219,16 @@ class AudioPlayer extends Component {
             {this.state.play ? "Pause" : "Play" }
         </button> 
 
-        {this.state.context == "playlist" ?
 
-            (<button 
+            <button 
                 onClick={()=> {
                     this.props.next();
                 }}
             >
                 Next
-            </button>)
+            </button>
         
+            </Fragment>)
         : (null) }
         
 

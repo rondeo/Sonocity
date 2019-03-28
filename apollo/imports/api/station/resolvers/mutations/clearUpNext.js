@@ -10,7 +10,8 @@ export default {
                     { userId: userId },
                     { $set:
                         {
-                            upNext: []
+                            upNext: [],
+                            status: false
                         }
                      }
                 );

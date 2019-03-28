@@ -18,7 +18,6 @@ export default class Player extends Component {
     };
 
     componentDidMount() {
-        console.log(this.props.content)
         this.props.content ? this.processIntake() : (null)
     }
 
