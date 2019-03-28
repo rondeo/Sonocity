@@ -40,8 +40,8 @@ class AudioPlayer extends Component {
                 this.props.isAudioLiked.refetch();
                 this.processIntake();
             } else if(this.props.context == "station" && this.props.stationName !== prevProps.stationName) {
-                if(this.props.getSync() > 3)
-                    this.setSeek(this.props.getSync()-2);
+                if(this.props.getSync() > 4)
+                    this.setSeek(this.props.getSync()-3);
             }
             // else if (this.context=="station" && this.props.audioId == this.state.audioId) {
             //     console.log("sameId station")
@@ -53,8 +53,8 @@ class AudioPlayer extends Component {
     processIntake = () => {
         this.setState({liked:null, play:true, context: this.props.context, audioId:this.props.audioId});
         this.addToUpnext();
-        if(this.props.context == "station" && this.props.synchro > 3) {
-            this.setSeek(this.props.synchro-2);
+        if(this.props.context == "station" && this.props.synchro > 4) {
+            this.setSeek(this.props.synchro-3);
         }
     }
 
