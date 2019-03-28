@@ -66,6 +66,7 @@ class MainPage extends Component {
                 <Fragment>
 
                 {/* {this.state.clear ? <StationManager /> : (null)} */}
+                // now this means that someone who's deconnected from the server will keep his station state
                 <StationManager />
 
                 <button 
