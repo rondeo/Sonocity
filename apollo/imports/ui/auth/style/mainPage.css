@@ -2,7 +2,6 @@
     width:90%;
     margin:auto;
     text-align: center;
-	font-family: 'IM Fell English SC', serif;
     -webkit-animation: fadein 2.0s;
 }
 
@@ -14,4 +13,5 @@
 
 html {
     background-color:white;
+    font-family: Sans-Serif;
 }
