@@ -88,9 +88,9 @@ class MainPage extends Component {
                     {this.state.station ? "Close" : "Station" }
                 </button> 
 
-                {!this.state.stationPlayer ? (<Player content={this.state.playerContent} />) : (<StationPlayer _id={this.state.playerContent[0][0][this.state.playerContent[1]]._id} content={this.state.playerContent} offline={this.stationOffline} />)}
-
                 {this.state.station ? (<Station />) : (null) }
+
+                {!this.state.stationPlayer ? (<Player content={this.state.playerContent} />) : (<StationPlayer _id={this.state.playerContent[0][0][this.state.playerContent[1]]._id} content={this.state.playerContent} offline={this.stationOffline} />)}
 
                 <div className="core">
 
