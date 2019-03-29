@@ -23,9 +23,9 @@ class MainPage extends Component {
     };
 
     componentDidMount() {
-        // this.setState({
-        //     clear: this.clear()
-        // })
+        this.setState({
+            clear: this.clear()
+        })
         this.timer = setInterval(() => { 
             this.props.getAllOnlineStation.refetch();
         }, 20000);
@@ -65,12 +65,13 @@ class MainPage extends Component {
             <div>   
                 <Fragment>
 
-                {/* {this.state.clear ? <StationManager /> : (null)} */}
-                {/* now this means that someone who's deconnected from the server will keep his station state*/}
-                <StationManager />
+                {this.state.clear ? <StationManager /> : (null)}
+                {/* now this would mean that someone who's deconnected from the server will keep his station state*/}
+                {/* <StationManager /> */}
 
                 <button 
                     onClick={()=> {
+                        this.props.clearUpNext();
                         Meteor.logout();
                         this.props.client.cache.reset()
                         this.props.client.resetStore();
@@ -90,7 +91,7 @@ class MainPage extends Component {
                 {this.state.station ? (<Station />) : (null) }
 
                 {!this.state.stationPlayer ? (<Player content={this.state.playerContent} />) : (<StationPlayer _id={this.state.playerContent[0][0][this.state.playerContent[1]]._id} content={this.state.playerContent} offline={this.stationOffline} />)}
-                {!this.state.stationPlayer ? (console.log(this.state.playerContent)) : (console.log(this.state.playerContent))}
+
                 <div className="core">
 
                     {this.props.getAllOnlineStation.loading ? (<p>loading</p>) : ( (this.props.getAllOnlineStation.onlineStations && this.props.getAllOnlineStation.onlineStations.length >  0) ? (<Discover context={"station"} name={"Online Stations"} idList={this.props.getAllOnlineStation.onlineStations} elemSelected={this.stationSelected} />) : (<h3>There is no other online stations</h3>))}

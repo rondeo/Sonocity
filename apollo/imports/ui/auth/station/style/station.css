@@ -1,23 +1,77 @@
-.stationCore {
-    width: 90%;
-    margin:auto;
+.myStationCore {
+    display:grid;
+    grid-template-columns: 0.50fr 0.30fr 0.30fr;
+    grid-template-rows: 450px;
+    justify-items: center;
+    margin-left:5%;
+    margin-right:5%;
 }
 
-.currentlyPlaying {
-    float:left;
-    margin-left:100px;
+.myStationProfile {
+    grid-column: 1;
+    grid-row: 1;
+    /* justify-self: end; */
+    align-self: center;
 }
 
-.currentlyPlaying img{
+.stationCover img{
     height: 150px;
     width: 150px;
     border:3px solid black;
+    border-radius: 5px; 
 }
 
-.profile {
-    float:left;
+.myStationCurrentlyPlaying {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
+    align-self: center;
 }
 
-.clearBoth {
-    clear:both;
+.myStationCurrentlyPlaying img{
+    height: 150px;
+    width: 150px;
+    border:3px solid black;
+    border-radius: 5px; 
+}
+
+.myStationUpNext {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: start;
+    align-self: center;
+}
+
+.myProfileCore {
+    display:grid;
+    grid-template-columns: 0.50fr 0.50fr;
+    grid-template-rows: auto;
+    justify-items: start;
+    /* margin-left:5%;
+    margin-right:5%; */
+}
+
+.myCover {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self:start;
+}
+
+.myDescription {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
+}
+
+.myName {
+    margin-bottom:15px;
+}
+
+.myName h1 {
+    display: inline;
+    margin-right:15px;
+}
+
+.myName button, .changeName input{
+    display: inline;
 }

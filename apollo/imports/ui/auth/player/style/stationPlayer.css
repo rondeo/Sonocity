@@ -1,0 +1,48 @@
+.stationPlayer {
+    display:grid;
+    grid-template-columns: 0.50fr 0.50fr;
+    grid-template-rows: 200px;
+    justify-items: center;
+    margin-left:15%;
+    margin-right:15%;
+}
+
+.stationInfos {
+    grid-column: 1;
+    grid-row: 1;
+    text-align:left;
+    align-self: center;
+}
+
+.stationAudioPlayer {
+    grid-column: 2;
+    grid-row: 1;
+    text-align:center;
+    align-self: center;
+}
+
+.stPlrCoverAndName {
+    display:grid;
+    grid-template-columns: 0.30fr 0.70fr;
+}
+
+.stPlrCover {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+
+}
+
+.stPlrName {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    margin-left:25px;
+}
+
+.stPlrCover img {
+    height: 90px;
+    width: 90px;
+    border:1px solid black;
+    border-radius: 5px; 
+}

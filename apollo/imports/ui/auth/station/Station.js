@@ -116,30 +116,28 @@ class Station extends Component {
         return (
             <div>   
                 <Fragment>
-                    <div className="stationCore">
-                        <div className="profile">
+                    <div className="myStationCore">
+                        <div className="myStationProfile">
                             {this.state.name ? <Profile name={this.state.name} description={this.state.description} coverUrl={this.state.coverUrl} /> : (null)}  
                             <button 
                                 onClick={()=> {
                                     this.setState({upload: !this.state.upload})
                                 }}
                             >
-                                {this.state.upload ? "Cancel" : "Upload" }
+                                {this.state.upload ? "Cancel" : "Upload Audio" }
                             </button> 
                             {this.state.upload ? (<UploadModule  uploadSuccess={this.uploadComplete}/>) : (null) } 
                         </div>
 
-                        <div className="currentlyPlaying">
+                        <div className="myStationCurrentlyPlaying">
                             <h3>Now playing: </h3>
                             {this.state.status ? <CurrentAudio currentUpdate={this.props.getUserStation.refetch()} audioId={this.state.currentAudio} timeStamp={this.state.timeStamp} /> : <h3>Offline</h3>}
                         </div>
 
-                        <div className="currentlyPlaying">
+                        <div className="myStationUpNext">
                             <h3>Up Next: </h3>
                             {this.state.status ? (this.state.upNext[0] ? <UpNextMgmt upNext={this.state.upNext}/> : <h3>Nothing in up next</h3>) : <h3></h3>}
                         </div>
-
-                        <div className="clearBoth"></div>
                     </div>
                 </Fragment>       
             </div>

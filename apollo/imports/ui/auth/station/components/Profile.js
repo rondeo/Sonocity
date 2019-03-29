@@ -7,8 +7,6 @@ import UPDATE_COVER from "../queries/updateCover"
 
 import DropZoneImage from "../../uploadModule/components/ImageSelector"
 
-import "../style/profile.css"
-
 class Profile extends Component {
     state = {
         name: null,
@@ -139,22 +137,31 @@ class Profile extends Component {
             <div>   
                 <Fragment>
                     {!this.state.name ? (null) :
-                    (<div> 
-                        <h1>@{this.state.name} station</h1>    
-                        {!this.state.edit ?
-                        (<button 
-                        onClick={()=> {
-                            this.setState({edit: true})
-                        }}
-                        >
-                        Edit
-                        </button>) : (<div><input type="text" defaultValue={this.state.name} maxLength={64}  ref={input => (this.name = input)} /> <button onClick={() => this.updateNameUi()}> Change </button></div>) }
-                        {this.state.taken ? (<h2>the name is already taken</h2>) : (null)} 
-                        <div className="stationCover"><img src={this.state.coverUrl}/></div>
+                    (<div className="myProfileCoree"> 
+                        <div className="myName">
+                            <h1>@{this.state.name}</h1>    
+                            {!this.state.edit ?
+                            (<button 
+                            onClick={()=> {
+                                this.setState({edit: true})
+                            }}
+                            >
+                            Edit Name
+                            </button>) : (<div className="changeName"><input type="text" size={14} defaultValue={this.state.name} maxLength={17}  ref={input => (this.name = input)} /> <button onClick={() => this.updateNameUi()}> Change </button></div>) }
+                        </div>
+                            {this.state.taken ? (<h2>the name is already taken</h2>) : (null)} 
+                        <div className="myProfileCore"> 
+                            <div className="myCover">
+                                <div className="stationCover">
+                                    <img src={this.state.coverUrl}/>
+                                </div>
+                            </div>
+                            <div className="myDescription">
+                                <textarea cols={23} rows={10} onChange={this.handleDescriptionChange} defaultValue={this.state.description} maxLength={256}  ref={input => (this.description = input)} />
+                            </div>
+                        </div>
                         <DropZoneImage addUp={this.changeImage}/>
-                        
-                        <div><textarea cols={33} rows={10} onChange={this.handleDescriptionChange} defaultValue={this.state.description} maxLength={256}  ref={input => (this.description = input)} /></div>
-                        
+
                     </div>)
                     }
                 </Fragment>       

@@ -5,7 +5,7 @@ import GET_STATION_DATA_BY_ID from './queries/getStationDataById';
 
 import AudioPlayer from './components/AudioPlayer'
 
-import "./style/player.css"
+import "./style/stationPlayer.css"
 
 class StationPlayer extends Component {
 
@@ -86,17 +86,27 @@ class StationPlayer extends Component {
         return (
             <div className="playerModule">              
                 <Fragment>
-                    <div>   
-                        {this.state.name ? (<h3>{this.state.name} {this.state.context}</h3>): (null)}
-                        {this.state.ready ?  
-                        <Fragment>
-                            {/* {this.state.playList[0][this.state.currentSong] ? */}
-                            <AudioPlayer stationName={this.state.stationName} context={this.state.context} getSync={this.getSync} synchro={this.state.syncTime} offline={this.stationOffline} next={this.next} previous={this.previous} onEnd={this.onEnd} handleLoop={this.handleLoop} loopAll={this.state.loopAll} loopOne={this.state.loopOne}
-                                audioId={this.state.currentAudioId} 
-                            /> 
-                            {/* : (null) } */}
-                        </Fragment>    
-                        : (<h3> Station Player </h3>)} 
+                    <div className="stationPlayer">   
+                        <div className="stationInfos">
+                            <div className="stPlrCoverAndName">
+                                <div className="stPlrCover">
+                                    {this.state.coverUrl ? (<img src={this.state.coverUrl}/>): (null)}
+                                </div>
+                                <div className="stPlrName">
+                                    {this.state.stationName ? (<h3>@{this.state.stationName} {this.state.context}</h3>): (null)}
+                                    {this.state.stationDescription ? (<h4>{this.state.stationDescription}</h4>): (null)}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="stationAudioPlayer">
+                            {this.state.ready ?  
+                                <AudioPlayer stationName={this.state.stationName} context={this.state.context} getSync={this.getSync} synchro={this.state.syncTime} offline={this.stationOffline} next={this.next} previous={this.previous} onEnd={this.onEnd} handleLoop={this.handleLoop} loopAll={this.state.loopAll} loopOne={this.state.loopOne}
+                                    audioId={this.state.currentAudioId} 
+                                /> 
+                            : (<h3> Station Player </h3>)} 
+                        </div>
+                        <div className="upNextStationPlayer">
+                        </div>
                     </div>  
                 </Fragment>
             </div>

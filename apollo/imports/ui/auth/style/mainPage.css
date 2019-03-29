@@ -2,4 +2,16 @@
     width:90%;
     margin:auto;
     text-align: center;
+	font-family: 'IM Fell English SC', serif;
+    -webkit-animation: fadein 2.0s;
+}
+
+/* animation fade in source: https://stackoverflow.com/questions/11679567/using-css-for-fade-in-effect-on-page-load */
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+html {
+    background-color:white;
 }

@@ -46,7 +46,7 @@ class UpNextMgmt extends Component {
             <div>
                 {this.state.upNext ?
                     this.state.upNext.map((audioId, i) => (
-                        <DisplayUpNext key={i} index={i} onClick={this.remove} audioId={audioId} />
+                        i < 6 ? <DisplayUpNext key={i} index={i} onClick={this.remove} audioId={audioId} /> : (null)
                     )): (null)}
             </div>
         )

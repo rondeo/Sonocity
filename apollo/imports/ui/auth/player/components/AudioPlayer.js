@@ -178,7 +178,20 @@ class AudioPlayer extends Component {
        :
        (<Fragment>
 
-       <h4>{this.props.getAudioLinkById.audioData.title} by {this.props.getAudioLinkById.audioData.artist}</h4>
+        <div className="titleAndLike">
+            <h4>{this.props.getAudioLinkById.audioData.title} - {this.props.getAudioLinkById.audioData.artist}</h4>
+            {this.props.isAudioLiked.loading ?
+                (null)
+                :
+                (<button 
+                    onClick={()=> {
+                        this.likedChange();
+                    }}
+                >
+                    {(this.props.isAudioLiked.isAudioLiked && this.state.liked == null) ? "UnLike" : (this.state.liked ? "UnLike" : "Like") }
+                </button>)
+            }
+        </div>
 
        <ReactHowler
         src={this.props.getAudioLinkById.audioData.fileUrl}
@@ -192,65 +205,51 @@ class AudioPlayer extends Component {
           
         <div className="audioPlayerButtons">
 
-        {this.state.context == "playlist" ?
+            {this.state.context == "playlist" ?
 
-            (<Fragment>
-            <button 
-                onClick={()=> {
-                    this.props.handleLoop();
-                }}
-            >
-                {this.props.loopAll ? "loopOne" : (this.props.loopOne ? "stop loop" : "loop All") }
-            </button>
-            <button 
+                (<Fragment>
+                <button 
                     onClick={()=> {
-                        this.previous();
+                        this.props.handleLoop();
                     }}
-                    >
-                        Previous
-            </button>
-           
-
-        <button 
-            onClick={()=> {
-                this.handlePlayPause();
-            }}
-        >
-            {this.state.play ? "Pause" : "Play" }
-        </button> 
-
+                >
+                    {this.props.loopAll ? "loopOne" : (this.props.loopOne ? "stop loop" : "loop All") }
+                </button>
+                <button 
+                        onClick={()=> {
+                            this.previous();
+                        }}
+                        >
+                            Previous
+                </button>
+            
 
             <button 
                 onClick={()=> {
-                    this.props.next();
+                    this.handlePlayPause();
                 }}
             >
-                Next
-            </button>
-        
-            </Fragment>)
-        : (null) }
-        
+                {this.state.play ? "Pause" : "Play" }
+            </button> 
 
-            {this.props.isAudioLiked.loading ?
-            (null)
-            :
-            (<button 
-                onClick={()=> {
-                    this.likedChange();
-                }}
-            >
-                {(this.props.isAudioLiked.isAudioLiked && this.state.liked == null) ? "UnLike" : (this.state.liked ? "UnLike" : "Like") }
-            </button>)
-            }
+
+                <button 
+                    onClick={()=> {
+                        this.props.next();
+                    }}
+                >
+                    Next
+                </button>
+            
+                </Fragment>)
+            : (null) }
 
             </div>
 
-            <div>
-            {this.props.likedCount.loading ? (null) : (<p>{this.props.likedCount.audioLikedCount} likes</p>)}
-            {this.props.listenCount.loading ? (null) : (<p>{this.props.listenCount.audioListenCount} plays</p>)}
-
-        </div>
+            <div className="songStats">
+                {this.props.likedCount.loading ? (null) : (<p>{this.props.likedCount.audioLikedCount} likes</p>)}
+                {this.props.listenCount.loading ? (null) : (<p>{this.props.listenCount.audioListenCount} listens</p>)}
+            </div>
 
       </Fragment>)
       
