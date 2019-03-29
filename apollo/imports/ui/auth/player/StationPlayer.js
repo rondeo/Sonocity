@@ -240,16 +240,14 @@ graphql(FOLLOWED_COUNT, {
 graphql(INSERT_FOLLOWED_STATION, {
     name: "insertFollowedStation",
     options: {
-        refetchQueries: ["FOLLOWED_COUNT"]
-        // "GET_USER_ONLINE_FOLLOWED_STATION" 
+        refetchQueries: ["FOLLOWED_COUNT", "GET_ALL_FOLLOWED_STATION"]
     }
 }),
 
 graphql(REMOVE_FOLLOWED_STATION, {
     name: "removeFollowedStation",
     options: {
-        refetchQueries: ["FOLLOWED_COUNT"]
-        // "GET_USER_ONLINE_FOLLOWED_STATION"
+        refetchQueries: ["FOLLOWED_COUNT", "GET_ALL_FOLLOWED_STATION"]
     }
 }),
 
