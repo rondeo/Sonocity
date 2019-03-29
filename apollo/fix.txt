@@ -14,5 +14,7 @@ likedTracks mix up
 previous/next currentSongId condition on change prevProps this.Props sur main page ne change pas
 reading id from playlist -> gimmick _id // audioId
 description in profile -> sometimes i think the refetch on GET_USER_STATION is done before the update in db
-the stationPlayer after a station is deconnected / reconnected - cant connect
 make sure a station status is off
+
+stationPlyr 2 station playing same track / station disconnect / reconnect 
+

@@ -1,15 +1,27 @@
 import merge from "lodash/merge";
 
 import InsertLhEntry from "./mutations/insertLhEntry"
+import GetAudioListenCount from "./queries/getAudioListenCount"
+
 import InsertLikedAudio from "./mutations/insertLikedAudio"
 import RemoveLikedAudio from "./mutations/removeLikedAudio"
 import IsAudioLiked from "./queries/isAudioLiked"
 import GetLikedAudioByUserId from "./queries/getLikedAudioByUserId"
-import GetAudioListenCount from "./queries/getAudioListenCount"
 import GetAudioLikedCount from "./queries/getAudioLikedCount"
 
+import InsertFollowedStation from "./mutations/insertFollowedStation"
+import RemoveFollowedStation from "./mutations/removeFollowedStation"
+import IsStationFollowed from "./queries/isStationFollowed"
+import GetOnlineFollowedStationByUserId from "./queries/getOnlineFollowedStationByUserId"
+import GetFollowedStationCount from "./queries/getFollowedStationCount"
 
 
-const resolvers = merge(InsertLhEntry, InsertLikedAudio, RemoveLikedAudio, IsAudioLiked, GetLikedAudioByUserId, GetAudioListenCount, GetAudioLikedCount);
+
+
+const resolvers = merge(
+                            InsertLhEntry, InsertLikedAudio, 
+                            RemoveLikedAudio, IsAudioLiked, GetLikedAudioByUserId, GetAudioListenCount, GetAudioLikedCount,
+                            InsertFollowedStation, RemoveFollowedStation, IsStationFollowed, GetOnlineFollowedStationByUserId, GetFollowedStationCount                        
+                        );
 
 export default resolvers;

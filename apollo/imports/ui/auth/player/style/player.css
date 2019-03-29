@@ -1,5 +1,26 @@
-.playerModule {
-    width: 100%;
-    margin:auto;
+.playerModulePlayList {
+    display:grid;
+    grid-template-columns: 0.50fr 0.50fr;
+    grid-template-rows: 200px;
+    justify-items: center;
+    margin-left:15%;
+    margin-right:15%;
+}
+
+.playListName {
+    grid-column: 1;
+    grid-row: 1;
+    text-align:left;
+    align-self: center;
+}
+
+.playListPlayer {
+    grid-column: 2;
+    grid-row: 1;
+    text-align:center;
+    align-self: center;
+}
+
+.playListPlyrInfos {
     text-align:center;
 }

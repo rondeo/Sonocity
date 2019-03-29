@@ -157,22 +157,22 @@ export default class Player extends Component {
 
     render() {
         return (
-            <div className="playerModule">              
-                <Fragment>
-                    <div>   
+            <Fragment>
+            <div>
+                {this.state.ready ? 
+                <div className="playerModulePlayList">  
+                    <div className="playListName">   
                         {this.state.name ? (<h3>{this.state.name} {this.state.context}</h3>): (null)}
-                        {this.state.ready ?  
-                        <Fragment>
-                            {/* {this.state.playList[0][this.state.currentSong] ? */}
-                            <AudioPlayer context={this.state.context} next={this.next} previous={this.previous} onEnd={this.onEnd} handleLoop={this.handleLoop} loopAll={this.state.loopAll} loopOne={this.state.loopOne}
-                                audioId={this.state.context == "playlist" ? ((this.state.name == "All songs") ? this.state.playList[0][this.state.currentSong]._id : (this.state.playList[0][this.state.currentSong].audioId)) : (null)} 
-                            /> 
-                            {/* : (null) } */}
-                        </Fragment>    
-                        : (<h3>Browse our collections and select something to listen to !</h3>)} 
+                    </div>
+                    <div className="playListPlayer">    
+                        <AudioPlayer context={this.state.context} next={this.next} previous={this.previous} onEnd={this.onEnd} handleLoop={this.handleLoop} loopAll={this.state.loopAll} loopOne={this.state.loopOne}
+                            audioId={this.state.context == "playlist" ? ((this.state.name == "All songs") ? this.state.playList[0][this.state.currentSong]._id : (this.state.playList[0][this.state.currentSong].audioId)) : (null)} 
+                        /> 
                     </div>  
-                </Fragment>
-            </div>
+                </div> : <h3 className="playListPlyrInfos">Browse our collections and select something to listen to !</h3>} 
+            </div>           
+            
+            </Fragment>
         )
     }
 }

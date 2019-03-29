@@ -26,7 +26,6 @@ class Station extends Component {
 
     componentDidMount() {
         if(!this.props.getUserStation.loading || this.state.name) {
-            console.log(this.props.getUserStation.userStation.name)
             if(!this.state.name) {
                 this.processIntake();
             } else {

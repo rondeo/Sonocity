@@ -23,14 +23,13 @@
 
 .stPlrCoverAndName {
     display:grid;
-    grid-template-columns: 0.30fr 0.70fr;
+    grid-template-columns: 0.25fr 0.75fr;
 }
 
 .stPlrCover {
     grid-column: 1;
     grid-row: 1;
     align-self: center;
-
 }
 
 .stPlrName {
@@ -38,11 +37,24 @@
     grid-row: 1;
     align-self: center;
     margin-left:25px;
+    min-width:150px;
 }
+
+.stPlrName h3, .stPlrName button, .stPlrName h5{ 
+    display: inline;
+    margin-left:5px;
+    margin-right:5px;
+}
+
 
 .stPlrCover img {
     height: 90px;
     width: 90px;
     border:1px solid black;
     border-radius: 5px; 
+}
+
+
+.offlineMess {
+    text-align: center;
 }

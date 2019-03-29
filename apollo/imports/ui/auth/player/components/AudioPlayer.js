@@ -172,7 +172,7 @@ class AudioPlayer extends Component {
   render () {
     return (
         <div>
-            <Fragment>
+        <Fragment>
         {this.props.getAudioLinkById.loading ?
        (null)
        :
@@ -208,13 +208,7 @@ class AudioPlayer extends Component {
             {this.state.context == "playlist" ?
 
                 (<Fragment>
-                <button 
-                    onClick={()=> {
-                        this.props.handleLoop();
-                    }}
-                >
-                    {this.props.loopAll ? "loopOne" : (this.props.loopOne ? "stop loop" : "loop All") }
-                </button>
+                
                 <button 
                         onClick={()=> {
                             this.previous();
@@ -224,13 +218,13 @@ class AudioPlayer extends Component {
                 </button>
             
 
-            <button 
-                onClick={()=> {
-                    this.handlePlayPause();
-                }}
-            >
-                {this.state.play ? "Pause" : "Play" }
-            </button> 
+                <button 
+                    onClick={()=> {
+                        this.handlePlayPause();
+                    }}
+                >
+                    {this.state.play ? "Pause" : "Play" }
+                </button> 
 
 
                 <button 
@@ -240,16 +234,24 @@ class AudioPlayer extends Component {
                 >
                     Next
                 </button>
+
+                <button 
+                    onClick={()=> {
+                        this.props.handleLoop();
+                    }}
+                >
+                    {this.props.loopAll ? "loopOne" : (this.props.loopOne ? "stop loop" : "loop All") }
+                </button>
             
                 </Fragment>)
             : (null) }
 
-            </div>
+        </div>
 
-            <div className="songStats">
-                {this.props.likedCount.loading ? (null) : (<p>{this.props.likedCount.audioLikedCount} likes</p>)}
-                {this.props.listenCount.loading ? (null) : (<p>{this.props.listenCount.audioListenCount} listens</p>)}
-            </div>
+        <div className="songStats">
+            {this.props.likedCount.loading ? (null) : (<p>{this.props.likedCount.audioLikedCount} likes</p>)}
+            {this.props.listenCount.loading ? (null) : (<p>{this.props.listenCount.audioListenCount} listens</p>)}
+        </div>
 
       </Fragment>)
       
@@ -280,6 +282,7 @@ export default compose (
     graphql(LIKED_COUNT, {
         name: "likedCount"
     }),
+    
 
     graphql(LISTEN_COUNT, {
         name: "listenCount"
