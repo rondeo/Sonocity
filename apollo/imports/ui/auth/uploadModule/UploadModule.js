@@ -160,7 +160,7 @@ export default compose (
     graphql(UPLOAD_SONG, {
         name: "uploadSong",
         options: {
-          refetchQueries: ["GET_ALL_AUDIO_ID"]
+          refetchQueries: ["GET_ALL_AUDIO_ID", "GET_ALL_USER_AUDIO_ID"]
         }
     }),
 

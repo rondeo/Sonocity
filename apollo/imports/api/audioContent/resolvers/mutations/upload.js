@@ -8,6 +8,7 @@ export default {
             if(userId) {
                 // try {
                     //AudioData.remove({});
+                    const timeStamp = Date.now();
                     const audioId = AudioData.insert({
                         userId: userId,
                         title: title,
@@ -16,7 +17,8 @@ export default {
                         duration: duration,
                         dataformat: dataformat,
                         fileUrl: fileUrl,
-                        coverUrl: coverUrl
+                        coverUrl: coverUrl,
+                        timeStamp: timeStamp
                     });
                 return AudioData.findOne(audioId);
             }

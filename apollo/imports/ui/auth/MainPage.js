@@ -6,6 +6,7 @@ import GET_USER_LIKED_AUDIO from './queries/getUserLikedAudio'
 import CLEAR_UP_NEXT from './queries/clearUpNext'
 import GET_ALL_ONLINE_STATION from './queries/getAllOnlineStationId'
 import GET_ALL_FOLLOWED_STATION from './queries/getAllFollowedStationId'
+import GET_ALL_USER_AUDIO_ID from './queries/getAllUserAudioId'
 
 import Discover from "./discoverModules/Discover"
 import Player from "./player/Player"
@@ -96,12 +97,14 @@ class MainPage extends Component {
 
                 <div className="core">
 
-                    {this.props.getAllFollowedStation.loading ? (<p>loading</p>) : ( (this.props.getAllFollowedStation.userOnlineFollowedStation && this.props.getAllFollowedStation.userOnlineFollowedStation.length >  0) ? (<Discover context={"station"} name={"Followed Stations"} idList={this.props.getAllFollowedStation.userOnlineFollowedStation} elemSelected={this.stationSelected} />) : (<h3>No station you follow is currently online</h3>))}
+                    {this.props.getAllFollowedStation.loading ? (<p>loading</p>) : ( (this.props.getAllFollowedStation.userOnlineFollowedStation && this.props.getAllFollowedStation.userOnlineFollowedStation.length >  0) ? (<Discover context={"station"} name={"Followed stations"} idList={this.props.getAllFollowedStation.userOnlineFollowedStation} elemSelected={this.stationSelected} />) : (<h3>No station you follow is currently online</h3>))}
 
-                    {this.props.getAllOnlineStation.loading ? (<p>loading</p>) : ( (this.props.getAllOnlineStation.onlineStations && this.props.getAllOnlineStation.onlineStations.length >  0) ? (<Discover context={"station"} name={"Online Stations"} idList={this.props.getAllOnlineStation.onlineStations} elemSelected={this.stationSelected} />) : (<h3>There is no other online stations</h3>))}
+                    {this.props.getAllOnlineStation.loading ? (<p>loading</p>) : ( (this.props.getAllOnlineStation.onlineStations && this.props.getAllOnlineStation.onlineStations.length >  0) ? (<Discover context={"station"} name={"Online stations"} idList={this.props.getAllOnlineStation.onlineStations} elemSelected={this.stationSelected} />) : (<h3>There is no other online stations</h3>))}
 
                     {this.props.getUserLikedAudio.loading ? (<p>loading</p>) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<Discover context={"playlist"} name={"Your liked songs"} idList={this.props.getUserLikedAudio.userLikedAudio} elemSelected={this.songSelected} />) : (null))}
                     
+                    {this.props.getAllUserAudioId.loading ? (<p>loading</p>) : ( this.props.getAllUserAudioId.userAudioId.length > 0 ? (<Discover context={"playlist"} name={"Your uploaded content"} idList={this.props.getAllUserAudioId.userAudioId} elemSelected={this.songSelected} />) : (null))}
+
                     {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<Discover name={"All songs"} context={"playlist"} idList={this.props.getAllAudioId.allAudioId} elemSelected={this.songSelected} />)}
                 
                 </div>
@@ -125,6 +128,10 @@ export default compose (
 
     graphql(GET_ALL_ONLINE_STATION, {
         name: "getAllOnlineStation"
+    }),
+
+    graphql(GET_ALL_USER_AUDIO_ID, {
+        name: "getAllUserAudioId"
     }),
 
     graphql(GET_ALL_FOLLOWED_STATION, {

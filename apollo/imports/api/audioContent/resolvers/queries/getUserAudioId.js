@@ -1,13 +1,13 @@
 import AudioData from '../../collections/audioData'
 
 export default {
-    Query : {
-        audioData(obj, { audioId }, { user } ) {
+     Query : {
+          userAudioId(obj, arg, {user} ){
             const userId=user._id;
             if(userId) {
-                return AudioData.findOne({_id: audioId});
+               return AudioData.find({userId:userId}).fetch();
             }
             throw new Error('Unauthorized');
-        }
-    }
+          }
+     }
 };

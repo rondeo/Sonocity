@@ -9,6 +9,7 @@ type AudioData {
     playlistId: String
     fileUrl: String!
     coverUrl: String!
+    timeStamp: Float
 }
 
 type Mutation {
@@ -18,4 +19,5 @@ type Mutation {
 extend type Query {
     audioData(audioId: String!): AudioData
     allAudioId: [AudioData]
+    userAudioId: [AudioData]
 }
