@@ -63,6 +63,13 @@ class MainPage extends Component {
         return await this.props.clearUpNext();
     }
 
+    async logout() {
+        await this.clear();
+        this.props.client.cache.reset()
+        this.props.client.resetStore();
+        Meteor.logout();
+    }
+
     render() {
         return (
             <div>   
@@ -74,10 +81,7 @@ class MainPage extends Component {
 
                 <button 
                     onClick={()=> {
-                        this.props.clearUpNext();
-                        Meteor.logout();
-                        this.props.client.cache.reset()
-                        this.props.client.resetStore();
+                        this.logout();
                     }}
                 >
                     Logout
