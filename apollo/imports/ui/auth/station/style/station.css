@@ -75,3 +75,17 @@
 .myName button, .changeName input{
     display: inline;
 }
+
+.stationUpNextD h3 {
+    display: inline-block;
+}
+
+.stationUpNextD img{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-right:5px;
+    margin-left:5px;
+    border:2px solid black;
+    border-radius: 1px;
+}

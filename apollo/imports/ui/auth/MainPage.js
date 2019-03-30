@@ -3,7 +3,7 @@ import { graphql, withApollo, compose } from "react-apollo";
 
 import GET_ALL_AUDIO_ID from './queries/getAllAudioId'
 import GET_USER_LIKED_AUDIO from './queries/getUserLikedAudio'
-import CLEAR_UP_NEXT from './queries/clearUpNext'
+// import CLEAR_UP_NEXT from './queries/clearUpNext'
 import GET_ALL_ONLINE_STATION from './queries/getAllOnlineStationId'
 import GET_ALL_FOLLOWED_STATION from './queries/getAllFollowedStationId'
 import GET_ALL_USER_AUDIO_ID from './queries/getAllUserAudioId'
@@ -25,9 +25,9 @@ class MainPage extends Component {
     };
 
     componentDidMount() {
-        this.setState({
-            clear: this.clear()
-        })
+        // this.setState({
+        //     clear: this.clear()
+        // })
         this.timer = setInterval(() => { 
             this.props.getAllOnlineStation.refetch();
             this.props.getAllFollowedStation.refetch();
@@ -64,7 +64,7 @@ class MainPage extends Component {
     }
 
     async logout() {
-        await this.clear();
+        // await this.clear();
         this.props.client.cache.reset()
         this.props.client.resetStore();
         Meteor.logout();
@@ -75,7 +75,7 @@ class MainPage extends Component {
             <div>   
                 <Fragment>
 
-                {this.state.clear ? <StationManager /> : (null)}
+                <StationManager />
                 {/* now this would mean that someone who's deconnected from the server will keep his station state*/}
                 {/* <StationManager /> */}
 
@@ -142,8 +142,8 @@ export default compose (
         name: "getAllFollowedStation"
     }),
 
-    graphql(CLEAR_UP_NEXT, {
-        name: "clearUpNext",
-    }),
+    // graphql(CLEAR_UP_NEXT, {
+    //     name: "clearUpNext",
+    // }),
 
 )(withApollo(MainPage));

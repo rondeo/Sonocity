@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { graphql, withApollo, compose } from "react-apollo";
 
 import UPDATE_STATION_CURRENT_AUDIO from "../queries/updateStationCurrentAudio"
-import CLEAR_UP_NEXT from '../../queries/clearUpNext'
+// import CLEAR_UP_NEXT from '../../queries/clearUpNext'
 
 
 class StationManager extends Component {
@@ -14,16 +14,16 @@ class StationManager extends Component {
 
     componentDidMount() {
         this.setUp()
-        window.addEventListener('beforeunload', this.handleLeavePage);
+        // window.addEventListener('beforeunload',  this.handleLeavePage.bind(this));
     }
 
     componentWillUnmount() {
         clearInterval(this.timer);
-        window.removeEventListener('beforeunload', this.handleLeavePage);
+        // window.removeEventListener('beforeunload',  this.handleLeavePage.bind(this));
     }
 
-    handleLeavePage = (e) => {
-        this.props.clearUpNext();
+    handleLeavePage() {
+        // this.props.clearUpNext();
     }
 
     async updateCurrent() {
@@ -38,8 +38,6 @@ class StationManager extends Component {
             })
         }
     }
-
-    
 
     async setUp() {
         await this.updateCurrent();
@@ -77,8 +75,8 @@ export default compose (
         }
     }),
     
-    graphql(CLEAR_UP_NEXT, {
-        name: "clearUpNext",
-    }),
+    // graphql(CLEAR_UP_NEXT, {
+    //     name: "clearUpNext",
+    // }),
 
 )(withApollo(StationManager));

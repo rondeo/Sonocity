@@ -5,6 +5,8 @@ import { getUser } from 'meteor/apollo'
 import typeDefs from './schema'
 import resolvers from './resolvers'
 
+import Station from '../../api/station/collections/station'
+
 // when server modifffffffffffffffffffffffffffffffffffffffffff
 
 const server = new ApolloServer({
@@ -25,4 +27,21 @@ WebApp.connectHandlers.use('/graphql', (req, res) => {
     res.end()
   }
 })
+
+Meteor.users.find({ "status.online": true }).observe({
+  added: function(user) {
+    // id just came online
+  },
+  removed: function(user) {
+    Station.update(
+      { userId: user._id },
+      { $set:
+          {
+              upNext: [],
+              status: false
+          }
+       }
+  );
+  }
+});
 

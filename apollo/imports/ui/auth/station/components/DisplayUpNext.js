@@ -13,10 +13,11 @@ class UpNextDisplay extends Component {
         return (
             <div>              
                 <Fragment>
-                    <div className = "songDisplay" onClick={this.sendIndexUp}>
+                    <div className = "stationUpNextD" onClick={this.sendIndexUp}>
                         {this.props.getAudioDataById.loading ? (null) 
                         : ( 
                             <Fragment>
+                                <img src={this.props.getAudioDataById.audioData.coverUrl}/>
                                 <h3>{this.props.getAudioDataById.audioData.title}</h3>
                                 {/* <h6>{this.props.getAudioDataById.audioData.artist}</h6>  */}
                                 {/* <img src={this.props.getAudioDataById.audioData.coverUrl}/> */}

@@ -5,42 +5,10 @@ export default {
           onlineStations(obj, arg, {user} ){
             const userId=user._id;
             if(userId) {
-
-                async function getOnlineUsers() {
-                    try{
-                        const onlineUsers = Meteor.users.find({ "status.online": true }).fetch();
-                        return onlineUsers;
-                    } catch (e) {
-                        console.log(e)
-                    } 
-                } 
-
-                async function runQuery() {
-                    try{
-                        const onlineUsers = await getOnlineUsers();  
-                        
-                        const onlineUsersId = [];
-                        await onlineUsers.forEach(element => {
-                            if(element._id !== userId) {
-                                onlineUsersId.push(element._id);
-                            }
-                        });
-
-                        if(onlineUsersId.length > 0) {
-                            return Station.find({ 
-                                    userId: { $in : onlineUsersId },
-                                    status: true 
-                                }).fetch();    
-                        } else {
-                            return null;
-                        }
-                    } catch (e) {
-                        console.log(e)
-                    }
-                }
-                
-                return runQuery();
-
+                return Station.find({ 
+                        userId: { $ne: userId },
+                        status: true 
+                }).fetch();    
             }
             throw new Error('Unauthorized');
         }
