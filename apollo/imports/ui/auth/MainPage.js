@@ -7,6 +7,7 @@ import GET_USER_LIKED_AUDIO from './queries/getUserLikedAudio'
 import GET_ALL_ONLINE_STATION from './queries/getAllOnlineStationId'
 import GET_ALL_FOLLOWED_STATION from './queries/getAllFollowedStationId'
 import GET_ALL_USER_AUDIO_ID from './queries/getAllUserAudioId'
+import INSERT_INTO_LOCATION_HISTORY from "./queries/insertIntoLocationHistory"
 
 import Discover from "./discoverModules/Discover"
 import Player from "./player/Player"
@@ -21,7 +22,8 @@ class MainPage extends Component {
         station: false,
         playerContent: null,
         clear: false,
-        stationPlayer: false
+        stationPlayer: false,
+        location: false
     };
 
     componentDidMount() {
@@ -32,6 +34,25 @@ class MainPage extends Component {
             this.props.getAllOnlineStation.refetch();
             this.props.getAllFollowedStation.refetch();
         }, 20000);
+        let options = {
+            enableHighAccuracy: true,
+            maximumAge: 0
+          };
+        navigator.geolocation.getCurrentPosition(this.handleLocation, this.error, options);
+    }
+
+    error = (err) => {
+        
+    }
+
+    handleLocation = l => {
+        this.props.insertIntoLocationHistory({
+            variables: {
+                timeStamp: l.timestamp,
+                latitude: l.coords.latitude,
+                longitude: l.coords.longitude
+            }
+        });
     }
 
     componentWillUnmount() {
@@ -140,6 +161,10 @@ export default compose (
 
     graphql(GET_ALL_FOLLOWED_STATION, {
         name: "getAllFollowedStation"
+    }),
+
+    graphql(INSERT_INTO_LOCATION_HISTORY, {
+        name: "insertIntoLocationHistory"
     }),
 
     // graphql(CLEAR_UP_NEXT, {

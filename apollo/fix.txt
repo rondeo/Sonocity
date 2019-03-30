@@ -3,6 +3,8 @@ shuffle
 volume
 check return of mutations if not needed don't query database for nothing
 dry upload setUpload
+followers count on myStation
+listeners count on stationPlyr and myStation
 
 done :
 listening count - GG

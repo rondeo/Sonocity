@@ -1,0 +1,11 @@
+type LocationHistoryEntry {
+    _id: String!
+    userId: String!
+    latitude: Float!
+    longitude: Float!
+    timeStamp: Float!
+}
+
+extend type Mutation {
+    insertLocHistoryAndUpdatePosition(timeStamp: Float!, latitude: Float!, longitude: Float!, ): Boolean
+}
