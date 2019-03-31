@@ -14,6 +14,7 @@ import Player from "./player/Player"
 import StationPlayer from "./player/StationPlayer"
 import Station from "./station/Station"
 import StationManager from "./station/components/StationManager"
+import DiscoverRequestLayer from "./discoverModules/DiscoverRequestLayer"
 
 import "./style/mainPage.css"
 
@@ -23,7 +24,10 @@ class MainPage extends Component {
         playerContent: null,
         clear: false,
         stationPlayer: false,
-        location: false
+        latMinRange: null,
+        latMaxRange: null,
+        longMinRange: null,
+        longMaxRange: null
     };
 
     componentDidMount() {
@@ -53,7 +57,45 @@ class MainPage extends Component {
                 longitude: l.coords.longitude
             }
         });
+        this.calculateLatLongOffset(l.coords.latitude, l.coords.longitude);
     }
+
+    calculateLatLongOffset = (latitude, longitude) => {
+
+        const lat = this.deg2rad(latitude);
+
+        const m1 = 111132.95255;
+        const m2 = -559.84957;
+        const m3 = 1.17514;
+        const m4 = -0.00230;
+        const p1 = 111412.87733;
+        const p2 = -93.50412;
+        const p3 = 0.11774;
+
+        const latlen = m1 + m2 * Math.cos(2 * lat) + m3 * Math.cos(4 * lat) + m4 * Math.cos(6 * lat);
+        const longlen = p1 * Math.cos(lat) + p2 * Math.cos(3 * lat) + p3 * Math.cos(5 * lat);
+
+        const latOffset = 5000/latlen;
+        const longOffset = 5000/longlen;
+
+        const latMinRange = latitude - latOffset;
+        const latMaxRange = latitude + latOffset;
+        const longMinRange = longitude - longOffset;
+        const longMaxRange = longitude + longOffset;
+
+        this.setState({
+            latMinRange: latMinRange,
+            latMaxRange: latMaxRange,
+            longMinRange: longMinRange,
+            longMaxRange: longMaxRange
+        })
+    }
+
+    deg2rad = (deg) => {
+	    const conv_factor = (2.0 * Math.PI)/360.0;
+	    return(deg * conv_factor);
+    }
+
 
     componentWillUnmount() {
         clearInterval(this.timer);
@@ -123,6 +165,8 @@ class MainPage extends Component {
                 <div className="core">
 
                     {this.props.getAllFollowedStation.loading ? (<p>loading</p>) : ( (this.props.getAllFollowedStation.userOnlineFollowedStation && this.props.getAllFollowedStation.userOnlineFollowedStation.length >  0) ? (<Discover context={"station"} name={"Followed stations"} idList={this.props.getAllFollowedStation.userOnlineFollowedStation} elemSelected={this.stationSelected} />) : (<h3>No station you follow is currently online</h3>))}
+
+                    {this.state.latMinRange && this.state.latMaxRange && this.state.longMinRange && this.state.longMaxRange ? (<DiscoverRequestLayer context={"station"} name={"Station near you"} latMinRange={this.state.latMinRange} latMaxRange={this.state.latMaxRange} longMinRange={this.state.longMinRange} longMaxRange={this.state.longMaxRange} elemSelected={this.stationSelected} />): (<p>loading</p>)}
 
                     {this.props.getAllOnlineStation.loading ? (<p>loading</p>) : ( (this.props.getAllOnlineStation.onlineStations && this.props.getAllOnlineStation.onlineStations.length >  0) ? (<Discover context={"station"} name={"Online stations"} idList={this.props.getAllOnlineStation.onlineStations} elemSelected={this.stationSelected} />) : (<h3>There is no other online stations</h3>))}
 

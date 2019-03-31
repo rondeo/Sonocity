@@ -15,10 +15,10 @@ export default {
                         }
                      }
                 );
-                console.log("got here")
+                // console.log("got here")
                 return true;
             }
-            console.log("error")
+            // console.log("error")
             throw new Error('Unauthorized');
         }
     }
