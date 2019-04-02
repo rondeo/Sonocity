@@ -49,6 +49,15 @@ button {
     background: royalblue;
 }
 
+.follow {
+    background:rgb(16, 194, 90);
+}
+
+.logout {
+    /* background: black; */
+    padding: 10px;
+}
+
 .bigger {
     padding: 10px;
 }

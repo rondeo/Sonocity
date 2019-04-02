@@ -149,7 +149,7 @@ class MainPage extends Component {
                             {this.state.station ? "Close" : "Station" }
                         </button> 
                         
-                        <button className="bigger"
+                        <button className="logout"
                             onClick={()=> {
                                 this.logout();
                             }}

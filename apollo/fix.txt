@@ -5,6 +5,10 @@ check return of mutations if not needed don't query database for nothing
 dry upload setUpload
 followers count on myStation
 listeners count on stationPlyr and myStation
+most recent upload limit 200 sort timeStamp
+most listened station now
+most listened tracks 7 days limit 200 sort count timeStamp gt date.now - 7 days worth of miliseconds
+
 
 done :
 listening count - GG

@@ -193,7 +193,7 @@ class StationPlayer extends Component {
                                     {this.props.isStationFollowed.loading ?
                                         (null)
                                         :
-                                        (<button 
+                                        (<button className="follow"
                                             onClick={()=> {
                                                 this.followedChange();
                                             }}

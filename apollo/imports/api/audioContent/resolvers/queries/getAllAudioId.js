@@ -5,7 +5,7 @@ export default {
           allAudioId(obj, arg, {user} ){
             const userId=user._id;
             if(userId) {
-               return AudioData.find({}).fetch();
+               return AudioData.find().fetch();
             }
             throw new Error('Unauthorized');
           }
