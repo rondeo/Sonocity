@@ -5,6 +5,10 @@
     justify-items: center;
     margin-left:5%;
     margin-right:5%;
+    border-bottom: 8px solid black;
+    border-top: 8px solid black;
+    border-radius:35px;
+
 }
 
 .myStationProfile {
@@ -17,7 +21,7 @@
 .stationCover img{
     height: 150px;
     width: 150px;
-    border:3px solid black;
+    border:1px solid black;
     border-radius: 5px; 
 }
 
@@ -31,7 +35,7 @@
 .myStationCurrentlyPlaying img{
     height: 150px;
     width: 150px;
-    border:3px solid black;
+    border:1px solid black;
     border-radius: 5px; 
 }
 
@@ -76,6 +80,10 @@
     display: inline;
 }
 
+.stationUpNextD:hover { 
+    color:rgb(223, 22, 22);
+}
+
 .stationUpNextD h3 {
     display: inline-block;
 }
@@ -86,6 +94,6 @@
     height: 30px;
     margin-right:5px;
     margin-left:5px;
-    border:2px solid black;
+    border:1px solid black;
     border-radius: 1px;
 }

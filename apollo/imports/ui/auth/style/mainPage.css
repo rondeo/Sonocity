@@ -15,3 +15,14 @@ html {
     background-color:white;
     font-family: Sans-Serif;
 }
+
+.logo {
+    background-image: url("https://res.cloudinary.com/dkt7hv91e/image/upload/v1554141817/logo.png");
+    width:400px;
+    margin-left: 100px;
+    height:100px;
+}
+
+.top {
+    margin-left:130px;
+}

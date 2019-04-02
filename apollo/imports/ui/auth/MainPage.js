@@ -138,11 +138,13 @@ class MainPage extends Component {
             <div>   
                 <Fragment>
 
+                <div className="logo"></div>
+
                 <StationManager />
                 {/* now this would mean that someone who's deconnected from the server will keep his station state*/}
                 {/* <StationManager /> */}
 
-                <button 
+                <button className="top" 
                     onClick={()=> {
                         this.logout();
                     }}
@@ -166,7 +168,7 @@ class MainPage extends Component {
 
                     {this.props.getAllFollowedStation.loading ? (<p>loading</p>) : ( (this.props.getAllFollowedStation.userOnlineFollowedStation && this.props.getAllFollowedStation.userOnlineFollowedStation.length >  0) ? (<Discover context={"station"} name={"Followed stations"} idList={this.props.getAllFollowedStation.userOnlineFollowedStation} elemSelected={this.stationSelected} />) : (<h3>No station you follow is currently online</h3>))}
 
-                    {this.state.latMinRange && this.state.latMaxRange && this.state.longMinRange && this.state.longMaxRange ? (<DiscoverRequestLayer context={"station"} name={"Station near you"} latMinRange={this.state.latMinRange} latMaxRange={this.state.latMaxRange} longMinRange={this.state.longMinRange} longMaxRange={this.state.longMaxRange} elemSelected={this.stationSelected} />): (<p>loading</p>)}
+                    {this.state.latMinRange && this.state.latMaxRange && this.state.longMinRange && this.state.longMaxRange ? (<DiscoverRequestLayer context={"station"} name={"Station near you"} latMinRange={this.state.latMinRange} latMaxRange={this.state.latMaxRange} longMinRange={this.state.longMinRange} longMaxRange={this.state.longMaxRange} elemSelected={this.stationSelected} />): (null)}
 
                     {this.props.getAllOnlineStation.loading ? (<p>loading</p>) : ( (this.props.getAllOnlineStation.onlineStations && this.props.getAllOnlineStation.onlineStations.length >  0) ? (<Discover context={"station"} name={"Online stations"} idList={this.props.getAllOnlineStation.onlineStations} elemSelected={this.stationSelected} />) : (<h3>There is no other online stations</h3>))}
 
