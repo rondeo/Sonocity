@@ -70,3 +70,33 @@ button:hover {
     box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
     transition: all 0.4s ease 0s;
 }
+
+.searchContainer {
+    position: absolute;
+    right: 300px;
+    top:32px;
+    width: calc(100% - 850px);
+    height: 30px;
+    background: white;
+    border: 1px solid gray;
+    border-radius: 20px;
+}
+    
+.searchBar {
+    padding: 0 12px;
+    height: 100%;
+    display: flex;
+    align-items: center; 
+}
+
+.searchBar input {
+    flex: 1 1 auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    height: 100%;
+    background: transparent;
+}
+      
+    

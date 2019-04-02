@@ -19,9 +19,12 @@ class SongDisplay extends Component {
                         {this.props.getAudioDataById.loading ? (null) 
                         : ( 
                             <Fragment>
-                                <h6>{this.props.getAudioDataById.audioData.title}</h6>
-                                <h6>{this.props.getAudioDataById.audioData.artist}</h6> 
-                                <img src={this.props.getAudioDataById.audioData.coverUrl}/>
+                                
+                                <img src={this.props.getAudioDataById.audioData.coverUrl}/> 
+                                <div className="spaceD">
+                                <h6 className="songTitle">{this.props.getAudioDataById.audioData.title}</h6>
+                                <h6 className="songArtist">{this.props.getAudioDataById.audioData.artist}</h6> 
+                                </div>
                             </Fragment>
                         )}
                     </div>  

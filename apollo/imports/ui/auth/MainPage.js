@@ -17,6 +17,7 @@ import StationManager from "./station/components/StationManager"
 import DiscoverRequestLayer from "./discoverModules/DiscoverRequestLayer"
 
 import "./style/mainPage.css"
+import { Icon } from '@material-ui/core';
 
 class MainPage extends Component {
     state = {
@@ -139,6 +140,11 @@ class MainPage extends Component {
 
                 <div className="header">
                     <div className="logo"></div>
+                    <div className="searchContainer">
+                        <div className="searchBar">
+                            <input type="search" placeholder="Search Tracks, Artists or Online Stations"></input>                  
+                        </div>
+                    </div>
                     <div className="nav">
                         
                         <button className="bigger"
@@ -172,17 +178,17 @@ class MainPage extends Component {
 
                 <div className="core">
 
-                    {this.props.getAllFollowedStation.loading ? (<p>loading</p>) : ( (this.props.getAllFollowedStation.userOnlineFollowedStation && this.props.getAllFollowedStation.userOnlineFollowedStation.length >  0) ? (<Discover context={"station"} name={"Followed stations"} idList={this.props.getAllFollowedStation.userOnlineFollowedStation} elemSelected={this.stationSelected} />) : (<h3>No station you follow is currently online</h3>))}
+                    {this.props.getAllFollowedStation.loading ? (null) : ( (this.props.getAllFollowedStation.userOnlineFollowedStation && this.props.getAllFollowedStation.userOnlineFollowedStation.length >  0) ? (<Discover context={"station"} name={"Followed stations"} idList={this.props.getAllFollowedStation.userOnlineFollowedStation} elemSelected={this.stationSelected} />) : (<h3 className="discoverInfo">No station you follow is currently online</h3>))}
 
-                    {this.state.latMinRange && this.state.latMaxRange && this.state.longMinRange && this.state.longMaxRange ? (<DiscoverRequestLayer context={"station"} name={"Station near you"} latMinRange={this.state.latMinRange} latMaxRange={this.state.latMaxRange} longMinRange={this.state.longMinRange} longMaxRange={this.state.longMaxRange} elemSelected={this.stationSelected} />): (null)}
+                    {this.state.latMinRange && this.state.latMaxRange && this.state.longMinRange && this.state.longMaxRange ? (<DiscoverRequestLayer context={"station"} name={"Stations near you"} latMinRange={this.state.latMinRange} latMaxRange={this.state.latMaxRange} longMinRange={this.state.longMinRange} longMaxRange={this.state.longMaxRange} elemSelected={this.stationSelected} />): (null)}
 
                     {/* {this.props.getAllOnlineStation.loading ? (<p>loading</p>) : ( (this.props.getAllOnlineStation.onlineStations && this.props.getAllOnlineStation.onlineStations.length >  0) ? (<Discover context={"station"} name={"Online stations"} idList={this.props.getAllOnlineStation.onlineStations} elemSelected={this.stationSelected} />) : (<h3>There is no other online stations</h3>))} */}
 
-                    {this.props.getUserLikedAudio.loading ? (<p>loading</p>) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<Discover context={"playlist"} name={"Your liked songs"} idList={this.props.getUserLikedAudio.userLikedAudio} elemSelected={this.songSelected} />) : (null))}
+                    {this.props.getUserLikedAudio.loading ? (null) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<Discover context={"playlist"} name={"Your liked songs"} idList={this.props.getUserLikedAudio.userLikedAudio} elemSelected={this.songSelected} />) : (null))}
                     
-                    {this.props.getAllUserAudioId.loading ? (<p>loading</p>) : ( this.props.getAllUserAudioId.userAudioId.length > 0 ? (<Discover context={"playlist"} name={"Your uploaded content"} idList={this.props.getAllUserAudioId.userAudioId} elemSelected={this.songSelected} />) : (null))}
+                    {this.props.getAllUserAudioId.loading ? (null) : ( this.props.getAllUserAudioId.userAudioId.length > 0 ? (<Discover context={"playlist"} name={"Your uploaded tracks"} idList={this.props.getAllUserAudioId.userAudioId} elemSelected={this.songSelected} />) : (null))}
 
-                    {this.props.getAllAudioId.loading ? (<p>loading</p>) : (<Discover name={"All songs"} context={"playlist"} idList={this.props.getAllAudioId.allAudioId} elemSelected={this.songSelected} />)}
+                    {this.props.getAllAudioId.loading ? (null) : (<Discover name={"All songs"} context={"playlist"} idList={this.props.getAllAudioId.allAudioId} elemSelected={this.songSelected} />)}
                 
                 </div>
 

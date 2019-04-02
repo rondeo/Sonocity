@@ -55,7 +55,6 @@ export default class Discover extends Component {
             <div>              
             <Fragment>
                 <div>
-                    {this.props.name.loading ? (null) : (<h1 className = "dName">{this.props.name}</h1>)}
                     <div className="snippets">
                         {this.state.idList[0] ?
                             this.state.idList[0].map((id, i) => (
@@ -67,7 +66,8 @@ export default class Discover extends Component {
                         {this.state.idList[0] ? (this.state.get > 10 ? <img className="plusMinusImg" onClick={this.less} src={"https://res.cloudinary.com/dkt7hv91e/image/upload/v1553911746/minus_PNG27.png"}/> : (null)) : (null) }
                         {this.state.idList[0] ? (this.state.get < this.props.idList.length  ? <img className="plusMinusImg" onClick={this.more} src={"https://res.cloudinary.com/dkt7hv91e/image/upload/v1553911746/plus_PNG53.png"}/> : (null)) : (null) }
                     </div>        
-                    
+                    <div className="discoverTitles">{this.props.name.loading ? (null) : (<h4 className = "dName">{this.props.name}</h4>)}</div>
+
                 </div>  
             </Fragment>
         </div>

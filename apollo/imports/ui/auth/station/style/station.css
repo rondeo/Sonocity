@@ -4,17 +4,27 @@
     /* grid-template-rows: 450px; */
     padding-top:50px;
     padding-bottom:50px;
+    /* padding-left:25px; */
     justify-items: center;
+    /* margin:auto; */
     margin-left:5%;
-    margin-right:5%;
-    border-bottom: 8px solid black;
-    border-top: 8px solid black;
-    border-radius:35px;
+    margin-right:4%;
+    /* border: 1px solid rgba(0, 0, 0, 0.295); */
+    /* border-top: 8px solid rgb(223, 22, 22); */
+    /* border-bottom-left-radius:15px; */
+    /* border-bottom-right-radius:15px; */
+    border-radius: 5px;
     -webkit-animation: fadein 0.5s;
-    /* background: rgb(29, 28, 28);
-    color:white; */
+    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+    /* background: rgb(29, 28, 28); */
+    /* color:white; */
     /* border-color: rgb(223, 22, 22); */
 }
+
+/* .myStationCore input, .myStationCore textarea {
+    background: rgb(29, 28, 28);
+    color:white;
+} */
 
 .myStationProfile {
     grid-column: 1;

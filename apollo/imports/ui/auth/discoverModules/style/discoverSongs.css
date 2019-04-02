@@ -3,15 +3,43 @@
     margin:auto;
     display: flex;
     flex-wrap: wrap;
+    margin-top:25px;
+    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+    padding:10px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+    justify-items: center;
 }
 
 .dName {
-    text-align:center;
-    margin-top:20px;
+    /* text-align:center; */
+    margin-bottom:20px;
 }
 
 .plusMinusImg {
     height: 200px;
     width: 200px;
-    padding-top:90px;
+    padding-top:5px;
+}
+
+.discoverTitles {
+    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+    padding-left:21px;
+    padding-top:2px;
+    padding-bottom:2px;
+    width:100%;
+    margin:auto;
+    text-align:left;
+    margin-bottom:20px;
+    background: rgb(29, 28, 28);
+    color:white;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+}
+
+.discoverInfo {
+    border:3px solid rgba(209, 22, 22, 0.774);
+    padding:9px;
+    margin-left:10px;
+    text-align:center;
 }

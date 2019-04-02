@@ -19,8 +19,8 @@ class StationDisplay extends Component {
                         {this.props.getStationDataById.loading ? (null) 
                         : ( 
                             <Fragment>
-                                <h6>{this.props.getStationDataById.station.name}</h6>
                                 <img src={this.props.getStationDataById.station.coverUrl}/>
+                                <h6>{this.props.getStationDataById.station.name}</h6>
                             </Fragment>
                         )}
                     </div>  

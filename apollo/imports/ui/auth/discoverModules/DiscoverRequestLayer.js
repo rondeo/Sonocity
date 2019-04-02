@@ -33,7 +33,7 @@ class DiscoverRequestLayer extends Component {
         return (
             <div>              
                 <Fragment>
-                    {this.props.getStationInProximity.loading ? (<p>loading</p>) : ( (this.props.getStationInProximity.stationInProximity && this.props.getStationInProximity.stationInProximity.length >  0) ? (<Discover context={this.state.context} name={this.state.name} idList={this.props.getStationInProximity.stationInProximity} elemSelected={this.elemSelected} />) : (<h3>There is no station in your vicinity</h3>))}
+                    {this.props.getStationInProximity.loading ? (null) : ( (this.props.getStationInProximity.stationInProximity && this.props.getStationInProximity.stationInProximity.length >  0) ? (<Discover context={this.state.context} name={this.state.name} idList={this.props.getStationInProximity.stationInProximity} elemSelected={this.elemSelected} />) : (<h3 className="discoverInfo">There is no station in your vicinity</h3>))}
                 </Fragment>
             </div>
         )

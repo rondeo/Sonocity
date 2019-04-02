@@ -3,7 +3,7 @@
     grid-template-columns: 0.50fr 0.50fr;
     grid-template-rows: 200px;
     justify-items: center;
-    margin-left:15%;
+    margin-left:18%;
     margin-right:15%;
     /* padding-top:35px;
     padding-bottom:50px; */
@@ -54,9 +54,4 @@
     width: 90px;
     border:1px solid black;
     border-radius: 5px; 
-}
-
-
-.offlineMess {
-    text-align: center;
 }

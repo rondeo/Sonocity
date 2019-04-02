@@ -1,12 +1,35 @@
 .songDisplay {
     flex: 1 0 20%; /* explanation below */
     margin: 10px;
-    text-align:center;
+    /* text-align:center; */
+    position: relative;
 }
 
 .songDisplay img{
+    display:inline-block;
     height: 185px;
     width: 185px;
     border:1px solid black;
     border-radius: 5px; 
+    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+}
+
+.spaceD {
+    height:40px;
+    width:100%;
+    position: absolute;
+    background:rgb(24, 24, 24);
+    top:0px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+}
+
+.spaceD h6 {
+    margin:0px;
+    color:white;
+    padding:0px;
+    text-align:left;
+    padding:2px;
+    margin-left:5px;
+    margin-top:3px;
 }

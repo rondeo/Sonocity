@@ -8,6 +8,7 @@ listeners count on stationPlyr and myStation
 most recent upload limit 200 sort timeStamp
 most listened station now
 most listened tracks 7 days limit 200 sort count timeStamp gt date.now - 7 days worth of miliseconds
+upload verification before send to cloudinary
 
 
 done :
@@ -17,7 +18,7 @@ logout resetStore() - GG
 errors:
 seeker -> errors object passed & setSeek on drag
 likedTracks mix up
-previous/next currentSongId condition on change prevProps this.Props sur main page ne change pas
+previous/next currentSongId condition on change prevProps this.Props sur main page dosn't change
 reading id from playlist -> gimmick _id // audioId
 description in profile -> sometimes i think the refetch on GET_USER_STATION is done before the update in db
 
