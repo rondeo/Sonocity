@@ -183,7 +183,7 @@ class AudioPlayer extends Component {
             {this.props.isAudioLiked.loading ?
                 (null)
                 :
-                (<button 
+                (<button className="like"
                     onClick={()=> {
                         this.likedChange();
                     }}

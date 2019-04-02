@@ -96,7 +96,6 @@ class MainPage extends Component {
 	    return(deg * conv_factor);
     }
 
-
     componentWillUnmount() {
         clearInterval(this.timer);
     }
@@ -138,27 +137,34 @@ class MainPage extends Component {
             <div>   
                 <Fragment>
 
-                <div className="logo"></div>
+                <div className="header">
+                    <div className="logo"></div>
+                    <div className="nav">
+                        
+                        <button className="bigger"
+                            onClick={()=> {
+                                this.setState({station: !this.state.station})
+                            }}
+                        >
+                            {this.state.station ? "Close" : "Station" }
+                        </button> 
+                        
+                        <button className="bigger"
+                            onClick={()=> {
+                                this.logout();
+                            }}
+                        >
+                            Logout
+                        </button>
+
+                    </div>
+                </div>
 
                 <StationManager />
                 {/* now this would mean that someone who's deconnected from the server will keep his station state*/}
                 {/* <StationManager /> */}
 
-                <button className="top" 
-                    onClick={()=> {
-                        this.logout();
-                    }}
-                >
-                    Logout
-                </button>
-
-                <button 
-                    onClick={()=> {
-                        this.setState({station: !this.state.station})
-                    }}
-                >
-                    {this.state.station ? "Close" : "Station" }
-                </button> 
+                
 
                 {!this.state.stationPlayer ? (<Player content={this.state.playerContent} />) : (<StationPlayer _id={this.state.playerContent[0][0][this.state.playerContent[1]]._id} stationId={this.state.playerContent[0][0][this.state.playerContent[1]]._id} content={this.state.playerContent} offline={this.stationOffline} />)}
 
@@ -170,7 +176,7 @@ class MainPage extends Component {
 
                     {this.state.latMinRange && this.state.latMaxRange && this.state.longMinRange && this.state.longMaxRange ? (<DiscoverRequestLayer context={"station"} name={"Station near you"} latMinRange={this.state.latMinRange} latMaxRange={this.state.latMaxRange} longMinRange={this.state.longMinRange} longMaxRange={this.state.longMaxRange} elemSelected={this.stationSelected} />): (null)}
 
-                    {this.props.getAllOnlineStation.loading ? (<p>loading</p>) : ( (this.props.getAllOnlineStation.onlineStations && this.props.getAllOnlineStation.onlineStations.length >  0) ? (<Discover context={"station"} name={"Online stations"} idList={this.props.getAllOnlineStation.onlineStations} elemSelected={this.stationSelected} />) : (<h3>There is no other online stations</h3>))}
+                    {/* {this.props.getAllOnlineStation.loading ? (<p>loading</p>) : ( (this.props.getAllOnlineStation.onlineStations && this.props.getAllOnlineStation.onlineStations.length >  0) ? (<Discover context={"station"} name={"Online stations"} idList={this.props.getAllOnlineStation.onlineStations} elemSelected={this.stationSelected} />) : (<h3>There is no other online stations</h3>))} */}
 
                     {this.props.getUserLikedAudio.loading ? (<p>loading</p>) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<Discover context={"playlist"} name={"Your liked songs"} idList={this.props.getUserLikedAudio.userLikedAudio} elemSelected={this.songSelected} />) : (null))}
                     

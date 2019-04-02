@@ -16,6 +16,17 @@ html {
     font-family: Sans-Serif;
 }
 
+.header {
+    position:relative;
+    margin-top:30px;
+}
+
+.nav {
+    position:absolute;
+    top:30px;
+    right: 110px;
+}
+
 .logo {
     background-image: url("https://res.cloudinary.com/dkt7hv91e/image/upload/v1554141817/logo.png");
     width:400px;
@@ -23,6 +34,30 @@ html {
     height:100px;
 }
 
-.top {
-    margin-left:130px;
+button {
+    color: #fff !important;
+    text-transform: uppercase;
+    background: #ed3330;
+    padding: 8px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    margin-right: 1px;
+}
+
+.like {
+    background: royalblue;
+}
+
+.bigger {
+    padding: 10px;
+}
+    
+button:hover {
+    background: #434343;
+    letter-spacing: 1px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
 }
