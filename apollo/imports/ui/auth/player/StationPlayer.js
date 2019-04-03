@@ -7,6 +7,7 @@ import INSERT_FOLLOWED_STATION from './queries/insertFollowedStation'
 import IS_STATION_FOLLOWED from './queries/isStationFollowed'
 import REMOVE_FOLLOWED_STATION from './queries/removeFollowedStation'
 import FOLLOWED_COUNT from './queries/followedCount'
+import SET_USER_LISTENING_CONTEXT from './queries/setUserListeningContext'
 
 import AudioPlayer from './components/AudioPlayer'
 
@@ -78,6 +79,13 @@ class StationPlayer extends Component {
             status:true,
             timeStamp: this.props.getStationDataById.station.timeStamp
         })
+
+        this.props.setUserListeningContext({
+            variables: {
+                ressourceId: this.props._id
+            }
+        });
+
         this.props.isStationFollowed.refetch();
         this.props.followedCount.refetch();
     } 
@@ -229,6 +237,10 @@ graphql(GET_STATION_DATA_BY_ID, {
     name: "getStationDataById",
 }),
 
+graphql(SET_USER_LISTENING_CONTEXT, {
+    name: "setUserListeningContext",
+}),
+
 graphql(IS_STATION_FOLLOWED, {
     name: "isStationFollowed"
 }),
@@ -250,5 +262,7 @@ graphql(REMOVE_FOLLOWED_STATION, {
         refetchQueries: ["FOLLOWED_COUNT", "GET_ALL_FOLLOWED_STATION"]
     }
 }),
+
+
 
 )(withApollo(StationPlayer));

@@ -1,11 +1,13 @@
 .audioPlayerButtons {
     margin-top:45px;
+    -webkit-animation: fadein 1s;
 }
 
 .titleAndLike h4,.titleAndLike button{
     display: inline;
     margin-left:5px;
     margin-right:5px;
+    -webkit-animation: fadein 1s;
 }
 
 .songStats{

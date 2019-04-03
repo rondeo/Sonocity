@@ -1,11 +1,13 @@
 import React, { Component, Fragment } from 'react'
 import { graphql, withApollo, compose } from "react-apollo";
 
+import SET_USER_LISTENING_CONTEXT from './queries/setUserListeningContext'
+
 import AudioPlayer from './components/AudioPlayer'
 
 import "./style/player.css"
 
-export default class Player extends Component {
+class Player extends Component {
 
     state = {
         context: null,
@@ -65,7 +67,7 @@ export default class Player extends Component {
 
     processIntake = () => {
 
-        this.props.content[2] == "playlist" ? 
+        if(this.props.content[2] == "playlist") {
         
         this.setState({
             context: this.props.content[2],
@@ -75,7 +77,13 @@ export default class Player extends Component {
             ready: true,
         })
 
-        : (null)
+        this.props.setUserListeningContext({
+            variables: {
+                ressourceId: "playlist"
+            }
+        });
+
+        }
 
     } 
 
@@ -177,10 +185,10 @@ export default class Player extends Component {
     }
 }
 
-// export default compose (
+export default compose (
 
-// graphql(CLEAR_UP_NEXT, {
-//     name: "clearUpNext",
-// }),
+graphql(SET_USER_LISTENING_CONTEXT, {
+    name: "setUserListeningContext",
+}),
 
-// )(withApollo(Player));
+)(withApollo(Player));

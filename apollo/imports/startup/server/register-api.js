@@ -6,6 +6,7 @@ import typeDefs from './schema'
 import resolvers from './resolvers'
 
 import Station from '../../api/station/collections/station'
+import ContextListeners from '../../api/log/collections/contextListeners'
 
 // when server modifffffffffffffffffffffffffffffffffffffffffff
 
@@ -42,6 +43,7 @@ Meteor.users.find({ "status.online": true }).observe({
           }
        }
   );
+  ContextListeners.remove({ userId: user._id });
   }
 });
 

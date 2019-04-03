@@ -240,7 +240,7 @@ class AudioPlayer extends Component {
                         this.props.handleLoop();
                     }}
                 >
-                    {this.props.loopAll ? "loopOne" : (this.props.loopOne ? "stop loop" : "loop All") }
+                    {this.props.loopAll ? "loop One" : (this.props.loopOne ? "stop loop" : "loop All") }
                 </button>
             
                 </Fragment>)

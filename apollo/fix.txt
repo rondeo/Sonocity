@@ -26,3 +26,5 @@ description in profile -> sometimes i think the refetch on GET_USER_STATION is d
 
 --> stationPlyr 2 station playing same track / station disconnect / reconnect 
 
+--> in search cache keep stations who got offline
+
