@@ -30,4 +30,5 @@ extend type Query {
     onlineStations: [Station]
     station(_id: String!): Station
     stationInProximity(latMinRange: Float!, latMaxRange: Float!, longMinRange: Float!, longMaxRange: Float!): [Station]
+    stationLikeName(expression: String!): [Station]
 }

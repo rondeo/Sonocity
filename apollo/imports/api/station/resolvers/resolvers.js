@@ -12,8 +12,9 @@ import UpdateUpNext from "./mutations/updateUpNext"
 import GetOnlineStations from "./queries/getOnlineStations"
 import GetStationDataByStationId from "./queries/getStationDataByStationId"
 import GetStationInProximity from "./queries/getStationInProximity"
+import GetStationLikeName from "./queries/getStationIdLikeName"
 
-const resolvers = merge(CreateStation, GetStationDataByUserId, UpdateName, UpdateDescription, GetStationInProximity,
+const resolvers = merge(CreateStation, GetStationDataByUserId, UpdateName, UpdateDescription, GetStationInProximity, GetStationLikeName,
                         AddToUpNext, ClearUpNext, UpdateCurrentAudio, UpdateCover, UpdateUpNext, GetOnlineStations, GetStationDataByStationId);
 
 export default resolvers;

@@ -20,6 +20,9 @@ export default class Discover extends Component {
 
     componentDidUpdate(prevProps) {
         if(prevProps.idList && this.props.idList) {
+            if(this.state.name==null) {
+                this.props.name ? this.setState({name:this.props.name}) : (null)
+            }
             if(this.props.idList.length !== prevProps.idList.length || this.props.idList[0][0] !== prevProps.idList[0][0]) {
                 this.processIntake();  
             }
@@ -60,13 +63,13 @@ export default class Discover extends Component {
                             this.state.idList[0].map((id, i) => (
                                 i < this.state.get ?
                                 (this.state.context == "playlist" ?
-                                <SongDisplay key={i} index={i} onClick={this.elemSelected} audioId={this.state.name == "All songs" || this.state.name == "Your uploaded content" ? id._id : id.audioId} />
+                                <SongDisplay key={i} index={i} onClick={this.elemSelected} audioId={this.state.name == "Your liked songs" ? id.audioId : id._id } />
                                 : <StationDisplay key={i} index={i} onClick={this.elemSelected} _id={id._id} />) : (null)
                         )) : (null) }
                         {this.state.idList[0] ? (this.state.get > 10 ? <img className="plusMinusImg" onClick={this.less} src={"https://res.cloudinary.com/dkt7hv91e/image/upload/v1553911746/minus_PNG27.png"}/> : (null)) : (null) }
                         {this.state.idList[0] ? (this.state.get < this.props.idList.length  ? <img className="plusMinusImg" onClick={this.more} src={"https://res.cloudinary.com/dkt7hv91e/image/upload/v1553911746/plus_PNG53.png"}/> : (null)) : (null) }
                     </div>        
-                    <div className="discoverTitles">{this.props.name.loading ? (null) : (<h4 className = "dName">{this.props.name}</h4>)}</div>
+                    <div className="discoverTitles">{this.state.name ? (<h4 className = "dName">{this.state.name}</h4>) : (null)}</div>
 
                 </div>  
             </Fragment>

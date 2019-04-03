@@ -20,4 +20,6 @@ extend type Query {
     audioData(audioId: String!): AudioData
     allAudioId: [AudioData]
     userAudioId: [AudioData]
+    audioLikeTitle(expression: String!): [AudioData]
+    audioLikeArtist(expression: String!): [AudioData]
 }
