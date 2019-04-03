@@ -6,7 +6,7 @@ type ListeningContext {
 }
 
 extend type Mutation {
-    userListeningContext(ressourceId: String!): Boolean
+    userListeningContext(ressourceId: String!): Int
     removeListeningContext: Boolean
 }
 

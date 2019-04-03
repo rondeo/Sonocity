@@ -17,8 +17,9 @@ import IsStationFollowed from "./queries/isStationFollowed"
 import GetOnlineFollowedStationByUserId from "./queries/getOnlineFollowedStationByUserId"
 import GetFollowedStationCount from "./queries/getFollowedStationCount"
 
-import setUserListeningContext from "./mutations/setUserListeningContext"
-import removeListeningContext from "./mutations/removeListeningContext"
+import SetUserListeningContext from "./mutations/setUserListeningContext"
+import RemoveListeningContext from "./mutations/removeListeningContext"
+import GetStationListeningCount from "./queries/getStationListeningCount"
 
 
 
@@ -28,7 +29,7 @@ const resolvers = merge(
                             InsertIntoLocationHistory,
                             RemoveLikedAudio, IsAudioLiked, GetLikedAudioByUserId, GetAudioListenCount, GetAudioLikedCount,
                             InsertFollowedStation, RemoveFollowedStation, IsStationFollowed, GetOnlineFollowedStationByUserId, GetFollowedStationCount,
-                            setUserListeningContext, removeListeningContext                    
+                            SetUserListeningContext, RemoveListeningContext, GetStationListeningCount                   
                         );
 
 export default resolvers;

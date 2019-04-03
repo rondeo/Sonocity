@@ -5,7 +5,7 @@ import LikedTracksSchema from "../../api/log/schemas/LikedAudioooooo.graphql"
 import FollowedStationSchema from "../../api/log/schemas/FollowedStatioon.graphql"
 import StationSchema from "../../api/station/schemas/Staonnnn.graphql"
 import LocationHistorySchema from "../../api/log/schemas/LocationHistoryy.graphql"
-import ListeningContext from "../../api/log/schemas/ListeningContextt.graphql"
+import ListeningContext from "../../api/log/schemas/ListeningContex.graphql"
 
 const typeDefs = [UsersSchema, AudioContentSchema, ListeningHistorySchema, LikedTracksSchema, FollowedStationSchema, StationSchema, LocationHistorySchema, ListeningContext];
 

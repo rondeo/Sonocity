@@ -8,6 +8,7 @@ import IS_STATION_FOLLOWED from './queries/isStationFollowed'
 import REMOVE_FOLLOWED_STATION from './queries/removeFollowedStation'
 import FOLLOWED_COUNT from './queries/followedCount'
 import SET_USER_LISTENING_CONTEXT from './queries/setUserListeningContext'
+import GET_STATION_LISTENER_COUNT from './queries/getStationListernerCount'
 
 import AudioPlayer from './components/AudioPlayer'
 
@@ -29,7 +30,8 @@ class StationPlayer extends Component {
         coverUrl: null,
         followed: null,
         status: true,
-        timeStamp:null
+        timeStamp:null,
+        listenCount: null
     };
 
     componentDidMount() {
@@ -64,7 +66,7 @@ class StationPlayer extends Component {
         }
     }
 
-    processIntake = () => {
+    async processIntake() {
         this.setState({
             stationId: this.props._id,
             context: "station",
@@ -80,15 +82,27 @@ class StationPlayer extends Component {
             timeStamp: this.props.getStationDataById.station.timeStamp
         })
 
-        this.props.setUserListeningContext({
-            variables: {
-                ressourceId: this.props._id
-            }
-        });
+        // const listenCount = this.props.setUserListeningContext({
+        //     variables: {
+        //         ressourceId: this.props._id
+        //     }
+        // });
+
+        this.setState({
+            listenCount: await this.setUserListenCont()
+        })
 
         this.props.isStationFollowed.refetch();
         this.props.followedCount.refetch();
     } 
+
+    async setUserListenCont () {
+        return this.props.setUserListeningContext({
+            variables: {
+                ressourceId: this.props._id
+            }
+        });
+    }
 
     statusUpdate(){
         this.setState({
@@ -187,7 +201,8 @@ class StationPlayer extends Component {
             <div>
             {!this.state.status ? (<h3 className="discoverInfoStationPlayer">The station just went offline</h3>) : 
             (<Fragment>
-            <div className="playerModuleStation">              
+            <div className="playerModuleStation">     
+            {this.state.listenCount ? console.log(this.state.listenCount) : (null)}         
                 <Fragment>
                     <div className="stationPlayer">   
                         <div className="stationInfos">
@@ -263,6 +278,8 @@ graphql(REMOVE_FOLLOWED_STATION, {
     }
 }),
 
-
+graphql(GET_STATION_LISTENER_COUNT, {
+    name: "getStationListenerCount"
+})
 
 )(withApollo(StationPlayer));

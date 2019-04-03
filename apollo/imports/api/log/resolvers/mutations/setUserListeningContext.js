@@ -21,8 +21,9 @@ export default {
                         },
                         
                     }    
-                )       
-                return true;
+                )     
+                return ContextListeners.find({ressourceId}).count();
+
             }
             throw new Error('Unauthorized');
         }
