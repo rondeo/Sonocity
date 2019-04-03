@@ -9,6 +9,7 @@
     border-top-left-radius:5px;
     border-top-right-radius:5px;
     justify-items: center;
+    -webkit-animation: fadein 1.0s;
 }
 
 .dName {

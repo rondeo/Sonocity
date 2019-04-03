@@ -20,7 +20,9 @@ class StationDisplay extends Component {
                         : ( 
                             <Fragment>
                                 <img src={this.props.getStationDataById.station.coverUrl}/>
+                                <div className="spaceDS">
                                 <h6>{this.props.getStationDataById.station.name}</h6>
+                                </div>
                             </Fragment>
                         )}
                     </div>  

@@ -7,6 +7,7 @@
     margin-right:15%;
     /* padding-top:35px;
     padding-bottom:50px; */
+    -webkit-animation: fadein 1s;
 }
 
 .stationInfos {
@@ -54,4 +55,12 @@
     width: 90px;
     border:1px solid black;
     border-radius: 5px; 
+}
+
+.discoverInfoStationPlayer {
+    margin-left:5.5%;
+    margin-right:5%;
+    border:3px solid rgba(209, 22, 22, 0.774);
+    padding:9px;
+    text-align:center;
 }

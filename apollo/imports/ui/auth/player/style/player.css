@@ -7,6 +7,7 @@
     margin-right:18%;
     /* padding-top:30px;
     padding-bottom:40px; */
+    -webkit-animation: fadein 1s;
 }
 
 .playListName {
@@ -24,5 +25,10 @@
 }
 
 .playListPlyrInfos {
+    margin-left:5.5%;
+    margin-right:5%;
+    border:3px solid rgb(16, 194, 90);
+    padding:9px;
     text-align:center;
+    border-radius: 5px;
 }

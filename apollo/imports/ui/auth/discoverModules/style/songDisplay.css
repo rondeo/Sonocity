@@ -3,6 +3,7 @@
     margin: 10px;
     /* text-align:center; */
     position: relative;
+    -webkit-animation: fadein 1.0s;
 }
 
 .songDisplay img{
@@ -14,7 +15,14 @@
     box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
 }
 
-.spaceD {
+.songDisplay img:hover {
+    -moz-box-shadow: rgba(0, 0, 0, 0.8) 5px 5px 55px inset;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.8) 5px 5px 55px inset;
+  box-shadow: rgba(0, 0, 0, 0.8) 5px 5px 55px inset;
+  opacity: 0.9;
+}
+
+.spaceD, .spaceDS {
     height:40px;
     width:100%;
     position: absolute;
@@ -24,7 +32,11 @@
     border-top-right-radius:5px;
 }
 
-.spaceD h6 {
+.spaceDS {
+    height:30px;
+}
+
+.spaceD h6, .spaceDS h6 {
     margin:0px;
     color:white;
     padding:0px;
@@ -32,4 +44,9 @@
     padding:2px;
     margin-left:5px;
     margin-top:3px;
+}
+
+.spaceDS h6 {
+    margin-top:6px;
+    text-align:center;
 }

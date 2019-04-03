@@ -177,7 +177,7 @@ class StationPlayer extends Component {
     render() {
         return (
             <div>
-            {!this.state.status ? (<h3 className="discoverInfo">The station just went offline</h3>) : 
+            {!this.state.status ? (<h3 className="discoverInfoStationPlayer">The station just went offline</h3>) : 
             (<Fragment>
             <div className="playerModuleStation">              
                 <Fragment>
