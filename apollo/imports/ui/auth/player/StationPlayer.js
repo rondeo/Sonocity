@@ -110,11 +110,12 @@ class StationPlayer extends Component {
         })
     }
 
-    audioUpdate = () => { 
+    async audioUpdate() { 
         this.setState({
             currentAudioId: this.props.getStationDataById.station.currentAudio,
             syncTime: null,
-            status: true
+            status: true,
+            listenCount: await this.setUserListenCont()
         })
     }
 
@@ -202,7 +203,6 @@ class StationPlayer extends Component {
             {!this.state.status ? (<h3 className="discoverInfoStationPlayer">The station just went offline</h3>) : 
             (<Fragment>
             <div className="playerModuleStation">     
-            {this.state.listenCount ? console.log(this.state.listenCount) : (null)}         
                 <Fragment>
                     <div className="stationPlayer">   
                         <div className="stationInfos">
@@ -212,8 +212,9 @@ class StationPlayer extends Component {
                                 </div>
                                 <div className="stPlrName">
                                     {this.state.stationName ? (<h3>@{this.state.stationName}</h3>): (null)}
-                                    {this.props.followedCount.followedStationCount ? (<h5>{this.props.followedCount.followedStationCount} followers</h5>) : <h5>0 followers</h5>}
-                                    {this.props.isStationFollowed.loading ?
+                                    {this.state.listenCount ? <div className="inline"><h5>{this.state.listenCount.data.userListeningContext} </h5> <img src="https://res.cloudinary.com/dkt7hv91e/image/upload/v1554326663/noun_listening_523448.png"/></div> : (null)}
+                                    <div className="inline">{this.props.followedCount.followedStationCount ? (<h5>{this.props.followedCount.followedStationCount} </h5>) : <h5>0 </h5> } <img src="https://res.cloudinary.com/dkt7hv91e/image/upload/v1554326853/follower.png"/></div>
+                                    {this.props.isStationFollowed.loading ? 
                                         (null)
                                         :
                                         (<button className="follow"
@@ -225,6 +226,8 @@ class StationPlayer extends Component {
                                         </button>)
                                     }
                                     {this.state.stationDescription ? (<h4>{this.state.stationDescription}</h4>): (null)}
+                                    {/* {this.state.listenCount ? (<h5>{this.state.listenCount.data.userListeningContext+" listeners"}</h5>) : (null)}          */}
+
                                 </div>
                             </div>
                         </div>

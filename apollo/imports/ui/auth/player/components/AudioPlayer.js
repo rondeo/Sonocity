@@ -249,9 +249,9 @@ class AudioPlayer extends Component {
         </div>
 
         <div className="songStats">
-            {this.props.likedCount.loading ? (null) : (<p>{this.props.likedCount.audioLikedCount} likes</p>)}
-            {this.props.listenCount.loading ? (null) : (<p>{this.props.listenCount.audioListenCount} listens</p>)}
-        </div>
+            {this.props.likedCount.loading ? (null) : (<p>{this.props.likedCount.audioLikedCount} <img src="https://res.cloudinary.com/dkt7hv91e/image/upload/v1554327473/rock-and-roll.png"/></p>)}
+            {this.props.listenCount.loading ? (null) : (<p>{this.props.listenCount.audioListenCount} <img src="https://res.cloudinary.com/dkt7hv91e/image/upload/v1554328317/play.png"/></p>)}
+        </div> 
 
       </Fragment>)
       

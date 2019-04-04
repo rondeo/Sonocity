@@ -5,8 +5,8 @@
     justify-items: center;
     margin-left:18%;
     margin-right:15%;
-    /* padding-top:35px;
-    padding-bottom:50px; */
+    /* padding-top:25px;
+    padding-bottom:35px; */
     -webkit-animation: fadein 1s;
 }
 
@@ -63,4 +63,13 @@
     border:3px solid rgba(209, 22, 22, 0.774);
     padding:9px;
     text-align:center;
+}
+
+.inline {
+    display:inline;
+    margin-right:5px;
+}
+
+.inline h5 {
+    margin-right: 2px;
 }

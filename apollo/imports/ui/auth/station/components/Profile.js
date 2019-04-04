@@ -85,7 +85,6 @@ class Profile extends Component {
                 description: this.state.description
             }
         })       
-        console.log(this.state.description) 
     }
 
     changeImage = dataUrl => {

@@ -11,7 +11,7 @@ export default class Discover extends Component {
         idList: [],
         name: null,
         context: null,
-        get: 10
+        get: 8
     };
 
     componentDidMount() {
@@ -43,13 +43,13 @@ export default class Discover extends Component {
 
     less = () => {
         this.setState({
-            get: this.state.get-10
+            get: this.state.get-8
         })
     }
 
     more = () => {
         this.setState({
-            get: this.state.get+10
+            get: this.state.get+8
         })
     }
     
@@ -66,10 +66,16 @@ export default class Discover extends Component {
                                 <SongDisplay key={i} index={i} onClick={this.elemSelected} audioId={this.state.name == "Your liked songs" ? id.audioId : id._id } />
                                 : <StationDisplay key={i} index={i} onClick={this.elemSelected} _id={id._id} />) : (null)
                         )) : (null) }
-                        {this.state.idList[0] ? (this.state.get > 10 ? <img className="plusMinusImg" onClick={this.less} src={"https://res.cloudinary.com/dkt7hv91e/image/upload/v1553911746/minus_PNG27.png"}/> : (null)) : (null) }
-                        {this.state.idList[0] ? (this.state.get < this.props.idList.length  ? <img className="plusMinusImg" onClick={this.more} src={"https://res.cloudinary.com/dkt7hv91e/image/upload/v1553911746/plus_PNG53.png"}/> : (null)) : (null) }
+                        {/* {this.state.idList[0] ? (this.state.get > 10 ? <img className="plusMinusImg" onClick={this.less} src={"https://res.cloudinary.com/dkt7hv91e/image/upload/v1553911746/minus_PNG27.png"}/> : (null)) : (null) }
+                        {this.state.idList[0] ? (this.state.get < this.props.idList.length  ? <img className="plusMinusImg" onClick={this.more} src={"https://res.cloudinary.com/dkt7hv91e/image/upload/v1553911746/plus_PNG53.png"}/> : (null)) : (null) } */}
                     </div>        
-                    <div className="discoverTitles">{this.state.name ? (<h4 className = "dName">{this.state.name}</h4>) : (null)}</div>
+                    <div className="discoverTitles">
+                        {this.state.name ? (<h4 className = "dName">{this.state.name}</h4>) : (null)}
+                        <div className="plusMinusImg">
+                            {this.state.idList[0] ? (this.state.get > 8 ? <img className="minusImg" onClick={this.less} src={"https://res.cloudinary.com/dkt7hv91e/image/upload/v1554335930/minus_PNG271.png"}/> : (null)) : (null) }
+                            {this.state.idList[0] ? (this.state.get < this.props.idList.length  ? <img className="plusImg" onClick={this.more} src={"https://res.cloudinary.com/dkt7hv91e/image/upload/v1554335931/plus_PNG531.png"}/> : (null)) : (null) }
+                        </div>
+                    </div>
 
                 </div>  
             </Fragment>

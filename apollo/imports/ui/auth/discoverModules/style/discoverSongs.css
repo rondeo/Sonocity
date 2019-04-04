@@ -3,6 +3,7 @@
     margin:auto;
     display: flex;
     flex-wrap: wrap;
+    /* justify-content: center; */
     margin-top:25px;
     box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
     padding:10px;
@@ -18,9 +19,19 @@
 }
 
 .plusMinusImg {
-    height: 200px;
-    width: 200px;
-    padding-top:5px;
+    /* padding-top:5px; */
+    position:absolute;
+    right:12px;
+    bottom:5px;
+}
+
+.plusMinusImg img {
+    height: 44px;
+    width: 44px;
+}
+
+.plusImg {
+    margin-left:8px;
 }
 
 .discoverTitles {
@@ -36,6 +47,7 @@
     color:white;
     border-bottom-left-radius:5px;
     border-bottom-right-radius:5px;
+    position:relative;
 }
 
 .discoverInfo {

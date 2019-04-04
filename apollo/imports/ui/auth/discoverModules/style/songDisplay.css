@@ -1,9 +1,11 @@
 .songDisplay {
     flex: 1 0 20%; /* explanation below */
-    margin: 10px;
+    margin: 12.5px;
     /* text-align:center; */
     position: relative;
     -webkit-animation: fadein 1.0s;
+    align-items: center;
+    justify-content: center;
 }
 
 .songDisplay img{
@@ -17,19 +19,19 @@
 
 .songDisplay img:hover {
     -moz-box-shadow: rgba(0, 0, 0, 0.8) 5px 5px 55px inset;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.8) 5px 5px 55px inset;
-  box-shadow: rgba(0, 0, 0, 0.8) 5px 5px 55px inset;
-  opacity: 0.9;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.8) 5px 5px 55px inset;
+    box-shadow: rgba(0, 0, 0, 0.8) 5px 5px 55px inset;
+    opacity: 0.9;
 }
 
 .spaceD, .spaceDS {
     height:40px;
     width:100%;
     position: absolute;
-    background:rgb(24, 24, 24);
-    top:0px;
-    border-top-left-radius:5px;
-    border-top-right-radius:5px;
+    background:rgba(24, 24, 24, 1);
+    bottom:0px;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
 }
 
 .spaceDS {
