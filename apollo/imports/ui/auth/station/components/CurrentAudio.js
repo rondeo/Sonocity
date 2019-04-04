@@ -10,6 +10,7 @@ class CurrentAudio extends Component {
         duration: 0,
         coverUrl: null,
         localCount: 0,
+        timeStamp: null
     }
 
     componentDidMount() {       
@@ -17,8 +18,8 @@ class CurrentAudio extends Component {
     }
 
     componentWillUpdate(prevProps) {
-        if(!this.props.getAudioDataById.loading) {
-            if(this.props.getAudioDataById.audioData.title != this.state.title) {
+        if(!this.props.getAudioDataById.loading && this.props.timeStamp) {
+            if(this.props.timeStamp != this.state.timeStamp) {
                 this.update();
             }
         }
@@ -50,6 +51,7 @@ class CurrentAudio extends Component {
             artist: this.props.getAudioDataById.audioData.artist,
             duration: this.props.getAudioDataById.audioData.duration,
             coverUrl: this.props.getAudioDataById.audioData.coverUrl,
+            timeStamp: this.props.timeStamp,
             localCount: (Date.now()-this.props.timeStamp+3.0)/1000
         })    
     }

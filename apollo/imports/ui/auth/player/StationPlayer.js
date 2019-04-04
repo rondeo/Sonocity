@@ -46,12 +46,12 @@ class StationPlayer extends Component {
             }
         } else if(this.props.getStationDataById.station) {
             if(this.props._id !== this.state.stationId) {
+                console.log(this.props._id, this.state.stationId)
                 this.processIntake();
             } else if(this.props.getStationDataById.station.currentAudio !== this.state.currentAudioId) {
                 this.audioUpdate();
             } else if(this.props.getStationDataById.station.timeStamp !== this.state.timeStamp) {
-                this.processIntake();
-            
+                this.processIntake();          
             } if(!this.props.getStationDataById.loading){ 
                 if (this.props.getStationDataById.station.status != this.state.status) {
                     this.statusUpdate();
@@ -113,9 +113,10 @@ class StationPlayer extends Component {
     async audioUpdate() { 
         this.setState({
             currentAudioId: this.props.getStationDataById.station.currentAudio,
-            syncTime: null,
+            syncTime: (Date.now() - this.props.getStationDataById.station.timeStamp)/1000,
             status: true,
-            listenCount: await this.setUserListenCont()
+            listenCount: await this.setUserListenCont(),
+            timeStamp: this.props.getStationDataById.station.timeStamp
         })
     }
 
@@ -234,7 +235,7 @@ class StationPlayer extends Component {
                         <div className="stationAudioPlayer">
                             {this.state.ready ?  
                                 <AudioPlayer stationName={this.state.stationName} context={this.state.context} getSync={this.getSync} synchro={this.state.syncTime} offline={this.stationOffline} next={this.next} previous={this.previous} onEnd={this.onEnd} handleLoop={this.handleLoop} loopAll={this.state.loopAll} loopOne={this.state.loopOne}
-                                    audioId={this.state.currentAudioId} 
+                                    audioId={this.state.currentAudioId} timeStamp={this.state.timeStamp}
                                 /> 
                             : (<h3> Station Player </h3>)} 
                         </div>
