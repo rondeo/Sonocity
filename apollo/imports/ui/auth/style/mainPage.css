@@ -16,6 +16,11 @@ html {
     font-family: Sans-Serif;
 }
 
+body {
+    max-width: 1870px;
+    margin:auto;
+}
+
 .header {
     position:relative;
     margin-top:30px;

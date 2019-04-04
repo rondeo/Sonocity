@@ -1,6 +1,6 @@
 .songDisplay {
     flex: 1 0 20%; /* explanation below */
-    margin: 12.5px;
+    margin: 11.65px;
     /* text-align:center; */
     position: relative;
     -webkit-animation: fadein 1.0s;

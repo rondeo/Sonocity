@@ -2,13 +2,15 @@
     display:grid;
     grid-template-columns: 0.50fr 0.30fr 0.30fr;
     /* grid-template-rows: 450px; */
+    padding:10px;
     padding-top:50px;
     padding-bottom:50px;
     /* padding-left:25px; */
     justify-items: center;
-    /* margin:auto; */
-    margin-left:5%;
-    margin-right:4%;
+    width:100%;
+    margin:auto;
+    /* margin-left:5%;
+    margin-right:4%; */
     /* border: 1px solid rgba(0, 0, 0, 0.295); */
     /* border-top: 8px solid rgb(223, 22, 22); */
     /* border-bottom-left-radius:15px; */

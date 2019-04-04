@@ -146,6 +146,8 @@ class MainPage extends Component {
             <div>   
                 <Fragment>
 
+
+
                 <div className="header">
                     <div className="logo"></div>
                     <div className="searchContainer">
@@ -182,9 +184,10 @@ class MainPage extends Component {
 
                 {!this.state.stationPlayer ? (<Player content={this.state.playerContent} />) : (<StationPlayer ressourceId={this.state.playerContent[0][0][this.state.playerContent[1]]._id} _id={this.state.playerContent[0][0][this.state.playerContent[1]]._id} stationId={this.state.playerContent[0][0][this.state.playerContent[1]]._id} content={this.state.playerContent} offline={this.stationOffline} />)}
 
+                <div className="core">
+
                 {this.state.station ? (<Station />) : (null) }
 
-                    <div className="core">
 
                     {this.state.searchContent && this.state.search !== "" ? <Search expression={this.state.searchContent} elemSelectedSong={this.songSelected} elemSelectedStation={this.stationSelected} /> :
 
