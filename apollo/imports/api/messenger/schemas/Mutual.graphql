@@ -1,7 +1,0 @@
-type Mutual {
-    userId: String!
-}
-
-extend type Query {
-    mutuals: [Mutual]
-}

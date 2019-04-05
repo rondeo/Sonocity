@@ -4,10 +4,10 @@ type Chatroom {
     userId1: String!
 }
 
-type Mutation {
+extend type Mutation {
     createChatroom(userId0: String!, userId1: String!): Boolean
 }
 
 extend type Query {
-    chatroomId(userId0: String!, userId1: String!): Chatroom
+    chatRooms: [Chatroom]
 }
