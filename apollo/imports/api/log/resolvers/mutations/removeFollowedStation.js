@@ -35,8 +35,11 @@ export default {
 
                 if(Meteor.users.findOne({followed: stationData.userId})) {
 
-                    Chatroom.remove({ $or : [ { userId0 : userId }, { userId1: userId } ] })
-
+                    Chatroom.remove({ $or : [
+                        { $and : [ { userId0 : userId }, { userId1: stationData.userId } ] },
+                        { $and : [ { userId0 : stationData.userId }, { userId1: userId } ] }
+                    ]})
+                    
                 }
 
                 return true;

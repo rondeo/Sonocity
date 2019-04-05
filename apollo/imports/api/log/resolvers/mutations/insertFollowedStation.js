@@ -33,7 +33,9 @@ export default {
                     }
                 );
 
-                if(Meteor.users.findOne({followed: stationData.userId})) {
+                if(Meteor.users.findOne({
+                    _id: userId,
+                    followed: stationData.userId})) {
 
                     Chatroom.insert({
                         userId0: userId,
