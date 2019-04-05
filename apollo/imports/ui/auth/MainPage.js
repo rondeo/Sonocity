@@ -4,7 +4,7 @@ import { graphql, withApollo, compose } from "react-apollo";
 import GET_ALL_AUDIO_ID from './queries/getAllAudioId'
 import GET_USER_LIKED_AUDIO from './queries/getUserLikedAudio'
 // import CLEAR_UP_NEXT from './queries/clearUpNext'
-import GET_ALL_ONLINE_STATION from './queries/getAllOnlineStationId'
+// import GET_ALL_ONLINE_STATION from './queries/getAllOnlineStationId'
 import GET_ALL_FOLLOWED_STATION from './queries/getAllFollowedStationId'
 import GET_ALL_USER_AUDIO_ID from './queries/getAllUserAudioId'
 import INSERT_INTO_LOCATION_HISTORY from "./queries/insertIntoLocationHistory"
@@ -37,10 +37,10 @@ class MainPage extends Component {
         // this.setState({
         //     clear: this.clear()
         // })
-        this.timer = setInterval(() => { 
-            this.props.getAllOnlineStation.refetch();
-            this.props.getAllFollowedStation.refetch();
-        }, 20000);
+        // this.timer = setInterval(() => { 
+        //     this.props.getAllOnlineStation.refetch();
+        //     this.props.getAllFollowedStation.refetch();
+        // }, 20000);
         let options = {
             enableHighAccuracy: true,
             maximumAge: 0
@@ -100,7 +100,7 @@ class MainPage extends Component {
     }
 
     componentWillUnmount() {
-        clearInterval(this.timer);
+        // clearInterval(this.timer);
     }
 
     songSelected = (listId, i, context, name) => {
@@ -186,8 +186,7 @@ class MainPage extends Component {
 
                 <div className="core">
 
-                {this.state.station ? (<Station />) : (null) }
-
+                    {this.state.station ? (<Station />) : (null) }
 
                     {this.state.searchContent && this.state.search !== "" ? <Search expression={this.state.searchContent} elemSelectedSong={this.songSelected} elemSelectedStation={this.stationSelected} /> :
 
@@ -226,16 +225,19 @@ export default compose (
         name: "getUserLikedAudio"
     }),
 
-    graphql(GET_ALL_ONLINE_STATION, {
-        name: "getAllOnlineStation"
-    }),
+    // graphql(GET_ALL_ONLINE_STATION, {
+    //     name: "getAllOnlineStation"
+    // }),
 
     graphql(GET_ALL_USER_AUDIO_ID, {
         name: "getAllUserAudioId"
     }),
 
     graphql(GET_ALL_FOLLOWED_STATION, {
-        name: "getAllFollowedStation"
+        name: "getAllFollowedStation",
+        options: {
+            pollInterval: 10000
+        }
     }),
 
     graphql(INSERT_INTO_LOCATION_HISTORY, {

@@ -1,0 +1,14 @@
+type Message {
+    _id: String!
+    chatroomId: String!
+    senderId: String!
+    timeStamp: Float!
+}
+
+type Mutation {
+    newMessage(chatroomId: String!, senderId: String!): Boolean
+}
+
+extend type Query {
+    messages(chatroomId: String!): [Message]
+}

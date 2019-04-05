@@ -19,9 +19,9 @@ class DiscoverRequestLayer extends Component {
             context: this.props.context
         })
         
-        this.timer = setInterval(() => { 
-            this.props.getStationInProximity.refetch();
-        }, 20000);
+        // this.timer = setInterval(() => { 
+        //     this.props.getStationInProximity.refetch();
+        // }, 20000);
         
     }
 
@@ -43,7 +43,10 @@ class DiscoverRequestLayer extends Component {
 export default compose (
     
     graphql(GET_STATION_IN_PROXIMITY, {
-        name: "getStationInProximity"
+        name: "getStationInProximity",
+        options: {
+            pollInterval: 10000
+        }
     }),
 
 )(withApollo(DiscoverRequestLayer));

@@ -46,7 +46,6 @@ class StationPlayer extends Component {
             }
         } else if(this.props.getStationDataById.station) {
             if(this.props._id !== this.state.stationId) {
-                console.log(this.props._id, this.state.stationId)
                 this.processIntake();
             } else if(this.props.getStationDataById.station.currentAudio !== this.state.currentAudioId) {
                 this.audioUpdate();
