@@ -2,6 +2,7 @@ type Chatroom {
     _id: String!
     userId0: String!
     userId1: String!
+    unreadCount: Int
 }
 
 # extend type Mutation {

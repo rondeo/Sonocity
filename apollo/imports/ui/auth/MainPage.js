@@ -16,6 +16,7 @@ import Station from "./station/Station"
 import StationManager from "./station/components/StationManager"
 import DiscoverRequestLayer from "./discoverModules/DiscoverRequestLayer"
 import Search from "./discoverModules/Search"
+import Messenger from "./messenger/Messenger"
 
 import "./style/mainPage.css"
 import { Icon } from '@material-ui/core';
@@ -23,6 +24,7 @@ import { Icon } from '@material-ui/core';
 class MainPage extends Component {
     state = {
         station: false,
+        messenger: false,
         playerContent: null,
         clear: false,
         stationPlayer: false,
@@ -130,8 +132,8 @@ class MainPage extends Component {
 
     async logout() {
         // await this.clear();
-        this.props.client.cache.reset()
         this.props.client.resetStore();
+        this.props.client.cache.reset()
         Meteor.logout();
     }
 
@@ -164,6 +166,14 @@ class MainPage extends Component {
                         >
                             {this.state.station ? "Close" : "Station" }
                         </button> 
+
+                        <button className="bigger"
+                            onClick={()=> {
+                                this.setState({messenger: !this.state.messenger})
+                            }}
+                        >
+                            {this.state.messenger ? "Close" : "Babble" }
+                        </button>                         
                         
                         <button className="logout"
                             onClick={()=> {
@@ -185,6 +195,8 @@ class MainPage extends Component {
                 {!this.state.stationPlayer ? (<Player content={this.state.playerContent} />) : (<StationPlayer ressourceId={this.state.playerContent[0][0][this.state.playerContent[1]]._id} _id={this.state.playerContent[0][0][this.state.playerContent[1]]._id} stationId={this.state.playerContent[0][0][this.state.playerContent[1]]._id} content={this.state.playerContent} offline={this.stationOffline} />)}
 
                 <div className="core">
+
+                    {this.state.messenger ? (<Messenger />) : (null)}
 
                     {this.state.station ? (<Station />) : (null) }
 

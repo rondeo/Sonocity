@@ -7,7 +7,9 @@ import StationSchema from "../../api/station/schemas/Staonnnn.graphql"
 import LocationHistorySchema from "../../api/log/schemas/LocationHistoryy.graphql"
 import ListeningContext from "../../api/log/schemas/ListeningContex.graphql"
 import Chatroom from "../../api/messenger/schemas/Chatroommm.graphql"
+import Message from "../../api/messenger/schemas/Messagee.graphql"
 
-const typeDefs = [UsersSchema, AudioContentSchema, ListeningHistorySchema, LikedTracksSchema, FollowedStationSchema, StationSchema, LocationHistorySchema, ListeningContext, Chatroom];
+const typeDefs = [UsersSchema, AudioContentSchema, ListeningHistorySchema, LikedTracksSchema, 
+                  FollowedStationSchema, StationSchema, LocationHistorySchema, ListeningContext, Chatroom, Message];
 
 export default typeDefs;
