@@ -7,7 +7,7 @@ export default {
             const userId=user._id;
             if(userId) {
                 // try {
-                    //AudioData.remove({});
+                    // AudioData.remove({});
                     const timeStamp = Date.now();
                     const audioId = AudioData.insert({
                         userId: userId,

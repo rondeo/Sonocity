@@ -63,7 +63,7 @@ export default class Discover extends Component {
                             this.state.idList[0].map((id, i) => (
                                 i < this.state.get ?
                                 (this.state.context == "playlist" ?
-                                <SongDisplay key={i} index={i} onClick={this.elemSelected} audioId={this.state.name == "Your liked songs" ? id.audioId : id._id } />
+                                <SongDisplay key={i} index={i} onClick={this.elemSelected} audioId={this.state.name == "Your liked tracks" ? id.audioId : id._id } />
                                 : <StationDisplay key={i} index={i} onClick={this.elemSelected} _id={id._id} />) : (null)
                         )) : (null) }
                         {/* {this.state.idList[0] ? (this.state.get > 10 ? <img className="plusMinusImg" onClick={this.less} src={"https://res.cloudinary.com/dkt7hv91e/image/upload/v1553911746/minus_PNG27.png"}/> : (null)) : (null) }

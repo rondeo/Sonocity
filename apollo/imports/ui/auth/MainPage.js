@@ -7,6 +7,7 @@ import GET_USER_LIKED_AUDIO from './queries/getUserLikedAudio'
 // import GET_ALL_ONLINE_STATION from './queries/getAllOnlineStationId'
 import GET_ALL_FOLLOWED_STATION from './queries/getAllFollowedStationId'
 import GET_ALL_USER_AUDIO_ID from './queries/getAllUserAudioId'
+import GET_POPULAR_STATIONS from './queries/getPopularStations'
 import INSERT_INTO_LOCATION_HISTORY from "./queries/insertIntoLocationHistory"
 
 import Discover from "./discoverModules/Discover"
@@ -208,13 +209,15 @@ class MainPage extends Component {
 
                         {this.state.latMinRange && this.state.latMaxRange && this.state.longMinRange && this.state.longMaxRange ? (<DiscoverRequestLayer context={"station"} name={"Stations near you"} latMinRange={this.state.latMinRange} latMaxRange={this.state.latMaxRange} longMinRange={this.state.longMinRange} longMaxRange={this.state.longMaxRange} elemSelected={this.stationSelected} />): (null)}
 
+                        {this.props.getPopularStations.loading ? (null) : ( (this.props.getPopularStations.popStations && this.props.getPopularStations.popStations.length >  0) ? (<Discover context={"station"} name={"Popular stations now"} idList={this.props.getPopularStations.popStations} elemSelected={this.stationSelected} />) : (null))}
+
                         {/* {this.props.getAllOnlineStation.loading ? (<p>loading</p>) : ( (this.props.getAllOnlineStation.onlineStations && this.props.getAllOnlineStation.onlineStations.length >  0) ? (<Discover context={"station"} name={"Online stations"} idList={this.props.getAllOnlineStation.onlineStations} elemSelected={this.stationSelected} />) : (<h3>There is no other online stations</h3>))} */}
 
-                        {this.props.getUserLikedAudio.loading ? (null) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<Discover context={"playlist"} name={"Your liked songs"} idList={this.props.getUserLikedAudio.userLikedAudio} elemSelected={this.songSelected} />) : (null))}
+                        {this.props.getUserLikedAudio.loading ? (null) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<Discover context={"playlist"} name={"Your liked tracks"} idList={this.props.getUserLikedAudio.userLikedAudio} elemSelected={this.songSelected} />) : (null))}
                         
                         {this.props.getAllUserAudioId.loading ? (null) : ( this.props.getAllUserAudioId.userAudioId.length > 0 ? (<Discover context={"playlist"} name={"Your uploaded tracks"} idList={this.props.getAllUserAudioId.userAudioId} elemSelected={this.songSelected} />) : (null))}
 
-                        {this.props.getAllAudioId.loading ? (null) : (<Discover name={"All songs"} context={"playlist"} idList={this.props.getAllAudioId.allAudioId} elemSelected={this.songSelected} />)}
+                        {this.props.getAllAudioId.loading ? (null) : (<Discover name={"All tracks"} context={"playlist"} idList={this.props.getAllAudioId.allAudioId} elemSelected={this.songSelected} />)}
                     
                         </div>
                     }
@@ -249,6 +252,13 @@ export default compose (
         name: "getAllFollowedStation",
         options: {
             pollInterval: 10000
+        }
+    }),
+
+    graphql(GET_POPULAR_STATIONS, {
+        name: "getPopularStations",
+        options: {
+            pollInterval: 30000
         }
     }),
 
