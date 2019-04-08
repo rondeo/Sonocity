@@ -12,4 +12,5 @@ extend type Mutation {
 
 extend type Query {
     stationListenCount(ressourceId: String!): Int
+    popStations: [ListeningContext]
 }

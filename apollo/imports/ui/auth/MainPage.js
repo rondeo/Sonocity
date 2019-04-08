@@ -164,7 +164,7 @@ class MainPage extends Component {
                                 this.setState({station: !this.state.station})
                             }}
                         >
-                            {this.state.station ? "Close" : "Station" }
+                            {this.state.station ? "X" : "Station" }
                         </button> 
 
                         <button className="bigger"
@@ -172,7 +172,7 @@ class MainPage extends Component {
                                 this.setState({messenger: !this.state.messenger})
                             }}
                         >
-                            {this.state.messenger ? "Close" : "Babble" }
+                            {this.state.messenger ? "X" : "Mutuals" }
                         </button>                         
                         
                         <button className="logout"
@@ -196,9 +196,9 @@ class MainPage extends Component {
 
                 <div className="core">
 
-                    {this.state.messenger ? (<Messenger />) : (null)}
-
                     {this.state.station ? (<Station />) : (null) }
+
+                    {this.state.messenger ? (<Messenger />) : (null)}
 
                     {this.state.searchContent && this.state.search !== "" ? <Search expression={this.state.searchContent} elemSelectedSong={this.songSelected} elemSelectedStation={this.stationSelected} /> :
 

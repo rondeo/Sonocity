@@ -59,14 +59,16 @@ button {
 }
 
 .logout {
-    background: rgb(164, 4, 179);
+    /* background: rgb(164, 4, 179); */
     padding: 10px;
-    width:83px;
+    width:90px;
+    /* border:1px solid black; */
 }
 
 .bigger {
     padding: 10px;
-    width:83px;
+    width:100px;
+    /* border:1px solid black; */
 }
     
 button:hover {
@@ -80,9 +82,9 @@ button:hover {
 
 .searchContainer {
     position: absolute;
-    right: 395px;
+    right: 435px;
     top:32px;
-    width: calc(100% - 935px);
+    width: calc(100% - 975px);
     height: 30px;
     background: white;
     border: 1px solid gray;

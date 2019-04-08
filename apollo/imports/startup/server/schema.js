@@ -5,7 +5,7 @@ import LikedTracksSchema from "../../api/log/schemas/LikedAudioooooo.graphql"
 import FollowedStationSchema from "../../api/log/schemas/FollowedStatioon.graphql"
 import StationSchema from "../../api/station/schemas/Staonnnn.graphql"
 import LocationHistorySchema from "../../api/log/schemas/LocationHistoryy.graphql"
-import ListeningContext from "../../api/log/schemas/ListeningContex.graphql"
+import ListeningContext from "../../api/log/schemas/ListeningContexx.graphql"
 import Chatroom from "../../api/messenger/schemas/Chatroommm.graphql"
 import Message from "../../api/messenger/schemas/Messagee.graphql"
 
