@@ -31,7 +31,9 @@ class StationPlayer extends Component {
         followed: null,
         status: true,
         timeStamp:null,
-        listenCount: null
+        listenCount: null,
+        checked: null,
+        inputV: ""
     };
 
     componentDidMount() {
@@ -197,6 +199,20 @@ class StationPlayer extends Component {
         }
     }
 
+    handleCheckboxChange = e => {
+        this.setState({
+            checked: !this.state.checked,
+            inputV: ""
+        })
+    }
+
+    inputVChange = e => {
+        this.setState({
+            inputV: e.target.value
+        })
+    }
+
+
     render() {
         return (
             <div>
@@ -226,6 +242,13 @@ class StationPlayer extends Component {
                                         </button>)
                                     }
                                     {this.state.stationDescription ? (<h4>{this.state.stationDescription}</h4>): (null)}
+                                    <div className="sendComment">
+                                        <div className="parentComment">
+                                            <input className="cboxComment" type="checkbox" onChange={this.handleCheckboxChange}/>
+                                            <label className="addComment" for="cbox">{this.state.checked ? "Hit enter to send" : "Send some feedback"}</label>
+                                            <input className="messageComment" type="text" maxLength={42} value={this.state.inputV} onChange={this.inputVChange} />
+                                        </div>
+                                    </div>
                                     {/* {this.state.listenCount ? (<h5>{this.state.listenCount.data.userListeningContext+" listeners"}</h5>) : (null)}          */}
 
                                 </div>
@@ -238,8 +261,7 @@ class StationPlayer extends Component {
                                 /> 
                             : (<h3> Station Player </h3>)} 
                         </div>
-                        <div className="upNextStationPlayer">
-                        </div>
+                        
                     </div>  
                 </Fragment>
             </div>

@@ -1,6 +1,6 @@
 .myStationCore {
     display:grid;
-    grid-template-columns: 0.50fr 0.30fr 0.30fr;
+    grid-template-columns: 0.40fr 0.20fr 0.20fr 0.20fr;
     /* grid-template-rows: 450px; */
     padding:10px;
     padding-top:50px;
@@ -29,9 +29,10 @@
 } */
 
 .myStationProfile {
+    margin-left:16%;
     grid-column: 1;
     grid-row: 1;
-    /* justify-self: end; */
+    justify-self: start;
     align-self: center;
 }
 
@@ -58,6 +59,13 @@
 
 .myStationUpNext {
     grid-column: 3;
+    grid-row: 1;
+    justify-self: start;
+    align-self: center;
+}
+
+.myStationRecentComment {
+    grid-column: 4;
     grid-row: 1;
     justify-self: start;
     align-self: center;

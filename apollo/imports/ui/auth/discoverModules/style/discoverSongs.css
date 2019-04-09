@@ -30,6 +30,10 @@
     width: 44px;
 }
 
+.plusMinusImg:hover {
+    cursor: pointer;
+}
+
 .plusImg {
     margin-left:8px;
 }

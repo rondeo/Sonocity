@@ -129,14 +129,20 @@ class Station extends Component {
                         </div>
 
                         <div className="myStationCurrentlyPlaying">
-                            <h3>Now playing: </h3>
+                            <h3>Now playing </h3>
                             {this.state.status ? <CurrentAudio currentUpdate={this.props.getUserStation.refetch()} audioId={this.state.currentAudio} timeStamp={this.state.timeStamp} /> : <h3>Offline</h3>}
                         </div>
 
                         <div className="myStationUpNext">
-                            <h3>Up Next: </h3>
-                            {this.state.status ? (this.state.upNext[0] ? <UpNextMgmt upNext={this.state.upNext}/> : <h3>Nothing in up next</h3>) : <h3></h3>}
+                            <h3>Up Next </h3>
+                            {this.state.status ? (this.state.upNext[0] ? <UpNextMgmt upNext={this.state.upNext}/> : <h3>Nothing in up next</h3>) : <h3>Offline</h3>}
                         </div>
+
+                        <div className="myStationRecentComment">
+                                <h3>Live comment </h3>
+                                {this.state.status ? <h3>Comment</h3> : <h3>Offline</h3>}
+                        </div>
+
                     </div>
                 </Fragment>       
             </div>

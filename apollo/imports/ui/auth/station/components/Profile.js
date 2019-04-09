@@ -156,7 +156,7 @@ class Profile extends Component {
                                 </div>
                             </div>
                             <div className="myDescription">
-                                <textarea cols={23} rows={10} onChange={this.handleDescriptionChange} defaultValue={this.state.description} maxLength={256}  ref={input => (this.description = input)} />
+                                <textarea cols={23} rows={10} onChange={this.handleDescriptionChange} defaultValue={this.state.description} maxLength={186}  ref={input => (this.description = input)} />
                             </div>
                         </div>
                         <DropZoneImage addUp={this.changeImage}/>
