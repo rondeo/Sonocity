@@ -38,6 +38,7 @@ class StationPlayer extends Component {
 
     componentDidMount() {
         this.props.getStationDataById.loading ?  (null) : this.processIntake()
+
     }
 
     componentDidUpdate(prevProps) {
