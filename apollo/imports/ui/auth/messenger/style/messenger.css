@@ -3,19 +3,33 @@
     border-radius: 5px;
     -webkit-animation: fadein 0.5s;
     box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
-    height:400px;
+    height:500px;
     padding:10px;
-    margin-top:25px;
+    /* margin-top:25px; */
     position:relative;
 }
 
 .chatroomListContainer {
-    width:400px;
-    height:90%;
+    width:25%;
+    height:79%;
     overflow:auto;
     position:absolute;
-    right:20px;
-    top:20px;
+    right:50px;
+    top:54px;
+    /* border:1px solid black; */
+    /* border-radius:5px; */
+}
+
+.messengerCore {
+    width:66.3%;
+    padding:10%;
+    height:78%;
+    margin-top:45px;
+    margin-left:50px;
+    padding:10px;
+    /* box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.7);  */
+    border:1px solid black;
+    border-radius:2px;
 }
 
 .chatroomListContainer::-webkit-scrollbar-track
@@ -31,25 +45,25 @@
 
 .chatroomListContainer::-webkit-scrollbar-thumb
 {
-	border-radius: 10px;
+    border-radius:10px;
 	background-color: rgba(207, 22, 22, 0.658);
 }
 
 .chatRoomBloc {
-    width:350px;
+    width:87%;
     position:relative;
-    padding:10px;
-    border: 1px solid black;
+    padding:19px;
+    /* border: 1px solid black; */
     /* border-radius: 5px; */
     opacity:0.9;
     margin:auto;
     margin-bottom:1px;
-    
 }
 
 .chatRoomBloc:hover{
     opacity:1;
-    border-width: 2px;
+    color:red;
+    /* box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.7);  */
     /* border-color:rgba(207, 22, 22, 0.658); */
     /* color:rgb(0, 150, 45); */
 }
@@ -62,7 +76,7 @@
 .onlineStatusC {
     position:absolute;
     right:10px;
-    bottom: 18px;
+    bottom: 30px;
 } 
 
 .imgDisplayChat {
@@ -70,3 +84,10 @@
     height:35px;
     border-radius:5px;
 }
+
+.unreadCountM {
+    position:absolute;
+    right:20px;
+    bottom: 18px;
+}
+

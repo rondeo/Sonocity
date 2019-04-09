@@ -30,7 +30,7 @@ class Chatroom extends Component {
     render() {
         return (
             <Fragment>    
-                
+                <div className="messengerCore"></div>
             </Fragment>
         )
     }

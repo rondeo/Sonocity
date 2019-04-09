@@ -56,9 +56,9 @@ class Messenger extends Component {
             <Fragment>    
                 {this.state.chatroomsList ? 
                     <div className="chatCore">
-                        <Chatroom chatRoom={this.state.currentChatroom}/>
+                        {this.state.currentChatroom ? <Chatroom chatRoom={this.state.currentChatroom}/> : (null)}
                         <div className="chatroomListContainer"> 
-                            {
+                            {   
                                 Object.keys(this.state.chatroomsList).map((key) => (
                                 <ChatroomsDisplay key={key} roomSelected={this.changeRoom} userId={this.state.chatroomsList[key][1]} chatroomId={this.state.chatroomsList[key][0]} />   
                             ))}
