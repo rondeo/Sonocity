@@ -22,6 +22,7 @@
     -webkit-box-shadow: rgba(0, 0, 0, 0.8) 5px 5px 55px inset;
     box-shadow: rgba(0, 0, 0, 0.8) 5px 5px 55px inset;
     opacity: 0.9;
+    cursor: pointer;
 }
 
 .spaceD, .spaceDS {
@@ -36,6 +37,10 @@
 
 .spaceDS {
     height:30px;
+}
+
+.spaceD:hover, .spaceDS:hover {
+    /* cursor: pointer; */
 }
 
 .spaceD h6, .spaceDS h6 {
