@@ -163,6 +163,8 @@ class MainPage extends Component {
                         <button className="bigger"
                             onClick={()=> {
                                 this.setState({station: !this.state.station})
+                                this.state.messenger ? this.setState({messenger: false}) : (null)
+
                             }}
                         >
                             {this.state.station ? "X" : "Station" }
@@ -171,6 +173,7 @@ class MainPage extends Component {
                         <button className="bigger"
                             onClick={()=> {
                                 this.setState({messenger: !this.state.messenger})
+                                this.state.station ? this.setState({station: false}) : (null)
                             }}
                         >
                             {this.state.messenger ? "X" : "Mutuals" }

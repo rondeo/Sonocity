@@ -1,7 +1,8 @@
-import UserQueries from "./queries/userQueries"
-import UserMutations from "./mutations/userMutations"
 import merge from "lodash/merge";
 
-const resolvers = merge(UserQueries);
+import UserQueries from "./queries/userQueries"
+import IsUserOnline from "./queries/isUserOnline"
+
+const resolvers = merge(UserQueries, IsUserOnline);
 
 export default resolvers;

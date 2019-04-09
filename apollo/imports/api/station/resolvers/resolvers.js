@@ -13,8 +13,9 @@ import GetOnlineStations from "./queries/getOnlineStations"
 import GetStationDataByStationId from "./queries/getStationDataByStationId"
 import GetStationInProximity from "./queries/getStationInProximity"
 import GetStationLikeName from "./queries/getStationIdLikeName"
+import GetAnotherStationDataByUserId from "./queries/getAnotherUserStationDataById"
 
 const resolvers = merge(CreateStation, GetStationDataByUserId, UpdateName, UpdateDescription, GetStationInProximity, GetStationLikeName,
-                        AddToUpNext, ClearUpNext, UpdateCurrentAudio, UpdateCover, UpdateUpNext, GetOnlineStations, GetStationDataByStationId);
+                        AddToUpNext, ClearUpNext, UpdateCurrentAudio, UpdateCover, UpdateUpNext, GetOnlineStations, GetStationDataByStationId, GetAnotherStationDataByUserId);
 
 export default resolvers;

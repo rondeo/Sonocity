@@ -174,7 +174,7 @@ class Player extends Component {
                     </div>
                     <div className="playListPlayer">    
                         <AudioPlayer context={this.state.context} next={this.next} previous={this.previous} onEnd={this.onEnd} handleLoop={this.handleLoop} loopAll={this.state.loopAll} loopOne={this.state.loopOne}
-                            audioId={this.state.context == "playlist" ? ((this.state.name == "Your liked songs") ? (this.state.playList[0][this.state.currentSong].audioId) : (this.state.playList[0][this.state.currentSong]._id)) : (null)} 
+                            audioId={this.state.context == "playlist" ? ((this.state.name == "Your liked tracks") ? (this.state.playList[0][this.state.currentSong].audioId) : (this.state.playList[0][this.state.currentSong]._id)) : (null)} 
                         /> 
                     </div>  
                 </div> : <h3 className="playListPlyrInfos">Browse our collections and select something to listen to !</h3>} 
