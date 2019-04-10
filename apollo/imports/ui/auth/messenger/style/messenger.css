@@ -46,7 +46,7 @@
 .chatroomListContainer::-webkit-scrollbar-thumb
 {
     border-radius:10px;
-	background-color: rgba(207, 22, 22, 0.658);
+	background-color: #5479f2;
 }
 
 .chatRoomBloc {
@@ -62,7 +62,7 @@
 
 .chatRoomBloc:hover{
     opacity:1;
-    color:red;
+    color: #5479f2;
     /* box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.7);  */
     /* border-color:rgba(207, 22, 22, 0.658); */
     /* color:rgb(0, 150, 45); */
@@ -91,3 +91,26 @@
     bottom: 18px;
 }
 
+.followersNbr {
+    margin-left:8%;
+    color: rgb(16, 194, 90);;
+    float:left;
+    padding:50px;
+    margin-top: 90px;
+}
+
+.followingNbr {
+    margin-left:3%;
+    color: #5479f2;
+    float:left;
+    padding:50px;
+    margin-top: 90px;
+}
+
+.followersCnt {
+    font-size:580%;
+}
+
+.followersTxt{
+    font-size:125%;
+}

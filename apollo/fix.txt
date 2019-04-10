@@ -28,3 +28,5 @@ description in profile -> sometimes i think the refetch on GET_USER_STATION is d
 
 --> in search cache keep stations who got offline
 
+
+--> peut-être faudrait-il faire en sorte qu'il ne soit pas possible d'écouter des stations qui nous écoutes en ce moment

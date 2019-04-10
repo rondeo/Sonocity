@@ -24,6 +24,11 @@
     /* border-color: rgb(223, 22, 22); */
 }
 
+.myStationCoreTitles  {
+    font-size:200%;
+    color: rgb(16, 194, 90);
+}
+
 /* .myStationCore input, .myStationCore textarea {
     background: rgb(29, 28, 28);
     color:white;
@@ -106,6 +111,10 @@
     display: inline;
 }
 
+.upNextMgmtOnlineWrapper {
+    height: 250px;
+}
+
 .stationUpNextD:hover { 
     color:rgb(223, 22, 22);
 }
@@ -129,7 +138,7 @@
     height:220px;
     /* border:1px solid black; */
     overflow:auto;
-    margin-bottom:30px;
+    margin-bottom:35px;
 }
 
 .stationCommentsCore h4 {
@@ -141,6 +150,13 @@
 }
 
 .stationCommentsCore h5 {
+    padding:0;
+    margin:0;
+    padding:5px;
+    padding-left:0px;
+}
+
+.noneInStationComment {
     padding:0;
     margin:0;
     padding:5px;

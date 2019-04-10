@@ -130,17 +130,17 @@ class Station extends Component {
                         </div>
 
                         <div className="myStationCurrentlyPlaying">
-                            <h3>Now playing </h3>
+                            <h3 className="myStationCoreTitles">Now playing </h3>
                             {this.state.status ? <CurrentAudio currentUpdate={this.props.getUserStation.refetch()} audioId={this.state.currentAudio} timeStamp={this.state.timeStamp} /> : <h3>Offline</h3>}
                         </div>
 
                         <div className="myStationUpNext">
-                            <h3>Up Next </h3>
-                            {this.state.status ? (this.state.upNext[0] ? <UpNextMgmt upNext={this.state.upNext}/> : <h3>Nothing in up next</h3>) : <h3>Offline</h3>}
+                            <h3 className="myStationCoreTitles">Up Next </h3>
+                            {this.state.status ? (this.state.upNext[0] ? <div className="upNextMgmtOnlineWrapper"><UpNextMgmt upNext={this.state.upNext}/></div> : <div className="upNextMgmtOnlineWrapper"><h3>Nothing in up next</h3></div>) : <h3>Offline</h3>}
                         </div>
 
                         <div className="myStationRecentComment">
-                                <h3>Last feedback </h3>
+                                <h3 className="myStationCoreTitles">Feedback</h3>
                                 {this.state.status ?
                                 <div className="stationCommentsCore">
                                     <StationComment />

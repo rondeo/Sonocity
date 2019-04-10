@@ -52,7 +52,7 @@ class StationComments extends Component {
         return (
             <Fragment>   
                 <div className="stationCommentList"> 
-                    {this.state.comments ? (this.state.comments.map((comment, i) => (<CommentDisplay key={i} userId={comment.userId} content={comment.content} timeStamp={comment.timeStamp} />))) : (<h3>None</h3>)}
+                    {this.state.comments && this.state.comments.length > 0 ? (this.state.comments.map((comment, i) => (<CommentDisplay key={i} userId={comment.userId} content={comment.content} timeStamp={comment.timeStamp} />))) : (<h3 className="noneInStationComment">None</h3>)}
                </div>
             </Fragment>
         )

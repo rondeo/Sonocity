@@ -92,6 +92,10 @@ button:hover {
     border: 1px solid gray;
     border-radius: 20px;
 }
+
+.searchContainer:hover{
+    /* box-shadow: 0px 1px 8px 1px rgba(0, 0, 0, 0.7);  */
+}
     
 .searchBar {
     padding: 0 12px;

@@ -4,6 +4,8 @@
 type User {
     _id: String
     email: String
+    follows: [String]
+    followed: [String]
 }
 
 type Query {

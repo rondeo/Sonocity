@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { graphql, withApollo, compose } from "react-apollo";
 
 import GET_CHATROOMS from './queries/getChatrooms'
+import GET_USER_STATS from './queries/getUserStats'
 
 import Chatroom from './components/chatroom'
 import ChatroomsDisplay from './components/chatroomsDisplay'
@@ -12,7 +13,9 @@ class Messenger extends Component {
 
     state = {
         chatroomsList: null,
-        currentChatroom: null
+        currentChatroom: null,
+        followerNumber: null,
+        followingNumber: null
     };
 
     componentDidMount() {
@@ -34,6 +37,7 @@ class Messenger extends Component {
 
     }
 
+
     changeRoom = chatroomId => {
         this.setState({
             currentChatroom: this.state.chatroomsList[chatroomId]
@@ -46,7 +50,9 @@ class Messenger extends Component {
                 chatroomsList:{
                   ...prevState.chatroomsList,
                   [element._id]: ([element._id, (element.userId0 == Meteor.userId() ? element.userId1 : element.userId0)])
-                }
+                },
+                followingNumber: this.props.getUserStats.user.follows.length,
+                followerNumber: this.props.getUserStats.user.followed.length
               }));
         });
     } 
@@ -56,7 +62,7 @@ class Messenger extends Component {
             <Fragment>    
                 {this.state.chatroomsList ? 
                     <div className="chatCore">
-                        {this.state.currentChatroom ? <Chatroom chatRoom={this.state.currentChatroom}/> : (null)}
+                        {this.state.currentChatroom ? <Chatroom chatRoom={this.state.currentChatroom}/> : (<div><h1 className="followersNbr"><span className="followersCnt">{this.state.followerNumber}</span> <span className="followersTxt">followers</span></h1><h1 className="followingNbr"><span className="followersCnt">{this.state.followingNumber}</span> <span className="followersTxt">following</span></h1></div>)}
                         <div className="chatroomListContainer"> 
                             {   
                                 Object.keys(this.state.chatroomsList).map((key) => (
@@ -77,6 +83,10 @@ graphql(GET_CHATROOMS, {
     options: {
         pollInterval: 30000
     }
+}),
+
+graphql(GET_USER_STATS, {
+    name: "getUserStats",
 }),
 
 )(withApollo(Messenger));

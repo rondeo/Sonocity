@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { graphql, withApollo, compose } from "react-apollo";
 
-// import GET_CHATROOMS from './queries/getChatrooms'
+import GET_MESSAGES from '../queries/getMessages'
 
 // import "./style/player.css"
 
@@ -30,7 +30,7 @@ class Chatroom extends Component {
     render() {
         return (
             <Fragment>    
-                <div className="messengerCore"></div>
+                {/* <div className="messengerCore"></div> */}
             </Fragment>
         )
     }
@@ -38,8 +38,11 @@ class Chatroom extends Component {
 
 export default compose (
 
-// graphql(GET_CHATROOMS, {
-//     name: "getChatrooms",
-// }),
+graphql(GET_MESSAGES, {
+    name: "getMessages",
+    options: {
+        pollInterval: 500
+    }
+}),
 
 )(withApollo(Chatroom));

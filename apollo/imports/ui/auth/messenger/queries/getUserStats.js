@@ -1,13 +1,12 @@
 import gql from 'graphql-tag';
 
-const GET_AUTH_CONFIRM = gql`
-    query GET_AUTH_CONFIRM {
+const GET_USER_STATS = gql`
+    query GET_USER_STATS {
         user {
-            _id
             follows
             followed
         }
     }
 `;
 
-export default GET_AUTH_CONFIRM;
+export default GET_USER_STATS;
