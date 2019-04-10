@@ -1,14 +1,12 @@
 .stationPlayer {
     display:grid;
     grid-template-columns: 0.53fr 0.47fr;
-    margin-top:100px;
-    margin-bottom:40px;
     justify-items: center;
     /* margin-left:20%;
     margin-right:13%; */
     padding:10px;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding-top: 15px;
+    padding-bottom: 35px;
     width:75%;
     margin:auto;
     /* padding-top:25px;
@@ -151,7 +149,7 @@
     transform: rotate(90deg);
   }
   .cboxComment:checked ~ .messageComment {
-    width: 300px;
+    width: 360px;
     height: 30px;
     transition: 0.3s width, 0.3s height 0.2s;
   }
@@ -175,4 +173,7 @@
     transition: 0.4s width 0.2s, 0.1s height;
     font-size: 15px;
     padding-left: 10px;
+  }
+  .cboxComment:checked ~.messageComment {
+    padding-right:25px;
   }
