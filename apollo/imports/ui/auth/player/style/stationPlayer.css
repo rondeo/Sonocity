@@ -1,17 +1,23 @@
 .stationPlayer {
     display:grid;
     grid-template-columns: 0.53fr 0.47fr;
-    grid-template-rows: 230px;
-    margin-top:20px;
-    margin-bottom:20px;
+    margin-top:100px;
+    margin-bottom:40px;
     justify-items: center;
     /* margin-left:20%;
     margin-right:13%; */
-    width:90%;
+    padding:10px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width:75%;
     margin:auto;
     /* padding-top:25px;
     padding-bottom:35px; */
-    -webkit-animation: fadein 1s;    
+    -webkit-animation: fadein 1s;  
+    /* background:rgba(31, 29, 29, 0.774);   */
+    color: black;    
+    position: relative;
+    z-index:2;
 }
 
 .stationInfos {
@@ -20,6 +26,7 @@
     text-align:left;
     justify-self: center;
     align-self: center;
+    margin-top:35px;
     /* margin-left:15%; */
 }
 
@@ -50,7 +57,7 @@
 .stPlrCover {
     grid-column: 1;
     grid-row: 1;
-    align-self: center;
+    /* align-self: center; */
     justify-self: center;
 }
 
@@ -74,8 +81,8 @@
 
 
 .stPlrCover img {
-    height: 100px;
-    width: 100px;
+    height: 80px;
+    width: 80px;
     /* border:1px solid black; */
     border-radius: 5px; 
 }
@@ -104,7 +111,7 @@
   }
   .parentComment {
     width: 200px;
-    height: 50px;
+    height: 30px;
     position: relative;
   }
   .parentComment .addComment, .parentComment .cboxComment, .parentComment .messageComment {
@@ -145,7 +152,7 @@
   }
   .cboxComment:checked ~ .messageComment {
     width: 300px;
-    height: 50px;
+    height: 30px;
     transition: 0.3s width, 0.3s height 0.2s;
   }
   .cboxComment:checked:before, .cboxComment:checked:after {
@@ -166,6 +173,6 @@
     border: 2px solid #5479f2;
     border-radius:5px;
     transition: 0.4s width 0.2s, 0.1s height;
-    font-size: 30px;
+    font-size: 15px;
     padding-left: 10px;
   }

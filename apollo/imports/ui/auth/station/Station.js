@@ -21,7 +21,7 @@ class Station extends Component {
         timeStamp: null,
         upload: false,
         coverUrl: null,
-        status: false
+        status: false,
     };
 
     componentDidMount() {
@@ -107,7 +107,7 @@ class Station extends Component {
             broadcast: this.props.getUserStation.userStation.broadcast,
             timeStamp: this.props.getUserStation.userStation.timeStamp,
             coverUrl: this.props.getUserStation.userStation.coverUrl,
-            status: this.props.getUserStation.userStation.status
+            status: this.props.getUserStation.userStation.status,
         })
     }
 
@@ -139,8 +139,12 @@ class Station extends Component {
                         </div>
 
                         <div className="myStationRecentComment">
-                                <h3>Live comment </h3>
-                                {this.state.status ? <h3>Comment</h3> : <h3>Offline</h3>}
+                                <h3>Last feedback </h3>
+                                {this.state.status ? (this.state.comments ?
+                                <div className="stationCommentsCore">
+                            
+                                </div>    
+                                : <h3>None</h3>) : (<h3>Offline</h3>)}
                         </div>
 
                     </div>

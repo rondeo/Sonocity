@@ -22,15 +22,16 @@ import RemoveListeningContext from "./mutations/removeListeningContext"
 import GetStationListeningCount from "./queries/getStationListeningCount"
 import GetPopularStations from "./queries/getStationIdByCurrentListenersCount"
 
-
-
+import GetStationComment from "./queries/getStationComments"
+import InsertStationComment from "./mutations/insertStationComment"
 
 const resolvers = merge(
                             InsertLhEntry, InsertLikedAudio, 
                             InsertIntoLocationHistory,
                             RemoveLikedAudio, IsAudioLiked, GetLikedAudioByUserId, GetAudioListenCount, GetAudioLikedCount,
                             InsertFollowedStation, RemoveFollowedStation, IsStationFollowed, GetOnlineFollowedStationByUserId, GetFollowedStationCount,
-                            SetUserListeningContext, RemoveListeningContext, GetStationListeningCount, GetPopularStations               
+                            SetUserListeningContext, RemoveListeningContext, GetStationListeningCount, GetPopularStations,
+                            GetStationComment, InsertStationComment     
                         );
 
 export default resolvers;

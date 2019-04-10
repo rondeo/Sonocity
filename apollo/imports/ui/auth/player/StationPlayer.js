@@ -9,6 +9,7 @@ import REMOVE_FOLLOWED_STATION from './queries/removeFollowedStation'
 import FOLLOWED_COUNT from './queries/followedCount'
 import SET_USER_LISTENING_CONTEXT from './queries/setUserListeningContext'
 import GET_STATION_LISTENER_COUNT from './queries/getStationListernerCount'
+import SEND_COMMENT from './queries/sendComment'
 
 import AudioPlayer from './components/AudioPlayer'
 
@@ -205,6 +206,7 @@ class StationPlayer extends Component {
             checked: !this.state.checked,
             inputV: ""
         })
+        this.commentField.focus();
     }
 
     inputVChange = e => {
@@ -213,6 +215,30 @@ class StationPlayer extends Component {
         })
     }
 
+    sendComment = e => {
+        let reg = /.*\w.*/;
+        if (e.key === 'Enter') {
+            if(this.state.inputV.match(reg)) {
+                this.props.sendComment({
+                    variables: {
+                        stationId: this.state.stationId,
+                        content: this.state.inputV
+                    }
+                });
+                this.checkBox.checked = false;
+                this.setState({
+                    checked: !this.state.checked,
+                    inputV: ""
+                })
+            } else {
+                this.checkBox.checked = false;
+                this.setState({
+                    checked: !this.state.checked,
+                    inputV: ""
+                })
+            }
+        }
+    }
 
     render() {
         return (
@@ -245,9 +271,9 @@ class StationPlayer extends Component {
                                     {this.state.stationDescription ? (<h4>{this.state.stationDescription}</h4>): (null)}
                                     <div className="sendComment">
                                         <div className="parentComment">
-                                            <input className="cboxComment" type="checkbox" onChange={this.handleCheckboxChange}/>
+                                            <input className="cboxComment" type="checkbox" onChange={this.handleCheckboxChange} ref={input => (this.checkBox = input)}/>
                                             <label className="addComment" for="cbox">{this.state.checked ? "Hit enter to send" : "Send some feedback"}</label>
-                                            <input className="messageComment" type="text" maxLength={42} value={this.state.inputV} onChange={this.inputVChange} />
+                                            <input className="messageComment" type="text" maxLength={78} value={this.state.inputV} onChange={this.inputVChange} onKeyDown={this.sendComment} ref={input => (this.commentField = input)}/>
                                         </div>
                                     </div>
                                     {/* {this.state.listenCount ? (<h5>{this.state.listenCount.data.userListeningContext+" listeners"}</h5>) : (null)}          */}
@@ -306,6 +332,10 @@ graphql(REMOVE_FOLLOWED_STATION, {
 
 graphql(GET_STATION_LISTENER_COUNT, {
     name: "getStationListenerCount"
+}),
+
+graphql(SEND_COMMENT, {
+    name: "sendComment"
 })
 
 )(withApollo(StationPlayer));
