@@ -19,15 +19,15 @@ class Messenger extends Component {
     };
 
     componentDidMount() {
-        this.props.getChatrooms.loading ? (null) : this.processIntake()
+        this.props.getChatrooms.loading || this.props.getUserStats.user.loading ? (null) : this.processIntake()
     }
 
     componentDidUpdate(prevProps) {
-        if(!prevProps.getChatrooms.chatRooms) {
+        if(!prevProps.getChatrooms.chatRooms || !prevProps.getUserStats.user) {
             if(this.props.getChatrooms.chatRooms) {
                 this.processIntake();
             }
-        } else if(prevProps.getChatrooms.chatRooms)
+        } else if(prevProps.getChatrooms.chatRooms && prevProps.getUserStats.user)
             if(this.props.getChatrooms.chatRooms.length !== prevProps.getChatrooms.chatRooms.length) {
                 this.processIntake();
         }
@@ -45,6 +45,7 @@ class Messenger extends Component {
     }
 
     processIntake = () => {
+        // console.log(this.props.getUserStats)
         this.props.getChatrooms.chatRooms.forEach(element => {
             this.setState(prevState => ({
                 chatroomsList:{

@@ -2,13 +2,12 @@ import React, { Component, Fragment } from 'react'
 import { graphql, withApollo, compose } from "react-apollo";
 
 import GET_MESSAGES from '../queries/getMessages'
-
-// import "./style/player.css"
+import SEND_MESSAGE from '../queries/sendMessage'
 
 class Chatroom extends Component {
 
     state = {
-
+        messages: null
     };
 
     componentDidMount() {
@@ -30,7 +29,10 @@ class Chatroom extends Component {
     render() {
         return (
             <Fragment>    
-                {/* <div className="messengerCore"></div> */}
+                <div className="chatroomCore">
+                    <div className="chatroomWindow"></div>
+                    <div className="chatroomInput"></div>
+                </div>
             </Fragment>
         )
     }
@@ -43,6 +45,10 @@ graphql(GET_MESSAGES, {
     options: {
         pollInterval: 500
     }
+}),
+
+graphql(SEND_MESSAGE, {
+    name: "sendMessage",
 }),
 
 )(withApollo(Chatroom));
