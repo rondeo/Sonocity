@@ -8,6 +8,7 @@ import GET_USER_STATION from './queries/getStationDataByUserId'
 import Profile from './components/Profile'
 import CurrentAudio from './components/CurrentAudio'
 import UpNextMgmt from './components/UpNextMgmt'
+import StationComment from './components/StationComment'
 
 import "./style/station.css"
 
@@ -140,11 +141,11 @@ class Station extends Component {
 
                         <div className="myStationRecentComment">
                                 <h3>Last feedback </h3>
-                                {this.state.status ? (this.state.comments ?
+                                {this.state.status ?
                                 <div className="stationCommentsCore">
-                            
+                                    <StationComment />
                                 </div>    
-                                : <h3>None</h3>) : (<h3>Offline</h3>)}
+                                : (<h3>Offline</h3>)}
                         </div>
 
                     </div>
