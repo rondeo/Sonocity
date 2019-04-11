@@ -21,9 +21,9 @@ class CommentDisplay extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (!this.state.name || this.props.content !== prevProps.content) {
-            if(this.props.getUserData.userStationById) {
-                this.processIntake();
+        if(this.props.getUserData.userStationById) {
+            if (!this.state.name || this.props.content !== prevProps.content || this.props.getUserData.userStationById.name !== prevProps.getUserData.userStationById.name) {
+                    this.processIntake();
             }
         }
     }
