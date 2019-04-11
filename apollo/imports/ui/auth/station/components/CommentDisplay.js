@@ -13,37 +13,37 @@ class CommentDisplay extends Component {
         content: null        
     };
 
-    // componentDidMount() {
-    //     if(this.props.getUserData.userStationById) {
-    //         this.processIntake();
-    //     }
+    componentDidMount() {
+        if(this.props.getUserData.userStationById) {
+            this.processIntake();
+        }
         
-    // }
+    }
 
-    // componentDidUpdate(prevProps) {
-    //     if (!this.state.name) {
-    //         if(this.props.getUserData.userStationById) {
-    //             this.processIntake();
-    //         }
-    //     }
-    // }
+    componentDidUpdate(prevProps) {
+        if (!this.state.name || this.props.content !== prevProps.content) {
+            if(this.props.getUserData.userStationById) {
+                this.processIntake();
+            }
+        }
+    }
 
-    // componentWillUnmount() {
+    componentWillUnmount() {
 
-    // }
+    }
 
-    // processIntake = () => {
-    //     this.setState({
-    //         name: this.props.getUserData.userStationById.name,
-    //         content: this.props.content
-    //     })
-    // } 
+    processIntake = () => {
+        this.setState({
+            name: this.props.getUserData.userStationById.name,
+            content: this.props.content
+        })
+    } 
 
     render() {
         return (
             <Fragment>    
-                {this.props.getUserData.userStationById ? <h5 className="commentDisplayTitre">{this.props.getUserData.userStationById.name}</h5> : (null)}
-                {this.props.content ? <h4 className="commentDisplayContenu">{this.props.content}</h4> : (null)}
+                {this.state.name ? <h5 className="commentDisplayTitre">{this.state.name}</h5> : (null)}
+                {this.state.content ? <h4 className="commentDisplayContenu">{this.state.content}</h4> : (null)}
             </Fragment>
         )
     }

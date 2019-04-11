@@ -7,6 +7,34 @@ import GET_STATION_DATA_BY_ID from '../queries/getStationDataById';
 
 class StationDisplay extends Component {    
 
+    state = {
+        name: null,
+        coverUrl: null        
+    };
+
+    componentDidMount() {
+        this.props.getStationDataById.loading ? (null) : this.processIntake() 
+    }
+
+    componentDidUpdate(prevProps) {
+        if(this.props.getStationDataById.station) {
+            if (!this.state.name || this.props.getStationDataById.station.name !== prevProps.getStationDataById.station.name) {
+                this.processIntake();
+            }
+        }
+    }
+
+    componentWillUnmount() {
+
+    }
+
+    processIntake = () => {
+        this.setState({
+            name: this.props.getStationDataById.station.name,
+            coverUrl: this.props.getStationDataById.station.coverUrl
+        })
+    } 
+
     sendIndexUp = () => {
         this.props.onClick(this.props.index);
     }
@@ -16,12 +44,12 @@ class StationDisplay extends Component {
             <div>              
                 <Fragment>
                     <div className = "songDisplay" onClick={this.sendIndexUp}>
-                        {this.props.getStationDataById.loading ? (null) 
+                        {!this.state.name ? (null) 
                         : ( 
                             <Fragment>
-                                <img src={this.props.getStationDataById.station.coverUrl}/>
+                                <img src={this.state.coverUrl}/>
                                 <div className="spaceDS">
-                                <h6>{this.props.getStationDataById.station.name}</h6>
+                                <h6>{this.state.name}</h6>
                                 </div>
                             </Fragment>
                         )}

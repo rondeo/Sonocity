@@ -63,13 +63,13 @@ button {
     /* background: rgb(164, 4, 179); */
     padding: 10px;
     width:90px;
-    /* border:1px solid black; */
+    border:1px solid black;
 }
 
 .bigger {
     padding: 10px;
     width:100px;
-    /* border:1px solid black; */
+    border:1px solid black;
 }
     
 button:hover {
