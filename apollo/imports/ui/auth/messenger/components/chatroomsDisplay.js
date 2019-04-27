@@ -69,7 +69,7 @@ class ChatroomDisplay extends Component {
     render() {
         return (
             <Fragment>    
-                {this.state.name ? <div onClick={this.roomSelected} className="chatRoomBloc"><img className="imgDisplayChat" src={this.state.coverUrl}/><h2>{this.state.name}</h2> {this.state.count ? <h4 className="unreadCountM">{this.state.count} <img src="https://res.cloudinary.com/dkt7hv91e/image/upload/v1554776080/mail.png" /></h4> :(null)} {this.state.status ? <img className="onlineStatusC" src="https://res.cloudinary.com/dkt7hv91e/image/upload/v1554764836/1244954.png"/> : <img className="onlineStatusC" src="https://res.cloudinary.com/dkt7hv91e/image/upload/v1554764836/red-dot-clip-art_18453.png"/>}</div> :(null)}
+                {this.state.name ? <div onClick={this.roomSelected} className="chatRoomBloc"><img className="imgDisplayChat" src={this.state.coverUrl}/><h2>{this.state.name}</h2> {this.state.count ? <h4 className="unreadCountM">{this.state.count} <img className="messageImg" src="https://res.cloudinary.com/dkt7hv91e/image/upload/v1554776080/mail.png" /></h4> :(null)} {this.state.status ? <img className="onlineStatusC" src="https://res.cloudinary.com/dkt7hv91e/image/upload/v1554764836/1244954.png"/> : <img className="onlineStatusC" src="https://res.cloudinary.com/dkt7hv91e/image/upload/v1554764836/red-dot-clip-art_18453.png"/>}</div> :(null)}
             </Fragment>
         )
     }
@@ -80,7 +80,7 @@ export default compose (
 graphql(GET_CHATROOM_MESSAGE_COUNT, {
     name: "getCount",
     options: {
-        pollInterval: 10000
+        pollInterval: 2000
     }
 }),
 
@@ -91,7 +91,7 @@ graphql(GET_USER_NAME, {
 graphql(GET_USER_STATUS, {
     name: "getStatus",
     options: {
-        pollInterval: 10000
+        pollInterval: 2000
     }
 }),
 

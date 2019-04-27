@@ -25,7 +25,7 @@ class Messenger extends Component {
     componentDidUpdate(prevProps) {        
         if(this.props.getUserStats.user && this.props.getChatrooms.chatRooms && !this.state.chatroomsList) {
             this.processIntake();
-            console.log(1)
+            // console.log(1)
         } else {
             if(this.props.getChatrooms.chatRooms.length !== prevProps.getChatrooms.chatRooms.length) {
                 this.chatroomsListUpdate();
@@ -61,7 +61,7 @@ class Messenger extends Component {
 
     changeRoom = chatroomId => {
         this.setState({
-            currentChatroom: this.state.chatroomsList[chatroomId]
+            currentChatroom: chatroomId
         })
     }
 
@@ -74,10 +74,9 @@ class Messenger extends Component {
     render() {
         return (
             <Fragment>    
-                {/* {this.props.getUserStats.user.follows ? console.log(this.props.getUserStats.user.follows.length, this.state.followingNumber) : (null)} */}
                 {this.state.chatroomsList ? 
                     <div className="chatCore">
-                        {this.state.currentChatroom ? <Chatroom chatRoom={this.state.currentChatroom}/> : (<div><h1 className="followersNbr"><span className="followersCnt">{this.state.followerNumber}</span> <span className="followersTxt">followers</span></h1><h1 className="followingNbr"><span className="followersCnt">{this.state.followingNumber}</span> <span className="followersTxt">following</span></h1></div>)}
+                        {this.state.currentChatroom ? <Chatroom chatroomId={this.state.currentChatroom}/> : (<div><h1 className="followersNbr"><span className="followersCnt">{this.state.followerNumber}</span> <span className="followersTxt">followers</span></h1><h1 className="followingNbr"><span className="followersCnt">{this.state.followingNumber}</span> <span className="followersTxt">following</span></h1></div>)}
                         <div className="chatroomListContainer"> 
                             {   
                                 Object.keys(this.state.chatroomsList).map((key) => (
@@ -96,14 +95,14 @@ export default compose (
 graphql(GET_CHATROOMS, {
     name: "getChatrooms",
     options: {
-        pollInterval: 10000
+        pollInterval: 2000
     }
 }),
 
 graphql(GET_USER_STATS, {
     name: "getUserStats",
     options: {
-        pollInterval: 10000
+        pollInterval: 2000
     }
 }),
 

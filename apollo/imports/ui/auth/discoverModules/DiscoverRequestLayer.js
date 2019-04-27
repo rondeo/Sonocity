@@ -45,7 +45,7 @@ export default compose (
     graphql(GET_STATION_IN_PROXIMITY, {
         name: "getStationInProximity",
         options: {
-            pollInterval: 10000
+            pollInterval: 2000
         }
     }),
 

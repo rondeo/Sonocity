@@ -3,13 +3,18 @@ import React, { Component, Fragment } from 'react'
 import RegisterForm from "./authMgmt/components/RegisterForm";
 import LoginForm from "./authMgmt/components/LoginForm"
 
+import "./style/unauth.css"
+
 export default class AuthPage extends Component {
     render() {
         return (
             <div>              
                 <Fragment>
-                    <div>
-                        <h1>Become a force in the musical world</h1>
+                <div className="header">
+                    <div className="logo"></div>
+                </div>
+                    <div className="unauthContent">
+                        {/* <h1>Become a force in the musical world</h1>
                         <p>One of the major features developed for the platform will allow users who have 
                             defined a certain scope to listen to them "connect" to the "feed" of other users 
                             and listen live audio content they are consuming or to produce. The current content delivery model 
@@ -24,10 +29,13 @@ export default class AuthPage extends Component {
                             could be accessible only by users with whom it has a two-way relationship. Two users with a bidirectional 
                             follow-up relationship will be able to communicate via instantaneous chat.
                         </p>
-                        <h3>Share / Discover / Connect</h3>
-                    </div>
+                        <h3>Share / Discover / Connect</h3> */}
+
+                    <h2>flash-authentification</h2>                    
                     <RegisterForm client={this.props.client} />
+                    {/* <h1>or</h1> */}
                     <LoginForm client={this.props.client} />
+                    </div>
                 </Fragment>
             </div>
         )

@@ -26,9 +26,11 @@ class RegisterForm extends Component {
     render(){
         return(
         <form className="form" onSubmit={this.registerUser}> 
+            <label>Email:</label>
             <input type="email" ref={input => (this.email = input)} />
+            <label>Password:</label>
             <input type="password" ref={input => (this.password = input)} />
-            <button type="submit">Register User</button>
+            <button className="unauthB" type="submit">Register</button>
         </form>
         );    
     }

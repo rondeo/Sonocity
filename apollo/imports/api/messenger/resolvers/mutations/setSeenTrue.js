@@ -12,7 +12,8 @@ export default {
                         {
                           seen: true
                         }
-                     }
+                     },
+                     {multi: true}
                 );
                 return true;
             }

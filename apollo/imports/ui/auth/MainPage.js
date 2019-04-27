@@ -254,14 +254,14 @@ export default compose (
     graphql(GET_ALL_FOLLOWED_STATION, {
         name: "getAllFollowedStation",
         options: {
-            pollInterval: 10000
+            pollInterval: 2000
         }
     }),
 
     graphql(GET_POPULAR_STATIONS, {
         name: "getPopularStations",
         options: {
-            pollInterval: 30000
+            pollInterval: 2000
         }
     }),
 

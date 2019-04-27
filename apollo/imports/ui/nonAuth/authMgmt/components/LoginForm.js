@@ -18,9 +18,11 @@ export default class LoginForm extends Component {
     render(){
         return(
         <form className="form" onSubmit={this.login}> 
+            <label>Email:</label>
             <input type="email" ref={input => (this.email = input)} />
+            <label>Password:</label>
             <input type="password" ref={input => (this.password = input)} />
-            <button type="submit">Login User</button>
+            <button className="unauthB" type="submit">Login</button>
         </form>
         );    
     }

@@ -85,11 +85,18 @@
     border-radius:5px;
 }
 
+/* .unreadCountM .messageImg{
+    margin-top:3px;
+} */
+
 .unreadCountM {
     position:absolute;
-    right:20px;
-    bottom: 18px;
+    right:37px;
+    bottom: 1px;
+    color:rgb(226, 11, 11);
 }
+
+
 
 .followersNbr {
     margin-left:8%;
@@ -116,9 +123,25 @@
 }
 
 .chatroomWindow {
+    padding:50px;
+}
 
+.chatroomInputContainer {
+    position:absolute;
+    width:100%;
+    padding:50px;
+    padding-bottom:80px;
+    bottom:0px;
 }
 
 .chatroomInput {
-    
+    width:66.1%;
+    height:30px;
+    font-size:16px;
+    color:black;
+    border-radius:3px;
+    border:2px solid rgb(56, 56, 161);
+    padding:3px;
+    padding-left:10px;
+    padding-right:10px;
 }
