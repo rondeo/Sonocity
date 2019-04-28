@@ -5,7 +5,8 @@
     flex-wrap: wrap;
     /* justify-content: center; */
     margin-top:25px;
-    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.7); 
+    /* border:3px solid rgb(73, 73, 182); */
     padding:10px;
     border-top-left-radius:5px;
     border-top-right-radius:5px;

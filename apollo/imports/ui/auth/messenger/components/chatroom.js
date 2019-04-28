@@ -10,7 +10,7 @@ class Chatroom extends Component {
     state = {
         messages: null,
         chatroomId: null,
-        messageToSend: null
+        messageToSend: ""
     };
 
     componentDidMount() {
@@ -76,6 +76,9 @@ class Chatroom extends Component {
                     }
                 })
             }
+            this.setState({
+                messageToSend: ""
+            })
         }
     }
 
@@ -91,10 +94,12 @@ class Chatroom extends Component {
         return (
             <Fragment>    
                 <div className="chatroomCore">
-                    <div className="chatroomWindow"></div>
+                    <div className="chatroomWindow">
+                        {this.state.messages ? !this.state.messages.length > 0 ? <div className="invitationToChat">Send a message. Start the conversation.</div> : (null) : (null)}
+                    </div>
                         {console.log(this.state.messages)}
                     <div className="chatroomInputContainer">
-                        <input className="chatroomInput" onChange={this.handleMessage}  onKeyDown={this.sendAMessage} placeholder="Enter to send..."></input>   
+                        <input className="chatroomInput" onChange={this.handleMessage} value={this.state.messageToSend} onKeyDown={this.sendAMessage} placeholder="Enter to send..."></input>   
                         {/* <button className="btnMessage"
                             onClick={()=> {
                                 this.sendAMessage();

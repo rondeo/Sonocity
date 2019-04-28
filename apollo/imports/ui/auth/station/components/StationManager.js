@@ -34,7 +34,7 @@ class StationManager extends Component {
             })
         } else {
             this.setState({
-                songDuration: 15.0
+                songDuration: 5.0
             })
         }
     }

@@ -14,7 +14,7 @@
     width: 185px;
     /* border:1px solid black; */
     border-radius: 5px; 
-    box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.7); 
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.7); 
 }
 
 .songDisplay img:hover {
@@ -26,6 +26,7 @@
 }
 
 .spaceD, .spaceDS {
+    /* display:none; */
     height:40px;
     width:100%;
     position: absolute;
