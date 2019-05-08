@@ -5,12 +5,17 @@ import GET_MESSAGES from '../queries/getMessages'
 import SEND_MESSAGE from '../queries/sendMessage'
 import SET_SEEN from '../queries/setSeen'
 
+import MessageDisplay from './messageDisplay'
+
 class Chatroom extends Component {
 
     state = {
         messages: null,
         chatroomId: null,
-        messageToSend: ""
+        messageToSend: "",
+        get: 20,
+        scrolled: false
+
     };
 
     componentDidMount() {
@@ -42,6 +47,7 @@ class Chatroom extends Component {
             messages: this.props.getMessages.messages
         })
         this.setToSeen();
+        this.changePosition();
     } 
 
     updateMessages = async () => {
@@ -49,6 +55,7 @@ class Chatroom extends Component {
             messages: this.props.getMessages.messages
         })
         this.setToSeen();
+        this.changePosition();
     }
 
     changeRoom = async () => {
@@ -62,6 +69,20 @@ class Chatroom extends Component {
         this.setState({
             messageToSend: e.target.value
         })
+    }
+
+    changePosition = () => {
+        if(!this.state.scrolled){
+            this.chatW.scrollTop = this.chatW.scrollHeight;
+        }
+    }
+
+    handleScroll = e => {
+        console.log(this.chatW.scrollTop)
+        if(this.chatW.scrollTop < 50) {
+            // console.log("scroll")
+            this.setState({get:this.state.get+=20})
+        }
     }
 
     sendAMessage = e => {
@@ -94,10 +115,17 @@ class Chatroom extends Component {
         return (
             <Fragment>    
                 <div className="chatroomCore">
-                    <div className="chatroomWindow">
-                        {this.state.messages ? !this.state.messages.length > 0 ? <div className="invitationToChat">Send a message. Start the conversation.</div> : (null) : (null)}
+                    <div className="chatroomWindow" ref={div => (this.chatW = div)} onScroll={this.handleScroll}>
+                        {this.state.messages ? !this.state.messages.length > 0 ? <div className="invitationToChat">Send a message. Start the conversation.</div> : 
+                        
+                            this.state.messages.map((message, i) => (
+                                i > this.state.messages.length - this.state.get ?
+                                <MessageDisplay key={i} message={message} /> 
+                                : (null)
+                            ))
+                        
+                        : (null)}
                     </div>
-                        {console.log(this.state.messages)}
                     <div className="chatroomInputContainer">
                         <input className="chatroomInput" onChange={this.handleMessage} value={this.state.messageToSend} onKeyDown={this.sendAMessage} placeholder="Enter to send..."></input>   
                         {/* <button className="btnMessage"
