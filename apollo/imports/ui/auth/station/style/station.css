@@ -1,6 +1,5 @@
 .myStationCore {
-    display:grid;
-    grid-template-columns: 0.40fr 0.20fr 0.20fr 0.20fr;
+   
     /* grid-template-rows: 450px; */
     padding:10px;
     padding-top:50px;
@@ -34,13 +33,7 @@
     color:white;
 } */
 
-.myStationProfile {
-    margin-left:16%;
-    grid-column: 1;
-    grid-row: 1;
-    justify-self: start;
-    align-self: center;
-}
+
 
 .stationCover img{
     height: 150px;
@@ -49,12 +42,7 @@
     border-radius: 5px; 
 }
 
-.myStationCurrentlyPlaying {
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: start;
-    align-self: center;
-}
+
 
 .myStationCurrentlyPlaying img{
     height: 150px;
@@ -63,25 +51,14 @@
     border-radius: 5px; 
 }
 
-.myStationUpNext {
-    grid-column: 3;
-    grid-row: 1;
-    justify-self: start;
-    align-self: center;
-}
 
-.myStationRecentComment {
-    grid-column: 4;
-    grid-row: 1;
-    justify-self: start;
-    align-self: center;
-}
 
 .myProfileCore {
     display:grid;
     grid-template-columns: 0.50fr 0.50fr;
     grid-template-rows: auto;
     justify-items: start;
+    max-width:500px;
     /* margin-left:5%;
     margin-right:5%; */
 }
@@ -105,6 +82,7 @@
 .myName h1 {
     display: inline;
     margin-right:15px;
+    font-size:130%;
 }
 
 .myName button, .changeName input{
@@ -194,4 +172,78 @@
 {
     border-radius:10px;
 	background-color: #5479f2;
+}
+
+@media only screen and (min-width: 1455px)  {
+    .myStationCore {
+        display:grid;
+        grid-template-columns: 0.40fr 0.20fr 0.20fr 0.20fr;
+    }
+
+    .myStationProfile {
+        margin-left:16%;
+        grid-column: 1;
+        grid-row: 1;
+        justify-self: start;
+        align-self: center;
+    }
+
+    .myStationCurrentlyPlaying {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: start;
+        align-self: center;
+    }
+
+    .myStationUpNext {
+        grid-column: 3;
+        grid-row: 1;
+        justify-self: start;
+        align-self: center;
+    }
+    
+    .myStationRecentComment {
+        grid-column: 4;
+        grid-row: 1;
+        justify-self: start;
+        align-self: center;
+    }
+}
+
+
+@media only screen and (max-width: 1454px)  {
+
+    .myStationCore {
+        display:flex;
+        flex-direction: column;
+        /* align-items: flex-start;
+        justify-items: flex-start; */
+    }
+
+    .myStationProfile {
+        
+        /* justify-self: center;
+        align-self: center; */
+    }
+
+    .myStationCurrentlyPlaying {
+        /* height:auto; */
+
+        /* justify-self: center;
+        align-self: center; */
+    }
+
+    .myStationUpNext {
+        /* height:auto; */
+
+        /* justify-self: center;
+        align-self: center; */
+    }
+
+    .myStationRecentComment {
+        
+        /* justify-self: center;
+        align-self: center; */
+    }
+
 }

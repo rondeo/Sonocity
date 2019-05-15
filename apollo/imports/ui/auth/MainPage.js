@@ -212,7 +212,7 @@ class MainPage extends Component {
 
                         {this.state.latMinRange && this.state.latMaxRange && this.state.longMinRange && this.state.longMaxRange ? (<DiscoverRequestLayer context={"station"} name={"Stations near you"} latMinRange={this.state.latMinRange} latMaxRange={this.state.latMaxRange} longMinRange={this.state.longMinRange} longMaxRange={this.state.longMaxRange} elemSelected={this.stationSelected} />): (<h3 className="discoverInfo">Turn on your localisation if you want to discover stations near you</h3>)}
 
-                        {this.props.getPopularStations.loading ? (null) : ( (this.props.getPopularStations.popStations && this.props.getPopularStations.popStations.length >  0) ? (<Discover context={"station"} name={"Popular stations now"} idList={this.props.getPopularStations.popStations} elemSelected={this.stationSelected} />) : (<h3 className="discoverInfo">There is no other online stations</h3>))}
+                        {this.props.getPopularStations.loading ? (null) : ( (this.props.getPopularStations.popStations && this.props.getPopularStations.popStations.length >  0) ? (<Discover context={"station"} name={"Popular stations now"} idList={this.props.getPopularStations.popStations} elemSelected={this.stationSelected} />) : (<h3 className="discoverInfo">Try to listen to someone else station for a change</h3>))}
 
                         {/* {this.props.getAllOnlineStation.loading ? (<p>loading</p>) : ( (this.props.getAllOnlineStation.onlineStations && this.props.getAllOnlineStation.onlineStations.length >  0) ? (<Discover context={"station"} name={"Online stations"} idList={this.props.getAllOnlineStation.onlineStations} elemSelected={this.stationSelected} />) : (<h3>There is no other online stations</h3>))} */}
 
@@ -220,7 +220,7 @@ class MainPage extends Component {
                         
                         {this.props.getAllUserAudioId.loading ? (null) : ( this.props.getAllUserAudioId.userAudioId.length > 0 ? (<Discover context={"playlist"} name={"Your uploaded tracks"} idList={this.props.getAllUserAudioId.userAudioId} elemSelected={this.songSelected} />) : (<h3 className="discoverInfo">You haven't uploaded any tracks</h3>))}
 
-                        {this.props.getAllAudioId.loading ? (null) : ( this.props.getAllAudioId.allAudioId.length > 0 ? (<Discover name={"All tracks"} context={"playlist"} idList={this.props.getAllAudioId.allAudioId} elemSelected={this.songSelected} />) : (<h3 className="discoverInfo">There is no recently uploaded tracks</h3>)) }
+                        {this.props.getAllAudioId.loading ? (null) : ( this.props.getAllAudioId.allAudioId.length > 0 ? (<Discover name={"Recent uploads"} context={"playlist"} idList={this.props.getAllAudioId.allAudioId} elemSelected={this.songSelected} />) : (<h3 className="discoverInfo">There is no recently uploaded tracks</h3>)) }
                     
                         </div>
                     }
@@ -236,7 +236,10 @@ class MainPage extends Component {
 export default compose (
     
     graphql(GET_ALL_AUDIO_ID, {
-        name: "getAllAudioId"
+        name: "getAllAudioId",
+        options: {
+            pollInterval: 2000
+        }
     }),
 
     graphql(GET_USER_LIKED_AUDIO, {

@@ -268,7 +268,7 @@ class StationPlayer extends Component {
                                             {(this.props.isStationFollowed.isStationFollowed && this.state.followed == null) ? "UnFollow" : (this.state.followed ? "UnFollow" : "Follow") }
                                         </button>)
                                     }
-                                    {this.state.stationDescription ? (<h4>{this.state.stationDescription}</h4>): (null)}
+                                    {this.state.stationDescription ? (<h4 className="descStat">{this.state.stationDescription}</h4>): (null)}
                                     <div className="sendComment">
                                         <div className="parentComment">
                                             <input className="cboxComment" type="checkbox" onChange={this.handleCheckboxChange} ref={input => (this.checkBox = input)}/>
