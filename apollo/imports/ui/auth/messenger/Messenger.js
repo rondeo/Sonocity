@@ -4,8 +4,8 @@ import { graphql, withApollo, compose } from "react-apollo";
 import GET_CHATROOMS from './queries/getChatrooms'
 import GET_USER_STATS from '../../queries/getAuthConfirm'
 
-import Chatroom from './components/Chatroom'
-import ChatroomsDisplay from './components/ChatroomsDisplay'
+import Chatroom from './components/chatroom'
+import ChatroomsDisplay from './components/chatroomsDisplay'
 
 import "./style/messenger.css"
 
