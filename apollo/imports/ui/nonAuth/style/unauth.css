@@ -28,20 +28,32 @@
     align-items: center;
 }
 
+@media only screen and (max-width: 800px)  {
+    .unauthContent {
+        padding:5%;
+    }
+}
+
 @media only screen and (max-width: 600px)  {
 
-    /* .unauthCore {
+    .unauthCore {
         display:block;
 
     }
 
     .unauthContent {
-        padding:5%;
+        padding:3%;
     }
 
     .unauthCore form {
         display:block;
+        padding-left:14%;
 
-    } */
+    }
+
+    .unauthCore form button{
+        max-width:235px;
+
+    }
 
 }
