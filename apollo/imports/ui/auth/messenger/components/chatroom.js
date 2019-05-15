@@ -5,7 +5,7 @@ import GET_MESSAGES from '../queries/getMessages'
 import SEND_MESSAGE from '../queries/sendMessage'
 import SET_SEEN from '../queries/setSeen'
 
-import MessageDisplay from './messageDisplay'
+import MessageDisplay from './MessageDisplay'
 
 class Chatroom extends Component {
 

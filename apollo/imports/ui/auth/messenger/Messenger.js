@@ -4,8 +4,8 @@ import { graphql, withApollo, compose } from "react-apollo";
 import GET_CHATROOMS from './queries/getChatrooms'
 import GET_USER_STATS from '../../queries/getAuthConfirm'
 
-import Chatroom from './components/chatroom'
-import ChatroomsDisplay from './components/chatroomsDisplay'
+import Chatroom from './components/Chatroom'
+import ChatroomsDisplay from './components/ChatroomsDisplay'
 
 import "./style/messenger.css"
 
@@ -14,8 +14,8 @@ class Messenger extends Component {
     state = {
         chatroomsList: null,
         currentChatroom: null,
-        followerNumber: null,
-        followingNumber: null
+        followerNumber: 0,
+        followingNumber: 0
     };
 
     componentDidMount() {
@@ -27,12 +27,20 @@ class Messenger extends Component {
             this.processIntake();
             // console.log(1)
         } else {
-            if(this.props.getChatrooms.chatRooms.length !== prevProps.getChatrooms.chatRooms.length) {
-                this.chatroomsListUpdate();
-            } if (this.props.getUserStats.user.follows.length !== prevProps.getUserStats.user.follows.length) {
-                this.followingUpdate();
-            } if (this.props.getUserStats.user.followed.length !== prevProps.getUserStats.user.followed.length) {
-                this.followedUpdate();
+            if(this.props.getChatrooms.chatRooms) {
+                if(this.props.getChatrooms.chatRooms.length !== prevProps.getChatrooms.chatRooms.length) {
+                    this.chatroomsListUpdate();
+                }
+            } 
+            if(this.props.getUserStats.user.follows) {
+                if (this.props.getUserStats.user.follows.length !== prevProps.getUserStats.user.follows.length) {
+                    this.followingUpdate();
+                } 
+            }
+            if(this.props.getUserStats.user.followed) {
+                if (this.props.getUserStats.user.followed.length !== prevProps.getUserStats.user.followed.length) {
+                    this.followedUpdate();
+                }
             }
         }
     }
@@ -48,15 +56,17 @@ class Messenger extends Component {
     }
 
     followingUpdate = () => {
+        this.props.getUserStats.user.follows ?
         this.setState({
             followingNumber: this.props.getUserStats.user.follows.length
-        })
+        }) : (null)
     }
 
     followedUpdate = () => {
+        this.props.getUserStats.user.followed ?
         this.setState({
             followerNumber: this.props.getUserStats.user.followed.length
-        })
+        }) : (null)
     }
 
     changeRoom = chatroomId => {
