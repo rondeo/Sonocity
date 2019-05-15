@@ -27,17 +27,12 @@ body {
     /* margin-bottom:30px; */
 }
 
-.nav {
-    position:absolute;
-    top:30px;
-    right: 110px;
-}
-
 .logo {
     background-image: url("https://res.cloudinary.com/dkt7hv91e/image/upload/v1554141817/logo.png");
     width:400px;
     margin-left: 100px;
     height:100px;
+    background-repeat: no-repeat;
 }
 
 button {
@@ -83,10 +78,6 @@ button:hover {
 }
 
 .searchContainer {
-    position: absolute;
-    right: 435px;
-    top:32px;
-    width: calc(100% - 975px);
     height: 30px;
     background: white;
     border: 1px solid gray;
@@ -113,5 +104,68 @@ button:hover {
     height: 100%;
     background: transparent;
 }
-      
+
+@media only screen and (min-width: 1185px)  {
+    .searchContainer {
+        position: absolute;
+        right: 435px;
+        top:32px;
+        width: calc(100% - 975px);
+    }
+
+    .nav {
+        position:absolute;
+        top:30px;
+        right: 110px;
+    }
+}
+
+@media only screen and (max-width: 1184px)  {
+
+    header {
+        display:grid;
+        grid-template-columns: 0.80fr;
+        grid-template-rows: auto auto auto;
+        align-items: center;
+        align-content: center;
+    }
+
+    .logo {
+        display:block;
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .nav {
+        display:flex;
+        justify-content: center;
+        width:90%;
+        margin:auto;
+        grid-column: 1;
+        grid-row: 3;
+        margin-top:30px;
+    }
+
+    .searchContainer {
+        display:block;
+        width:90%;
+        margin:auto;
+        grid-column: 1;
+        grid-row: 2;
+    }
     
+
+}
+    
+@media only screen and (max-width: 600px)  {
+
+    .logo {
+        background-image: url("https://res.cloudinary.com/dkt7hv91e/image/upload/v1554141817/logo.png");
+        background-repeat: no-repeat;
+        width:90%;
+        /* margin-left: 100px; */
+        height:100px;
+        margin:auto;
+    }
+
+}

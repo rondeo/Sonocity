@@ -5,13 +5,25 @@ import LoginForm from "./authMgmt/components/LoginForm"
 
 import "./style/unauth.css"
 
+
+
 export default class AuthPage extends Component {
+   
+    state = {
+        error: null
+    }
+    
+    showErrors = error => {
+        this.setState({
+            error: error
+        })
+    }
+
     render() {
         return (
             <div>              
                 <Fragment>
                 <div className="header">
-                    <div className="logo"></div>
                 </div>
                     <div className="unauthContent">
                         {/* <h1>Become a force in the musical world</h1>
@@ -30,12 +42,18 @@ export default class AuthPage extends Component {
                             follow-up relationship will be able to communicate via instantaneous chat.
                         </p>
                         <h3>Share / Discover / Connect</h3> */}
+                    <div className="logo"></div>
 
-                    <h2>flash-authentification</h2>                    
-                    <RegisterForm client={this.props.client} />
-                    {/* <h1>or</h1> */}
-                    <LoginForm client={this.props.client} />
+                    <h2>flash-authentification</h2>   
+                        <div className="unauthCore">
+                
+                            <RegisterForm showE={this.showErrors} client={this.props.client} />
+                        {/* <h2>or</h2> */}
+                            <LoginForm showE={this.showErrors} client={this.props.client} />
+                        </div>
+                        {this.state.error ? <h2>Authentification error</h2> : (null) }
                     </div>
+
                 </Fragment>
             </div>
         )

@@ -1,10 +1,12 @@
 .unauthContent {
-    width:70%;
+    width:100%;
     max-width:600px;
     margin:auto;
-    margin-top:10%;
-    padding:100px;
-    border:3px solid black;
+    margin-top:5%;
+    /* margin-left:3%;
+    margin-right:3%; */
+    padding:10%;
+    /* border:3px solid black; */
     border-radius: 2px;
     /* text-align:center; */
 }
@@ -12,9 +14,34 @@
 .unauthContent .unauthB {
     color:white;
     background:black;
-    display: inline;
+    /* display: inline; */
 }
 
 .unauthContent h2 {
-    /* text-align:center; */
+    text-align:center;
+}
+
+.unauthCore {
+    display:flex;
+    /* flex-wrap: wrap; */
+    align-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 600px)  {
+
+    /* .unauthCore {
+        display:block;
+
+    }
+
+    .unauthContent {
+        padding:5%;
+    }
+
+    .unauthCore form {
+        display:block;
+
+    } */
+
 }
