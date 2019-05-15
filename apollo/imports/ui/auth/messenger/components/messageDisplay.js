@@ -45,7 +45,4 @@ class MessageDisplay extends Component {
     }
 }
 
-export default compose (
-    
-
-)(withApollo(MessageDisplay));
+export default withApollo(MessageDisplay);

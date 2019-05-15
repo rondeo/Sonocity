@@ -220,7 +220,7 @@ class MainPage extends Component {
                         
                         {this.props.getAllUserAudioId.loading ? (null) : ( this.props.getAllUserAudioId.userAudioId.length > 0 ? (<Discover context={"playlist"} name={"Your uploaded tracks"} idList={this.props.getAllUserAudioId.userAudioId} elemSelected={this.songSelected} />) : (null))}
 
-                        {this.props.getAllAudioId.loading ? (null) : (<Discover name={"All tracks"} context={"playlist"} idList={this.props.getAllAudioId.allAudioId} elemSelected={this.songSelected} />)}
+                        {this.props.getAllAudioId.loading ? (null) : ( this.props.getAllAudioId.allAudioId.length > 0 ? (<Discover name={"All tracks"} context={"playlist"} idList={this.props.getAllAudioId.allAudioId} elemSelected={this.songSelected} />) : (null)) }
                     
                         </div>
                     }
