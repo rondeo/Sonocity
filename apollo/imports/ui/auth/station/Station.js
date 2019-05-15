@@ -7,7 +7,7 @@ import GET_USER_STATION from './queries/getStationDataByUserId'
 
 import Profile from './components/Profile'
 import CurrentAudio from './components/CurrentAudio'
-import UpNextMgmt from './components/UpNextMgmt'
+import UpNextMgmt from './components/upNextMgmt'
 import StationComment from './components/StationComment'
 
 import "./style/station.css"
