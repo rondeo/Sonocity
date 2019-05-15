@@ -126,7 +126,7 @@ class Chatroom extends Component {
                         
                         : (null)}
                     </div>
-                    <div className="chatroomInputContainer">
+                    {/* <div className="chatroomInputContainer"> */}
                         <input className="chatroomInput" onChange={this.handleMessage} value={this.state.messageToSend} onKeyDown={this.sendAMessage} placeholder="Enter to send..."></input>   
                         {/* <button className="btnMessage"
                             onClick={()=> {
@@ -135,8 +135,8 @@ class Chatroom extends Component {
                         >
                             Send
                         </button>                 */}
-                    </div>
                 </div>
+                {/* </div> */}
             </Fragment>
         )
     }

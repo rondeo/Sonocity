@@ -18,7 +18,7 @@ class UploadModule extends Component {
     };
 
     addToList = song => {
-        song[1].length > 100000000 ? console.log(">10mb") : this.setState({songList: [...this.state.songList, song]});
+        song[1].length > 100000000 ? console.log(">100mb") : this.setState({songList: [...this.state.songList, song]});
     }
 
     changeImage = dataUrl => {

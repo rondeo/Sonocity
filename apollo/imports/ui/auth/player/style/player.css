@@ -49,6 +49,9 @@
         align-content: center;
         align-items: center;
         justify-items: center;
+        /* margin-top:30px;
+        margin-bottom:30px; */
+
     }
     .playListName {
         text-align:center;
