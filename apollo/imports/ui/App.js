@@ -12,9 +12,7 @@ const App = ({ client, authData }) => {
     if (authData.loading) return null;
     return (
         <div>
-            {console.log(authData)}
-            { authData.user._id ? (<MainPage client={client} id={ authData.user._id } refetch={authData.refetch} />) : (<AuthPage client={client} />)  }
-            {/* <Header client={client} id={ data.user ? data.user._id : null } /> */}
+            { authData.user ? authData.user._id ? (<MainPage client={client} id={ authData.user._id } refetch={authData.refetch} />) : (<AuthPage client={client} />) : (<AuthPage client={client} />) }
         </div>
     )
 }
