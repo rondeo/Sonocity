@@ -26,10 +26,15 @@ export default {
                 }    
 
                 async function runMutation() {
-                    try{
+                  
                         const userStation = await getUserStation();
                         const timeStamp = Date.now();
-                        const upNextO = userStation.upNext[0]
+                        let upNextO = null;
+                        try {
+                            upNextO = userStation.upNext[0]
+                        } catch (error) {
+                            
+                        }
                         if(upNextO) {
                             Station.update(
                                 { userId: userId },
@@ -57,9 +62,7 @@ export default {
                             );
                             return null;
                         }
-                    } catch (e) {
-                        console.log(e)
-                    }
+                
                 }
                 
                 return runMutation();
