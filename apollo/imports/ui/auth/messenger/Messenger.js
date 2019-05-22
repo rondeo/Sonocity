@@ -26,18 +26,24 @@ class Messenger extends Component {
         if(this.props.getUserStats.user && this.props.getChatrooms.chatRooms && !this.state.chatroomsList) {
             this.processIntake();
         } else {
-            if(this.props.getChatrooms.chatRooms && prevProps.getChatrooms.chatRooms) {
-                if(this.props.getChatrooms.chatRooms.length !== prevProps.getChatrooms.chatRooms.length) {
+            if(this.props.getChatrooms.chatRooms) {
+                if(!prevProps.getChatrooms.chatRooms) {
+                    this.chatroomsListUpdate();
+                } else if(this.props.getChatrooms.chatRooms.length !== prevProps.getChatrooms.chatRooms.length) {
                     this.chatroomsListUpdate();
                 }
             } 
-            if(this.props.getUserStats.user.follows && prevProps.getUserStats.user.follows) {
-                if (this.props.getUserStats.user.follows.length !== prevProps.getUserStats.user.follows.length) {
+            if(this.props.getUserStats.user.follows) {
+                if(!prevProps.getUserStats.user.follows) {
+                    this.followingUpdate();
+                } else if (this.props.getUserStats.user.follows.length !== prevProps.getUserStats.user.follows.length) {
                     this.followingUpdate();
                 } 
             }
-            if(this.props.getUserStats.user.followed && prevProps.getUserStats.user.followed) {
-                if (this.props.getUserStats.user.followed.length !== prevProps.getUserStats.user.followed.length) {
+            if(this.props.getUserStats.user.followed) {
+                if(!prevProps.getUserStats.user.followed) {
+                    this.followedUpdate();
+                } else if (this.props.getUserStats.user.followed.length !== prevProps.getUserStats.user.followed.length) {
                     this.followedUpdate();
                 }
             }

@@ -204,8 +204,8 @@ class AudioPlayer extends Component {
         onEnd={this.onEnd}
         ref={(ref) => (this.player = ref)}
         />
-         
-        <Seeker play={this.state.play} seek={this.getSeek} info={this.getDuration} setSeek={this.setSeek}/>
+    
+        <Seeker play={this.state.play} seek={this.getSeek} info={this.getDuration} />
           
         <div className="audioPlayerButtons">
 

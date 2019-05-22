@@ -13,10 +13,15 @@ export default class Seeker extends Component {
 
     componentDidMount() {
         this.timer = setInterval(() => { 
-            let value = this.props.seek();
-            this.setState({
-                value: value
-            })
+            try {
+                let value = this.props.seek();
+                this.setState({
+                    value: value
+                }) 
+            } catch (error) {
+                
+            }
+            
         }, 100);
     }
 
@@ -31,10 +36,15 @@ export default class Seeker extends Component {
     }
 
     setUp = () => {
-        this.setState({
-            value: 0,
-            max: this.props.info()
-        })
+        try {
+            this.setState({
+                value: 0,
+                max: this.props.info()
+            })
+        } catch (error) {
+            
+        }
+        
     }
 
     tick = () => {
@@ -42,7 +52,7 @@ export default class Seeker extends Component {
     }
 
     onDrag = e => {
-        this.props.setSeek(this.seeker.value);
+        // this.props.setSeek(this.seeker.value);
     }
 
 

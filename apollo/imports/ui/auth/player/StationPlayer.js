@@ -268,7 +268,7 @@ class StationPlayer extends Component {
                                     <div className="sendComment">
                                         <div className="parentComment">
                                             <input className="cboxComment" type="checkbox" onChange={this.handleCheckboxChange} ref={input => (this.checkBox = input)}/>
-                                            <label className="addComment" for="cbox">{this.state.checked ? "Hit enter to send" : "Send some feedback"}</label>
+                                            <label className="addComment">{this.state.checked ? "Hit enter to send" : "Send some feedback"}</label>
                                             <input className="messageComment" type="text" maxLength={78} value={this.state.inputV} onChange={this.inputVChange} onKeyDown={this.sendComment} ref={input => (this.commentField = input)}/>
                                         </div>
                                     </div>
