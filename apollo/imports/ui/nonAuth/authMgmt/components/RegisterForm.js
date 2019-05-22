@@ -15,7 +15,6 @@ class RegisterForm extends Component {
             if (!error) {
                 this.props.client.resetStore();
                 const stationId = this.props.createStation({});
-                console.log(stationId);
             }
             else {this.props.showE(error);}
         }

@@ -30,10 +30,8 @@ class Station extends Component {
             if(!this.state.name) {
                 this.processIntake();
             } else {
-                console.log("name exist")
             }
         } else {
-            console.log("content is null")
         }
     }
 
@@ -59,7 +57,7 @@ class Station extends Component {
                 }
             }
         } else {
-            console.log("content is null")
+
         }
     }
 

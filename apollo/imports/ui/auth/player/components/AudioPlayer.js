@@ -34,27 +34,21 @@ class AudioPlayer extends Component {
         if (!this.props.getAudioLinkById.loading) { 
             if(this.state.audioId == null) {
                 this.processIntake();
-                console.log("1")
             }  else if(this.props.context == "station" && this.props.stationName !== prevProps.stationName) { // 2 stations with same song -> different sync
-                console.log("2")
 
                 if(this.props.synchro > 5) {
                     this.setSeek(this.props.synchro-4);
-                    console.log("2.1")
                 }
             } else if (this.props.audioId !== this.state.audioId){
                 this.props.getAudioLinkById.refetch();
                 this.props.isAudioLiked.refetch();
                 this.processIntake(); 
-                console.log("3")
 
             } else if(this.props.context == "station" && this.props.timeStamp !== prevProps.timeStamp) {
                 this.addToUpnext();
-                console.log("4")
 
                 if(this.props.getSync() > 5) {
                     this.setSeek(this.props.getSync() - 4);
-                    console.log("4.1")
                 }
                 
             }
@@ -71,7 +65,6 @@ class AudioPlayer extends Component {
 
     componentWillUnmount() {
         // delete this.player;
-        // console.log("delete")
     }
 
     addToUpnext = () => {

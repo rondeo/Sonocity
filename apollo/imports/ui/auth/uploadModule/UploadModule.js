@@ -89,7 +89,6 @@ class UploadModule extends Component {
                     if (xhr1.readyState == 4 && xhr1.status == 200) {
                         let response1 = JSON.parse(xhr1.responseText);
                         let url2 = response1.secure_url; 
-                        console.log(url2)  
                         
                         let disque = song[0].common.disk;
                         (typeof disque === 'string' || disque instanceof String) ? (null) : disque=" ";        

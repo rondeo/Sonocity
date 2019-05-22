@@ -26,7 +26,6 @@ class Player extends Component {
     componentDidUpdate(prevProps) {
 
         if(this.props.content !== null) {
-            // console.log(this.props.content[0][0].length)
             if(prevProps.content == null || this.state.ready == false) {
                 this.processIntake();
             } else {
@@ -41,12 +40,10 @@ class Player extends Component {
                 } 
             }
         } else {
-            console.log("content is null")
         }
     }
 
     componentWillUnmount() {
-        console.log("unmount")
     }
 
     changePosition = () => {

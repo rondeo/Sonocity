@@ -78,9 +78,7 @@ class Chatroom extends Component {
     }
 
     handleScroll = e => {
-        console.log(this.chatW.scrollTop)
         if(this.chatW.scrollTop < 50) {
-            // console.log("scroll")
             this.setState({get:this.state.get+=20})
         }
     }

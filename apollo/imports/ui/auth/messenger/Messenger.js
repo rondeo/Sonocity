@@ -25,19 +25,18 @@ class Messenger extends Component {
     componentDidUpdate(prevProps) {        
         if(this.props.getUserStats.user && this.props.getChatrooms.chatRooms && !this.state.chatroomsList) {
             this.processIntake();
-            // console.log(1)
         } else {
-            if(this.props.getChatrooms.chatRooms) {
+            if(this.props.getChatrooms.chatRooms && prevProps.getChatrooms.chatRooms) {
                 if(this.props.getChatrooms.chatRooms.length !== prevProps.getChatrooms.chatRooms.length) {
                     this.chatroomsListUpdate();
                 }
             } 
-            if(this.props.getUserStats.user.follows) {
+            if(this.props.getUserStats.user.follows && prevProps.getUserStats.user.follows) {
                 if (this.props.getUserStats.user.follows.length !== prevProps.getUserStats.user.follows.length) {
                     this.followingUpdate();
                 } 
             }
-            if(this.props.getUserStats.user.followed) {
+            if(this.props.getUserStats.user.followed && prevProps.getUserStats.user.followed) {
                 if (this.props.getUserStats.user.followed.length !== prevProps.getUserStats.user.followed.length) {
                     this.followedUpdate();
                 }

@@ -182,21 +182,17 @@ class StationPlayer extends Component {
             if(!this.props.isStationFollowed.isStationFollowed) {
                 this.addFollowed();
                 this.setState({followed: true})
-                console.log("added1rst")
             } else {
                 this.removeFollowed();
                 this.setState({followed: false})
-                console.log("removed1rst")
             }
         } else {
             if(this.state.followed){
                 this.removeFollowed();
                 this.setState({followed: false})
-                console.log("removed")
             } else {
                 this.addFollowed();
                 this.setState({followed: true})
-                console.log("added")
             }
         }
     }
