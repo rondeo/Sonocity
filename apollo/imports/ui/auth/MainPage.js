@@ -133,9 +133,9 @@ class MainPage extends Component {
 
     async logout() {
         // await this.clear();
-        Meteor.logout();
-        this.props.client.resetStore();
         this.props.client.cache.reset()
+        this.props.client.resetStore();
+        Meteor.logout();
     }
 
     handleSearch = (e) => {
