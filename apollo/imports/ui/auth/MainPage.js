@@ -3,8 +3,6 @@ import { graphql, withApollo, compose } from "react-apollo";
 
 import GET_ALL_AUDIO_ID from './queries/getAllAudioId'
 import GET_USER_LIKED_AUDIO from './queries/getUserLikedAudio'
-// import CLEAR_UP_NEXT from './queries/clearUpNext'
-// import GET_ALL_ONLINE_STATION from './queries/getAllOnlineStationId'
 import GET_ALL_FOLLOWED_STATION from './queries/getAllFollowedStationId'
 import GET_ALL_USER_AUDIO_ID from './queries/getAllUserAudioId'
 import GET_POPULAR_STATIONS from './queries/getPopularStations'
@@ -20,7 +18,6 @@ import Search from "./discoverModules/Search"
 import Messenger from "./messenger/Messenger"
 
 import "./style/mainPage.css"
-import { Icon } from '@material-ui/core';
 
 class MainPage extends Component {
     state = {
@@ -37,13 +34,6 @@ class MainPage extends Component {
     };
 
     componentDidMount() {
-        // this.setState({
-        //     clear: this.clear()
-        // })
-        // this.timer = setInterval(() => { 
-        //     this.props.getAllOnlineStation.refetch();
-        //     this.props.getAllFollowedStation.refetch();
-        // }, 20000);
         let options = {
             enableHighAccuracy: true,
             maximumAge: 0
@@ -51,9 +41,7 @@ class MainPage extends Component {
         navigator.geolocation.getCurrentPosition(this.handleLocation, this.error, options);
     }
 
-    error = (err) => {
-        
-    }
+    error = () => {}
 
     handleLocation = l => {
         this.props.insertIntoLocationHistory({
@@ -102,10 +90,6 @@ class MainPage extends Component {
 	    return(deg * conv_factor);
     }
 
-    componentWillUnmount() {
-        // clearInterval(this.timer);
-    }
-
     songSelected = (listId, i, context, name) => {
         this.setState({
             playerContent: [listId, i, context, name],
@@ -127,15 +111,10 @@ class MainPage extends Component {
         })
     }
 
-    async clear() {
-        return await this.props.clearUpNext();
-    }
-
     async logout() {
-        // await this.clear();
+        Meteor.logout();
         this.props.client.cache.reset()
         this.props.client.resetStore();
-        Meteor.logout();
     }
 
     handleSearch = (e) => {
@@ -148,9 +127,6 @@ class MainPage extends Component {
         return (
             <div>   
                 <Fragment>
-
-
-
                 <div className="header">
                     <div className="logo"></div>
                     <div className="searchContainer">
@@ -191,12 +167,8 @@ class MainPage extends Component {
                 </div>
 
                 <StationManager />
-                {/* now this would mean that someone who's deconnected from the server will keep his station state*/}
-                {/* <StationManager /> */}
-
                 
                 {!this.state.stationPlayer ? (<Player content={this.state.playerContent} />) : (<StationPlayer ressourceId={this.state.playerContent[0][0][this.state.playerContent[1]]._id} _id={this.state.playerContent[0][0][this.state.playerContent[1]]._id} stationId={this.state.playerContent[0][0][this.state.playerContent[1]]._id} content={this.state.playerContent} offline={this.stationOffline} />)}
-
 
                 <div className="core">
 
@@ -213,8 +185,6 @@ class MainPage extends Component {
                         {this.state.latMinRange && this.state.latMaxRange && this.state.longMinRange && this.state.longMaxRange ? (<DiscoverRequestLayer context={"station"} name={"Stations near you"} latMinRange={this.state.latMinRange} latMaxRange={this.state.latMaxRange} longMinRange={this.state.longMinRange} longMaxRange={this.state.longMaxRange} elemSelected={this.stationSelected} />): (<h3 className="discoverInfo">Turn on your localisation if you want to discover stations near you</h3>)}
 
                         {this.props.getPopularStations.loading ? (null) : ( (this.props.getPopularStations.popStations && this.props.getPopularStations.popStations.length >  0) ? (<Discover context={"station"} name={"Popular stations now"} idList={this.props.getPopularStations.popStations} elemSelected={this.stationSelected} />) : (<h3 className="discoverInfo">Try to listen to someone else station for a change</h3>))}
-
-                        {/* {this.props.getAllOnlineStation.loading ? (<p>loading</p>) : ( (this.props.getAllOnlineStation.onlineStations && this.props.getAllOnlineStation.onlineStations.length >  0) ? (<Discover context={"station"} name={"Online stations"} idList={this.props.getAllOnlineStation.onlineStations} elemSelected={this.stationSelected} />) : (<h3>There is no other online stations</h3>))} */}
 
                         {this.props.getUserLikedAudio.loading ? (null) : ( this.props.getUserLikedAudio.userLikedAudio.length > 0 ? (<Discover context={"playlist"} name={"Your liked tracks"} idList={this.props.getUserLikedAudio.userLikedAudio} elemSelected={this.songSelected} />) : (<h3 className="discoverInfo">You haven't liked any tracks</h3>))}
                         
@@ -246,10 +216,6 @@ export default compose (
         name: "getUserLikedAudio"
     }),
 
-    // graphql(GET_ALL_ONLINE_STATION, {
-    //     name: "getAllOnlineStation"
-    // }),
-
     graphql(GET_ALL_USER_AUDIO_ID, {
         name: "getAllUserAudioId"
     }),
@@ -271,9 +237,5 @@ export default compose (
     graphql(INSERT_INTO_LOCATION_HISTORY, {
         name: "insertIntoLocationHistory"
     }),
-
-    // graphql(CLEAR_UP_NEXT, {
-    //     name: "clearUpNext",
-    // }),
 
 )(withApollo(MainPage));

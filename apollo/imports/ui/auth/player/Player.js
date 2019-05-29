@@ -20,23 +20,23 @@ class Player extends Component {
     };
 
     componentDidMount() {
-        this.props.content ? this.processIntake() : (null)
+        this.props.content ? this.setUp() : (null)
     }
 
     componentDidUpdate(prevProps) {
 
         if(this.props.content !== null) {
             if(prevProps.content == null || this.state.ready == false) {
-                this.processIntake();
+                this.setUp();
             } else {
                 if(this.props.content[3] !== prevProps.content[3]) {
-                    this.processIntake();
+                    this.setUp();
                 }
                 else if (JSON.stringify(this.props.content[0][0]) != JSON.stringify(prevProps.content[0][0]) && this.props.content[3] == prevProps.content[3] && this.props.content[0][0].length != 0){
-                    this.processIntake();
+                    this.setUp();
                 }
                 else if (this.props.content[1] !== prevProps.content[1] && this.props.content[3] == prevProps.content[3]) {
-                    this.processIntake();
+                    this.setUp();
                 } 
             }
         } else {
@@ -62,7 +62,7 @@ class Player extends Component {
         this.setState({playList: this.props.content[0]})
     }
 
-    processIntake = () => {
+    setUp = () => {
 
         if(this.props.content[2] == "playlist") {
         

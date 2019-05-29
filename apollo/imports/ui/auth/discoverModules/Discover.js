@@ -15,7 +15,7 @@ export default class Discover extends Component {
     };
 
     componentDidMount() {
-        this.processIntake();  
+        this.setUp();  
     }
 
     componentDidUpdate(prevProps) {
@@ -24,12 +24,12 @@ export default class Discover extends Component {
                 this.props.name ? this.setState({name:this.props.name}) : (null)
             }
             if(this.props.idList.length !== prevProps.idList.length || this.props.idList[0][0] !== prevProps.idList[0][0]) {
-                this.processIntake();  
+                this.setUp();  
             }
         }
     }
 
-    processIntake = () => {
+    setUp = () => {
         this.setState({
             idList: [this.props.idList],
             name: this.props.name,
@@ -66,8 +66,6 @@ export default class Discover extends Component {
                                 <SongDisplay key={i} index={i} onClick={this.elemSelected} audioId={this.state.name == "Your liked tracks" ? id.audioId : id._id } />
                                 : <StationDisplay key={i} index={i} onClick={this.elemSelected} _id={id._id} />) : (null)
                         )) : (null) }
-                        {/* {this.state.idList[0] ? (this.state.get > 10 ? <img className="plusMinusImg" onClick={this.less} src={"https://res.cloudinary.com/dkt7hv91e/image/upload/v1553911746/minus_PNG27.png"}/> : (null)) : (null) }
-                        {this.state.idList[0] ? (this.state.get < this.props.idList.length  ? <img className="plusMinusImg" onClick={this.more} src={"https://res.cloudinary.com/dkt7hv91e/image/upload/v1553911746/plus_PNG53.png"}/> : (null)) : (null) } */}
                     </div>        
                     <div className="discoverTitles">
                         {this.state.name ? (<h4 className = "dName">{this.state.name}</h4>) : (null)}

@@ -14,35 +14,27 @@ class StationComments extends Component {
     };
 
     componentDidMount() {
-        this.props.getStationComments.loading ? (null) : this.processIntake();
+        this.props.getStationComments.loading ? (null) : this.setUp();
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.getStationComments.stationComment) {
             if(this.state.comments == null) {
-                this.processIntake();
+                this.setUp();
             } else {
                 if (this.props.getStationComments.stationComment.length !== this.state.comments.length) {
-                    this.processIntake();
+                    this.setUp();
                 } 
                 else if(this.state.comments.length === 50) {
                     if(this.props.getStationComments.stationComment[49].timeStamp !== this.state.comments[49].timeStamp) {
-                        this.processIntake();
+                        this.setUp();
                     }
                 }
             }
         }
     }
 
-    commentsUpdate = () => {
-        
-    }
-
-    componentWillUnmount() {
-
-    }
-
-    processIntake = () => {
+    setUp = () => {
         this.setState({
             comments: this.props.getStationComments.stationComment
         })

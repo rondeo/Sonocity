@@ -1,10 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { graphql, withApollo, compose } from "react-apollo";
 
-// import GET_CHATROOMS from './queries/getChatrooms'
 import GET_USER_DATA from '../../messenger/queries/getUserData'
-
-// import "./style/player.css"
 
 class CommentDisplay extends Component {
 
@@ -15,24 +12,19 @@ class CommentDisplay extends Component {
 
     componentDidMount() {
         if(this.props.getUserData.userStationById) {
-            this.processIntake();
+            this.setUp();
         }
-        
     }
 
     componentDidUpdate(prevProps) {
         if(this.props.getUserData.userStationById) {
             if (!this.state.name || this.props.content !== prevProps.content || this.props.getUserData.userStationById.name !== prevProps.getUserData.userStationById.name) {
-                    this.processIntake();
+                this.setUp();
             }
         }
     }
 
-    componentWillUnmount() {
-
-    }
-
-    processIntake = () => {
+    setUp = () => {
         this.setState({
             name: this.props.getUserData.userStationById.name,
             content: this.props.content

@@ -5,9 +5,6 @@ import GET_USER_STATUS from '../queries/getUserStatus'
 import GET_CHATROOM_MESSAGE_COUNT from '../queries/getChatroomCount'
 import GET_USER_NAME from '../queries/getUserData'
 
-
-// import "./style/player.css"
-
 class ChatroomDisplay extends Component {
 
     state = {
@@ -19,17 +16,17 @@ class ChatroomDisplay extends Component {
 
     componentDidMount() {
         if(this.props.getName.userStationById) {
-            this.processIntake();
+            this.setUp();
         }
     }
 
     componentDidUpdate(prevProps) {
         if (!prevProps.getName.userStationById) {
             if(this.props.getName.userStationById) {
-                this.processIntake();
+                this.setUp();
             }
         } else if (this.state.name == null) { 
-            this.processIntake() 
+            this.setUp() 
         } else if(this.props.getCount.ureadCount !== this.state.count) {
             this.updateCount();
         } else if(this.props.getStatus.userOnline !== this.state.status) {
@@ -41,7 +38,7 @@ class ChatroomDisplay extends Component {
 
     }
 
-    processIntake = () => {
+    setUp = () => {
         this.setState({
             count: this.props.getCount.ureadCount,
             status: this.props.getStatus.userOnline,

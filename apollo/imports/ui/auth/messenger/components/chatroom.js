@@ -5,7 +5,7 @@ import GET_MESSAGES from '../queries/getMessages'
 import SEND_MESSAGE from '../queries/sendMessage'
 import SET_SEEN from '../queries/setSeen'
 
-import MessageDisplay from './messageDisplay'
+import MessageDisplay from './MessageDisplay'
 
 class Chatroom extends Component {
 
@@ -19,7 +19,7 @@ class Chatroom extends Component {
     };
 
     componentDidMount() {
-       !this.props.getMessages.loading ? this.processIntake() : (null);
+       !this.props.getMessages.loading ? this.setUp() : (null);
     }
 
     componentDidUpdate(prevProps) {
@@ -41,7 +41,7 @@ class Chatroom extends Component {
 
     }
 
-    processIntake = async () => {
+    setUp = async () => {
         await this.setState({
             chatroomId: this.props.chatroomId,
             messages: this.props.getMessages.messages

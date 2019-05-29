@@ -141,11 +141,11 @@ class Profile extends Component {
                             <h1>@{this.state.name}</h1>    
                             {!this.state.edit ?
                             (<button 
-                            onClick={()=> {
-                                this.setState({edit: true})
-                            }}
-                            >
-                            Edit Name
+                                onClick={()=> {
+                                    this.setState({edit: true})
+                                }}
+                                >
+                                Edit Name
                             </button>) : (<div className="changeName"><input type="text" size={14} defaultValue={this.state.name} maxLength={15}  ref={input => (this.name = input)} /> <button onClick={() => this.updateNameUi()}> Change </button></div>) }
                         </div>
                             {this.state.taken ? (<h2>the name is already taken</h2>) : (null)} 

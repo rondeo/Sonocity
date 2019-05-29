@@ -2,8 +2,6 @@ import React, { Component, Fragment } from 'react'
 import { graphql, withApollo, compose } from "react-apollo";
 
 import UPDATE_STATION_CURRENT_AUDIO from "../queries/updateStationCurrentAudio"
-// import CLEAR_UP_NEXT from '../../queries/clearUpNext'
-
 
 class StationManager extends Component {
 
@@ -14,16 +12,10 @@ class StationManager extends Component {
 
     componentDidMount() {
         this.setUp()
-        // window.addEventListener('beforeunload',  this.handleLeavePage.bind(this));
     }
 
     componentWillUnmount() {
         clearInterval(this.timer);
-        // window.removeEventListener('beforeunload',  this.handleLeavePage.bind(this));
-    }
-
-    handleLeavePage() {
-        // this.props.clearUpNext();
     }
 
     async updateCurrent() {

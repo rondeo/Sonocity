@@ -38,7 +38,7 @@ class StationPlayer extends Component {
     };
 
     componentDidMount() {
-        this.props.getStationDataById.loading ?  (null) : this.processIntake()
+        this.props.getStationDataById.loading ?  (null) : this.setUp()
 
     }
 
@@ -50,11 +50,11 @@ class StationPlayer extends Component {
             }
         } else if(this.props.getStationDataById.station) {
             if(this.props._id !== this.state.stationId) {
-                this.processIntake();
+                this.setUp();
             } else if(this.props.getStationDataById.station.currentAudio !== this.state.currentAudioId) {
                 this.audioUpdate();
             } else if(this.props.getStationDataById.station.timeStamp !== this.state.timeStamp) {
-                this.processIntake();          
+                this.setUp();          
             } if(!this.props.getStationDataById.loading){ 
                 if (this.props.getStationDataById.station.status != this.state.status) {
                     this.statusUpdate();
@@ -69,7 +69,7 @@ class StationPlayer extends Component {
         }
     }
 
-    async processIntake() {
+    async setUp() {
         this.setState({
             stationId: this.props._id,
             context: "station",
@@ -84,12 +84,6 @@ class StationPlayer extends Component {
             status:true,
             timeStamp: this.props.getStationDataById.station.timeStamp
         })
-
-        // const listenCount = this.props.setUserListeningContext({
-        //     variables: {
-        //         ressourceId: this.props._id
-        //     }
-        // });
 
         this.setState({
             listenCount: await this.setUserListenCont()
@@ -272,8 +266,6 @@ class StationPlayer extends Component {
                                             <input className="messageComment" type="text" maxLength={78} value={this.state.inputV} onChange={this.inputVChange} onKeyDown={this.sendComment} ref={input => (this.commentField = input)}/>
                                         </div>
                                     </div>
-                                    {/* {this.state.listenCount ? (<h5>{this.state.listenCount.data.userListeningContext+" listeners"}</h5>) : (null)}          */}
-
                                 </div>
                             </div>
                         </div>

@@ -9,18 +9,14 @@ class MessageDisplay extends Component {
     };
 
     componentDidMount() {
-        this.props.message ? this.processIntake() : (null)
+        this.props.message ? this.setUp() : (null)
     }
 
     componentDidUpdate(prevProps) {
-       this.props.message.content !== prevProps.message.content ? this.processIntake() : (null)
+       this.props.message.content !== prevProps.message.content ? this.setUp() : (null)
     }
 
-    componentWillUnmount() {
-
-    }
-
-    processIntake = () => {
+    setUp = () => {
         this.setState({
             message: this.props.message.content,
         })
@@ -35,10 +31,7 @@ class MessageDisplay extends Component {
         return (
             <div>              
                 <Fragment>
-                    {this.state.message ? 
-                        this.state.mine ? <p className="messageFromMe">{this.state.message}</p> : <p className="messageFromHe">{this.state.message}</p>
-                        : (null)
-                    }
+                    {this.state.message ? this.state.mine ? <p className="messageFromMe">{this.state.message}</p> : <p className="messageFromHe">{this.state.message}</p> : (null)}
                 </Fragment>
             </div>
         )

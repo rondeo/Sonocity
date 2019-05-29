@@ -26,14 +26,14 @@ class AudioPlayer extends Component {
 
     componentDidMount() {
         this.props.getAudioLinkById.loading ? (null) : 
-        this.processIntake();
+        this.setUp();
     }
 
     componentDidUpdate(prevProps) {
     // Typical usage (don't forget to compare props):
         if (!this.props.getAudioLinkById.loading) { 
             if(this.state.audioId == null) {
-                this.processIntake();
+                this.setUp();
             }  else if(this.props.context == "station" && this.props.stationName !== prevProps.stationName) { // 2 stations with same song -> different sync
 
                 if(this.props.synchro > 5) {
@@ -42,7 +42,7 @@ class AudioPlayer extends Component {
             } else if (this.props.audioId !== this.state.audioId){
                 this.props.getAudioLinkById.refetch();
                 this.props.isAudioLiked.refetch();
-                this.processIntake(); 
+                this.setUp(); 
 
             } else if(this.props.context == "station" && this.props.timeStamp !== prevProps.timeStamp) {
                 this.addToUpnext();
@@ -55,7 +55,7 @@ class AudioPlayer extends Component {
         }
     }
 
-    processIntake = () => {
+    setUp = () => {
         this.setState({liked:null, play:true, context: this.props.context, audioId:this.props.audioId});
         this.addToUpnext();
         if(this.props.context == "station" && this.props.synchro > 5) {

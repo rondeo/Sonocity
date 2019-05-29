@@ -19,8 +19,6 @@ class UpNextDisplay extends Component {
                             <Fragment>
                                 <img src={this.props.getAudioDataById.audioData.coverUrl}/>
                                 <h3>{this.props.getAudioDataById.audioData.title}</h3>
-                                {/* <h6>{this.props.getAudioDataById.audioData.artist}</h6>  */}
-                                {/* <img src={this.props.getAudioDataById.audioData.coverUrl}/> */}
                             </Fragment>
                         )}
                     </div>  

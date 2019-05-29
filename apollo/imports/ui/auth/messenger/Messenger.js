@@ -4,8 +4,8 @@ import { graphql, withApollo, compose } from "react-apollo";
 import GET_CHATROOMS from './queries/getChatrooms'
 import GET_USER_STATS from '../../queries/getAuthConfirm'
 
-import Chatroom from './components/chatroom'
-import ChatroomsDisplay from './components/chatroomsDisplay'
+import Chatroom from './components/Chatroom'
+import ChatroomsDisplay from './components/ChatroomsDisplay'
 
 import "./style/messenger.css"
 
@@ -19,12 +19,12 @@ class Messenger extends Component {
     };
 
     componentDidMount() {
-        this.props.getChatrooms.loading || this.props.getUserStats.user.loading ? (null) : this.processIntake()
+        this.props.getChatrooms.loading || this.props.getUserStats.user.loading ? (null) : this.setUp()
     }
 
     componentDidUpdate(prevProps) {        
         if(this.props.getUserStats.user && this.props.getChatrooms.chatRooms && !this.state.chatroomsList) {
-            this.processIntake();
+            this.setUp();
         } else {
             if(this.props.getChatrooms.chatRooms) {
                 if(!prevProps.getChatrooms.chatRooms) {
@@ -80,7 +80,7 @@ class Messenger extends Component {
         })
     }
 
-    processIntake = () => {
+    setUp = () => {
         this.chatroomsListUpdate();
         this.followedUpdate();
         this.followingUpdate();
