@@ -8,11 +8,12 @@ import resolvers from './resolvers'
 import Station from '../../api/station/collections/station'
 import ContextListeners from '../../api/log/collections/contextListeners'
 
-// when server modif
+// when server modiff
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  // uploads: false,
   context: async ({ req }) => ({
     user: await getUser(req.headers.authorization)
   })

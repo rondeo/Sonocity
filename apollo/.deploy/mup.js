@@ -4,7 +4,7 @@ module.exports = {
       // TODO: set host address, username, and authentication method
       host: '138.197.142.241',
       username: 'gonnzo',
-      pem: '/Users/geoff/Desktop/work/ivMusic/apollo/.deploy-primary/privatekey.ppk'
+      pem: '/Users/geoff/Desktop/ivMusic/ivMusic/apollo/.deploy/privatekey.ppk'
       // password: 'server-password'
       // or neither for authenticate from ssh-agent
     }
@@ -13,7 +13,7 @@ module.exports = {
  meteor: {
     // TODO: change app name and path
     name: 'Sonocity',
-    path: '/Users/geoff/Desktop/work/ivMusic/apollo',
+    path: '/Users/geoff/Desktop/ivMusic/ivMusic/apollo',
 
     servers: {
       one: {},
@@ -33,7 +33,7 @@ module.exports = {
 
     docker: {
       // change to 'abernix/meteord:base' if your app is using Meteor 1.4 - 1.5
-      image: 'abernix/meteord:node-8.15.1-base',
+      image: 'abernix/meteord:node-8-base',
     },
 
     // Show progress bar while uploading bundle to server

@@ -13,13 +13,13 @@ class StationDisplay extends Component {
     };
 
     componentDidMount() {
-        this.props.getStationDataById.loading ? (null) : this.processIntake() 
+        this.props.getStationDataById.loading ? (null) : this.setUp() 
     }
 
     componentDidUpdate(prevProps) {
         if(this.props.getStationDataById.station) {
             if (!this.state.name || this.props.getStationDataById.station.name !== prevProps.getStationDataById.station.name) {
-                this.processIntake();
+                this.setUp();
             }
         }
     }
@@ -28,7 +28,7 @@ class StationDisplay extends Component {
 
     }
 
-    processIntake = () => {
+    setUp = () => {
         this.setState({
             name: this.props.getStationDataById.station.name,
             coverUrl: this.props.getStationDataById.station.coverUrl

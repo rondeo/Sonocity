@@ -14,13 +14,13 @@ class SongDisplay extends Component {
     };
 
     componentDidMount() {
-        this.props.getAudioDataById.loading ? (null) : this.processIntake() 
+        this.props.getAudioDataById.loading ? (null) : this.setUp() 
     }
 
     componentDidUpdate(prevProps) {
         if(this.props.getAudioDataById.audioData) {
             if (!this.state.title || this.props.getAudioDataById.audioData.title !== prevProps.getAudioDataById.audioData.title) {
-                this.processIntake();
+                this.setUp();
             }
         }
     }
@@ -29,7 +29,7 @@ class SongDisplay extends Component {
 
     }
 
-    processIntake = () => {
+    setUp = () => {
         this.setState({
             title: this.props.getAudioDataById.audioData.title,
             artist: this.props.getAudioDataById.audioData.artist,

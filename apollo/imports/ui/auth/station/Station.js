@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react'
 import { graphql, withApollo, compose } from "react-apollo";
 
-import UploadModule from '../uploadModule/UploadModule'
-
 import GET_USER_STATION from './queries/getStationDataByUserId'
 
 import Profile from './components/Profile'
 import CurrentAudio from './components/CurrentAudio'
 import UpNextMgmt from './components/UpNextMgmt'
 import StationComment from './components/StationComment'
+import UploadModule from '../uploadModule/UploadModule'
+
 
 import "./style/station.css"
 
