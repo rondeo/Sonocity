@@ -1,0 +1,14 @@
+# _id
+# email
+
+type User {
+    _id: String
+    email: String
+    follows: [String]
+    followed: [String]
+}
+
+type Query {
+    user: User
+    userOnline(userId: String!): Boolean
+}

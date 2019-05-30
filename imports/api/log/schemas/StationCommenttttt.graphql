@@ -1,0 +1,15 @@
+type LiveComment {
+    _id: String!
+    stationId: String!
+    userId: String!
+    content: String!
+    timeStamp: Float!
+}
+
+extend type Mutation {
+    sendComment(stationId: String!, content: String!): Boolean
+}
+
+extend type Query {
+    stationComment: [LiveComment]
+}

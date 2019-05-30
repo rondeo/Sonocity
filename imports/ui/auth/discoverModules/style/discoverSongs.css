@@ -1,0 +1,63 @@
+.snippets{
+    width:100%;
+    margin:auto;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    margin-top:25px;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.7); 
+    /* border:3px solid rgb(73, 73, 182); */
+    padding:10px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+    justify-items: center;
+    -webkit-animation: fadein 1.0s;
+}
+
+.dName {
+    /* text-align:center; */
+    margin-bottom:20px;
+}
+
+.plusMinusImg {
+    /* padding-top:5px; */
+    position:absolute;
+    right:12px;
+    bottom:5px;
+}
+
+.plusMinusImg img {
+    height: 44px;
+    width: 44px;
+}
+
+.plusMinusImg:hover {
+    cursor: pointer;
+}
+
+.plusImg {
+    margin-left:8px;
+}
+
+.discoverTitles {
+    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+    padding-left:21px;
+    padding-top:2px;
+    padding-bottom:2px;
+    width:100%;
+    margin:auto;
+    text-align:left;
+    margin-bottom:20px;
+    background: rgb(29, 28, 28);
+    color:white;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+    position:relative;
+}
+
+.discoverInfo {
+    border:3px solid rgba(209, 22, 22, 0.774);
+    padding:9px;
+    margin-left:10px;
+    text-align:center;
+}

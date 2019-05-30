@@ -1,0 +1,35 @@
+type Station {
+    _id: String!
+    userId: String!
+    name: String
+    description: String
+    lastKnownLon: Float
+    lastKnownLat: Float
+    broadcast: Boolean
+    status: Boolean
+    currentAudio: String
+    upNext: [String]
+    confidentialitySetting: Int
+    timeStamp: Float
+    coverUrl: String
+}
+
+extend type Mutation {
+    createStation: Station
+    updateName(name: String!): Boolean
+    updateDescription(description: String!): Boolean
+    updateCurrentAudio: AudioData
+    addToUpNext(audioId: String!): Boolean
+    clearUpNext: Boolean
+    updateCover(coverUrl: String): Boolean
+    updateUpNext(upNext: [String]!): Boolean
+}
+
+extend type Query {
+    userStation: Station
+    onlineStations: [Station]
+    station(_id: String!): Station
+    stationInProximity(latMinRange: Float!, latMaxRange: Float!, longMinRange: Float!, longMaxRange: Float!): [Station]
+    stationLikeName(expression: String!): [Station]
+    userStationById(userId: String!): Station
+}

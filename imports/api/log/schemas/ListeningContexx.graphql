@@ -1,0 +1,16 @@
+type ListeningContext {
+    _id: String!
+    userId: String!
+    ressourceId: String!
+    timeStamp: Float!
+}
+
+extend type Mutation {
+    userListeningContext(ressourceId: String!): Int
+    removeListeningContext: Boolean
+}
+
+extend type Query {
+    stationListenCount(ressourceId: String!): Int
+    popStations: [ListeningContext]
+}

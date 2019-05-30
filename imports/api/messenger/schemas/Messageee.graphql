@@ -1,0 +1,18 @@
+type Message {
+    _id: String!
+    chatroomId: String!
+    senderId: String!
+    content: String!
+    seen: Boolean!
+    timeStamp: Float!
+}
+
+extend type Mutation {
+    newMessage(chatroomId: String!, timeStamp: Float!, content: String!): Boolean
+    seen(chatroomId: String!): Boolean
+}
+
+extend type Query {
+    messages(chatroomId: String!): [Message]
+    ureadCount(chatroomId: String!): Int
+}
