@@ -8,7 +8,7 @@ import resolvers from './resolvers'
 import Station from '../../api/station/collections/station'
 import ContextListeners from '../../api/log/collections/contextListeners'
 
-// when server modiff
+// when server modiffff
 
 const server = new ApolloServer({
   typeDefs,
